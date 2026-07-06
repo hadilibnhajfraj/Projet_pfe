@@ -1,0 +1,650 @@
+import 'package:flutter/material.dart';
+import 'package:dash_master_toolkit/app_shell_route/app_shell.dart';
+
+import 'package:dash_master_toolkit/application/calendar/view/calendar_view_screen.dart';
+import 'package:dash_master_toolkit/application/chat/view/chat_screen.dart';
+import 'package:dash_master_toolkit/application/kanban/view/kanban_view_screen.dart';
+import 'package:dash_master_toolkit/application/users/view/user_grid_screen.dart';
+import 'package:dash_master_toolkit/application/users/view/user_list_screen.dart';
+import 'package:dash_master_toolkit/application/users/view/user_profile_screen.dart';
+import 'package:dash_master_toolkit/application/users/view/commercial_contact_create_screen.dart';
+import 'package:dash_master_toolkit/application/users/view/accueil_project_stats_table_screen.dart';
+import 'package:dash_master_toolkit/application/users/view/admin_clients_screen.dart';
+import 'package:dash_master_toolkit/application/users/view/user_projects_screen.dart';
+import 'package:dash_master_toolkit/application/users/view/revendeur_projects_screen.dart';
+import 'package:dash_master_toolkit/application/users/view/applicateur_projects_screen.dart';
+import 'package:dash_master_toolkit/dashboard/academic/view/academic_dashboard_screen.dart';
+import 'package:dash_master_toolkit/dashboard/academic/view/dashboard_screen.dart';
+import 'package:dash_master_toolkit/dashboard/ecommerce/view/ecommerce_dashboard_screen.dart';
+import 'package:dash_master_toolkit/dashboard/finance/view/finance_dashboard_screen.dart';
+import 'package:dash_master_toolkit/dashboard/sales/view/sales_dashboard_screen.dart';
+import 'package:dash_master_toolkit/forms/view/basic_form_fields_screen.dart';
+import 'package:dash_master_toolkit/forms/view/custom_form_screen.dart';
+import 'package:dash_master_toolkit/forms/view/validation_form_screen.dart';
+import 'package:dash_master_toolkit/forms/view/project_form_screen.dart';
+
+import 'package:dash_master_toolkit/others/chart/view/chart_screen.dart';
+import 'package:dash_master_toolkit/others/components/view/avtar_screen.dart';
+import 'package:dash_master_toolkit/others/components/view/buttons_screen.dart';
+import 'package:dash_master_toolkit/others/components/view/card_screen.dart';
+import 'package:dash_master_toolkit/others/components/view/carousel_screen.dart';
+import 'package:dash_master_toolkit/others/components/view/dialogs_screen.dart';
+import 'package:dash_master_toolkit/others/components/view/ratting_screen.dart';
+import 'package:dash_master_toolkit/others/components/view/tabs_screen.dart';
+import 'package:dash_master_toolkit/others/components/view/toast_screen.dart';
+
+import 'package:dash_master_toolkit/pages/auth/view/forgot_password_screen.dart';
+import 'package:dash_master_toolkit/pages/auth/view/reset_password_screen.dart';
+import 'package:dash_master_toolkit/pages/auth/view/sign_in_screen.dart';
+import 'package:dash_master_toolkit/pages/auth/view/sign_up_screen.dart';
+
+import 'package:dash_master_toolkit/pages/faq/view/faq_screen.dart';
+import 'package:dash_master_toolkit/pages/google_map/google_map_screen.dart';
+import 'package:dash_master_toolkit/pages/privacy_term_condition/view/privacy_screen.dart';
+import 'package:dash_master_toolkit/pages/privacy_term_condition/view/terms_condition_screen.dart';
+import 'package:dash_master_toolkit/pages/projects/view/projects_screen.dart';
+import 'package:dash_master_toolkit/pages/projects/view/missing_fields_projects_screen.dart';
+
+import 'package:dash_master_toolkit/tables/view/basic_table_screen.dart';
+import 'package:dash_master_toolkit/tables/view/drag_and_drop_table_screen.dart';
+import 'package:dash_master_toolkit/tables/view/hover_table_screen.dart';
+import 'package:dash_master_toolkit/tables/view/stripped_row_table_screen.dart';
+import 'package:dash_master_toolkit/application/users/view/commercial_contact_list_getx_screen.dart';
+import 'package:dash_master_toolkit/application/users/view/users_table.dart';
+import 'package:dash_master_toolkit/application/users/view/user_project_screen.dart';
+import 'package:go_router/go_router.dart';
+
+import '../providers/auth_service.dart';
+import '../providers/language_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:dash_master_toolkit/forms/view/devis_upload_screen.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:dash_master_toolkit/forms/view/project_timeline_screen.dart';
+import 'package:dash_master_toolkit/forms/view/project_pipeline_screen.dart';
+import 'package:dash_master_toolkit/forms/view/archive_requests_page.dart';
+import 'package:dash_master_toolkit/forms/view/archive_request_chat_screen.dart';
+import 'package:dash_master_toolkit/forms/view/projects_explorer_screen.dart';
+import 'package:dash_master_toolkit/application/users/view/commercial_timeline_screen.dart';
+import 'package:dash_master_toolkit/application/users/view/add_commercial_action_screen.dart';
+import 'package:dash_master_toolkit/dashboard/commercial_contacts/view/commercial_contacts_kpi_screen.dart';
+import 'package:dash_master_toolkit/application/users/view/commercial_contacts_analytics_screen.dart';
+import 'package:dash_master_toolkit/pages/auth/view/commercial_selection_screen.dart';
+
+class MyRoute {
+  static const login = '/login';
+  static const dashboard = '/dashboard';
+
+  static const academicAdmin = 'academic-admin';
+  static const dashboardAcademicAdmin = '/dashboard/academic-admin';
+
+  static const salesAdmin = '/kpi-projects';
+  static const dashboardComercial = "/dashboard-commercial";
+  static const dashboardSalesAdmin = '/dashboard/kpi-projects';
+  static const commercialContactsKpi        = '/dashboard/commercial-contacts-kpi';
+  static const commercialContactsKpiUsers   = '/users/commercial-contacts-kpi';
+
+  static const financeAdmin = 'finance-admin';
+  static const dashboardFinanceAdmin = '/dashboard/finance-admin';
+
+  static const ecommerceAdmin = '/kpi-project';
+  static const dashboardEcommerceAdmin = '/dashboard/kpi-project';
+  static const projectTimeline = "/forms/project-timeline";
+  static const calendarScreen = '/calendar';
+  static const chatScreen = '/chat';
+  static const kanbanScreen = '/kanban';
+  static const projectsScreen = '/projects';
+  static const mapScreen = '/google_map';
+  static const faqScreen = '/faq';
+  static const privacyPolicyScreen = '/privacy_policy';
+  static const termsConditionScreen = '/terms_condition';
+  static const commercialContacts = '/users/commercial-contacts';
+
+  static const basicTablesScreen = '/tables/basic_tables';
+  static const stripedRowTableScreen = '/tables/striped_row_table';
+  static const hoverTableScreen = '/tables/hover_table';
+  static const dragDropTableScreen = '/tables/drag_drop_table';
+
+  static const formsBasicFieldsScreen = '/forms/forms_basic_fields';
+  static const customFormScreen = '/forms/custom_form';
+  static const validationFormScreen = '/forms/validation_form';
+ static const dashboardScreen = '/kpi';
+  // ✅ IMPORTANT : c’est bien /forms/project (pas null)
+  static const projectFormScreen = '/forms/project';
+ static const devisEditScreen = '/forms/devis-edit';
+  static const buttonsScreen = '/components/buttons';
+  static const tabsScreen = '/components/tabs';
+  static const dialogScreen = '/components/dialog';
+  static const carouselScreen = '/components/carousel';
+  static const avatarScreen = '/components/avatar';
+  static const cardScreen = '/components/card';
+  static const toastScreen = '/components/toast';
+  static const ratingScreen = '/components/rating';
+static const  projectPipeline = "/pipeline";
+  static const chartScreen = '/chart';
+static const commercialTimeline = '/commercial-timeline';
+  static const userListScreen = '/users/user-list';
+  static const userGridScreen = '/users/project-list';
+  static const userProfileScreen = '/users/user_profile';
+  static const projectsProfileScreen = '/users/user_project';
+static const commercialProfileScreen = '/commercial';
+static const accueilProfileScreen = '/accueil';
+static const clientProfileScreen = '/client';
+static const clientsProfileScreen = '/users/client';
+  static const signInScreen = '/authentication/signin';
+  static const signUpScreen = '/authentication/signup';
+  static const forgotPasswordScreen = '/authentication/forgot_password';
+  static const resetPasswordScreen = '/authentication/reset_password';
+  static const commercialSelectionScreen = '/authentication/select-commercial';
+    static const  applicateurProjectsScreen = "/users/applicateur";
+  static const  revendeurProjectsScreen = "/users/revendeur";
+  static const archiveRequestsScreen = '/archive-requests';
+  static const initialPath = '/';
+  static final rootNavigatorKey = GlobalKey<NavigatorState>();
+
+  static final GoRouter router = GoRouter(
+    initialLocation: signInScreen,
+    refreshListenable: AuthService(),
+
+    redirect: (context, state) {
+      final loggedIn = AuthService().isLoggedIn;
+      final loc = state.matchedLocation;
+
+      final isAuthRoute = loc == signInScreen ||
+          loc == signUpScreen ||
+          loc == forgotPasswordScreen ||
+          loc == resetPasswordScreen;
+
+      // ── Non connecté sur route protégée → login ─────────────────────────
+      if (!loggedIn && !isAuthRoute) return signInScreen;
+
+      // ── Connecté sur auth route ou racine → dashboard ───────────────────
+      // La sélection du commercial (@probardistribution.com) est gérée
+      // exclusivement dans sign_in_screen.dart après un login réussi.
+      // Le router NE redirige JAMAIS vers select-commercial automatiquement.
+      if (loggedIn && (loc == initialPath || isAuthRoute)) {
+        final role = (AuthService().userRole ?? '').toLowerCase().trim();
+        print('ROLE = $role');
+        if (role == 'commercial') {
+          debugPrint('REDIRECTION → $commercialContactsKpiUsers');
+          return commercialContactsKpiUsers;
+        }
+        return dashboardSalesAdmin;
+      }
+
+      // ── Route racine → login ─────────────────────────────────────────────
+      if (loc == initialPath) return signInScreen;
+
+      return null;
+    },
+
+    routes: [
+      GoRoute(
+        path: initialPath,
+        redirect: (context, state) {
+          final appLangProvider = Provider.of<AppLanguageProvider>(context);
+          if (state.uri.queryParameters['rtl'] == 'true') {
+            appLangProvider.isRTL = true;
+          }
+          return signInScreen;
+        },
+      ),
+
+      // AUTH
+      GoRoute(
+        path: signInScreen,
+        pageBuilder: (context, state) =>
+            const NoTransitionPage<void>(child: SignInScreen()),
+      ),
+      GoRoute(
+        path: signUpScreen,
+        pageBuilder: (context, state) =>
+            const NoTransitionPage<void>(child: SignUpScreen()),
+      ),
+      GoRoute(
+        path: forgotPasswordScreen,
+        pageBuilder: (context, state) =>
+            const NoTransitionPage<void>(child: ForgotPasswordScreen()),
+      ),
+      GoRoute(
+        path: resetPasswordScreen,
+        pageBuilder: (context, state) =>
+            const NoTransitionPage<void>(child: ResetPasswordScreen()),
+      ),
+      // ── Sélection commercial (hors AppShell, obligatoire pour role=commercial)
+      GoRoute(
+        path: commercialSelectionScreen,
+        pageBuilder: (context, state) =>
+            const NoTransitionPage<void>(child: CommercialSelectionScreen()),
+      ),
+
+      // APP SHELL
+      ShellRoute(
+        navigatorKey: rootNavigatorKey,
+        pageBuilder: (context, state, child) =>
+            NoTransitionPage(child: AppShell(child: child)),
+        routes: [
+          // Dashboard — all sub-routes → DashboardScreen (nouveau BI professionnel)
+          GoRoute(
+            path: dashboard,
+            redirect: (context, state) {
+              if (state.fullPath == dashboard) return dashboardSalesAdmin;
+              return null;
+            },
+            routes: [
+              // Tous les sous-menus dashboard rendent DashboardScreen
+              GoRoute(
+                path: academicAdmin,
+                pageBuilder: (context, state) {
+                  final token = AuthService().accessToken ?? '';
+                  return NoTransitionPage(child: DashboardScreen(token: token));
+                },
+              ),
+              GoRoute(
+                path: salesAdmin,
+                pageBuilder: (context, state) {
+                  final token = AuthService().accessToken ?? '';
+                  return NoTransitionPage(child: DashboardScreen(token: token));
+                },
+              ),
+              GoRoute(
+                path: financeAdmin,
+                pageBuilder: (context, state) {
+                  final token = AuthService().accessToken ?? '';
+                  return NoTransitionPage(child: DashboardScreen(token: token));
+                },
+              ),
+              GoRoute(
+                path: ecommerceAdmin,
+                pageBuilder: (context, state) {
+                  final token = AuthService().accessToken ?? '';
+                  return NoTransitionPage(child: DashboardScreen(token: token));
+                },
+              ),
+              GoRoute(
+                path: 'commercial-contacts-kpi',
+                pageBuilder: (context, state) {
+                  final token = AuthService().accessToken ?? '';
+                  return NoTransitionPage(
+                    child: CommercialContactsKpiScreen(token: token),
+                  );
+                },
+              ),
+            ],
+          ),
+
+          // Applications
+          GoRoute(
+            path: calendarScreen,
+            pageBuilder: (context, state) =>
+                NoTransitionPage(child: CalendarViewScreen()),
+          ),
+          GoRoute(
+            path: chatScreen,
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: ChatScreen()),
+          ),
+          GoRoute(
+            path: kanbanScreen,
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: KanbanViewScreen()),
+          ),
+
+          // Users
+          GoRoute(
+            path: '/users',
+            redirect: (context, state) {
+              if (state.fullPath == '/users') return userListScreen;
+              return null;
+            },
+            routes: [
+              GoRoute(
+                path: 'user-list',
+                redirect: (context, state) {
+                  final role =
+                      (AuthService().userRole ?? '').toLowerCase();
+                  final ok = role == 'admin' || role == 'superadmin';
+                  return ok ? null : dashboard;
+                },
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: UserListScreen()),
+              ),
+              GoRoute(
+                path: 'project-list',
+                pageBuilder: (context, state) =>
+                    NoTransitionPage(child: UserGridScreen()),
+              ),
+              GoRoute(
+                path: 'user_profile',
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: UserProfileScreen()),
+              ),
+              GoRoute(
+  path: 'user_project',
+  pageBuilder: (context, state) =>
+      const NoTransitionPage(child: ProjectsExplorerScreen()),
+),
+GoRoute(
+  path: "applicateur",
+  builder: (context, state) => const ApplicateurProjectsScreen(),
+),
+
+GoRoute(
+  path: '/revendeur',
+  builder: (context, state) => const RevendeurProjectsScreen(),
+),
+GoRoute(
+  path: MyRoute.clientProfileScreen,
+  pageBuilder: (context, state) => NoTransitionPage(
+    child: AdminClientsScreen(),
+  ),
+),
+GoRoute(
+  path: '/commercial-contacts',
+  pageBuilder: (context, state) => NoTransitionPage(
+    child: CommercialContactListGetxScreen(
+      token: AuthService().accessToken ?? '',
+    ),
+  ),
+),
+GoRoute(
+  path: '/dashboard-commercial',
+
+  redirect: (context, state) {
+    if (AuthService().userRole != "superadmin") {
+      return "/unauthorized";
+    }
+    return null;
+  },
+
+  pageBuilder: (context, state) => NoTransitionPage(
+    child: UsersTable(),
+  ),
+),
+GoRoute(
+  path: '/commercial-timeline/:id',
+  builder: (context, state) {
+
+    final contactId = state.pathParameters['id']!;
+    final token = state.extra as String;
+
+    return CommercialTimelineScreen(
+      contactId: contactId,
+      token: token,
+    );
+  },
+),
+GoRoute(
+  path: '/commercial-add-action',
+  builder: (context, state) {
+    final contactId = state.uri.queryParameters['contactId']!;
+
+    return AddCommercialActionScreen(
+      contactId: contactId,
+    );
+  },
+),
+GoRoute(
+  path: '/commercial-contacts-kpi',
+  redirect: (context, state) {
+    final role = (AuthService().userRole ?? '').toLowerCase().trim();
+    debugPrint('ROLE CONNECTE = $role');
+    final canView = AuthService().canViewCommercialKpi;
+    if (!canView) {
+      debugPrint('Accès refusé à /users/commercial-contacts-kpi pour role=$role → redirection dashboard');
+      return dashboardSalesAdmin;
+    }
+    return null;
+  },
+  pageBuilder: (context, state) => NoTransitionPage(
+    child: CommercialContactsAnalyticsScreen(
+      token: AuthService().accessToken ?? '',
+    ),
+  ),
+),
+
+            ],
+          ),
+
+          // Pages
+          GoRoute(
+            path: projectsScreen,
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: ProjectsScreen()),
+          ),
+          GoRoute(
+            path: '/projects-list',
+            pageBuilder: (context, state) {
+              final field = state.uri.queryParameters['field'] ?? '';
+              final label = state.uri.queryParameters['label'] ?? '';
+              return NoTransitionPage(
+                child: MissingFieldsProjectsScreen(field: field, label: label),
+              );
+            },
+          ),
+          
+          GoRoute(
+            path: mapScreen,
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: GoogleMapScreen()),
+          ),
+          GoRoute(
+            path: faqScreen,
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: FaqScreen()),
+          ),
+          GoRoute(
+            path: privacyPolicyScreen,
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: PrivacyScreen()),
+          ),
+          GoRoute(
+            path: termsConditionScreen,
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: TermsConditionScreen()),
+          ),
+GoRoute(
+  path: MyRoute.commercialProfileScreen,
+  pageBuilder: (context, state) =>
+      NoTransitionPage(child: CommercialContactCreateScreen()),
+),
+GoRoute(
+  path: MyRoute.accueilProfileScreen,
+  pageBuilder: (context, state) {
+    final box = GetStorage();
+
+    final token = (box.read('accessToken') ?? '').toString();
+    final role = (box.read('userRole') ?? '').toString().trim().toLowerCase();
+    final userId = (box.read('userId') ?? '').toString();
+    final userEmail = (box.read('userEmail') ?? '').toString();
+
+    print('DEBUG route token = $token');
+    print('DEBUG route role = $role');
+    print('DEBUG route userId = $userId');
+    print('DEBUG route userEmail = $userEmail');
+
+    return NoTransitionPage(
+      child: AccueilProjectStatsTableScreen(
+        token: token,
+        userRole: role,
+      ),
+    );
+  },
+),
+          // Tables
+          GoRoute(
+            path: '/tables',
+            redirect: (context, state) {
+              if (state.fullPath == '/tables') return basicTablesScreen;
+              return null;
+            },
+            routes: [
+              GoRoute(
+                path: 'basic_tables',
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: BasicTableScreen()),
+              ),
+              GoRoute(
+                path: 'striped_row_table',
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: StrippedRowTableScreen()),
+              ),
+              GoRoute(
+                path: 'hover_table',
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: HoverTableScreen()),
+              ),
+              GoRoute(
+                path: 'drag_drop_table',
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: DragAndDropTableScreen()),
+              ),
+            ],
+          ),
+
+          // Forms
+          GoRoute(
+            path: '/forms',
+            redirect: (context, state) {
+              if (state.fullPath == '/forms') return formsBasicFieldsScreen;
+              return null;
+            },
+            routes: [
+              GoRoute(
+                path: 'forms_basic_fields',
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: BasicFormFieldsScreen()),
+              ),
+              GoRoute(
+                path: 'custom_form',
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: CustomFormScreen()),
+              ),
+              GoRoute(
+                path: 'validation_form',
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: ValidationFormScreen()),
+              ),
+              // ✅ /forms/project?id=...
+              GoRoute(
+                path: 'project',
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: ProjectFormScreen()),
+              ),
+              GoRoute(
+  path: 'devis-edit',
+  pageBuilder: (context, state) {
+    final projectId = state.uri.queryParameters['projectId'] ?? "";
+    return NoTransitionPage(
+      child: DevisUploadScreen(
+        projectId: projectId,
+        isEdit: true, // ✅
+      ),
+    );
+  },
+),
+GoRoute(
+  path: "project-timeline",
+  builder: (context, state) {
+
+    final projectId = state.uri.queryParameters["projectId"]!;
+
+    return ProjectTimelineScreen(
+      projectId: projectId,
+    );
+
+  },
+),
+GoRoute(
+  path: 'pipeline', // ✅ IMPORTANT
+  name: 'pipeline',
+  builder: (context, state) => const ProjectPipelineScreen(),
+),
+GoRoute(
+  path: 'archive-requests',
+  name: 'archive-requests',
+  redirect: (context, state) {
+    final role = (AuthService().userRole ?? '').toLowerCase();
+    final ok = role == 'admin' || role == 'superadmin';
+    return ok ? null : dashboard;
+  },
+  builder: (context, state) => const ArchiveRequestsPage(),
+  routes: [
+    GoRoute(
+      path: 'chat',
+      name: 'archive-request-chat',
+      redirect: (context, state) {
+        final role = (AuthService().userRole ?? '').toLowerCase();
+        final ok = role == 'admin' || role == 'superadmin';
+        return ok ? null : dashboard;
+      },
+      builder: (context, state) {
+        final id = state.uri.queryParameters['id'] ?? '';
+        return ArchiveRequestChatScreen(requestId: id);
+      },
+    ),
+  ],
+),
+
+            ],
+          ),
+
+          // Other
+          GoRoute(
+            path: chartScreen,
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: ChartScreen()),
+          ),
+          GoRoute(
+            path: '/components',
+            redirect: (context, state) {
+              if (state.fullPath == '/components') return buttonsScreen;
+              return null;
+            },
+            routes: [
+              GoRoute(
+                path: 'buttons',
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: ButtonsScreen()),
+              ),
+              GoRoute(
+                path: 'tabs',
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: TabsScreen()),
+              ),
+              GoRoute(
+                path: 'dialog',
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: DialogsScreen()),
+              ),
+              GoRoute(
+                path: 'carousel',
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: CarouselScreen()),
+              ),
+              GoRoute(
+                path: 'avatar',
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: AvtarScreen()),
+              ),
+              GoRoute(
+                path: 'card',
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: CardScreen()),
+              ),
+              GoRoute(
+                path: 'rating',
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: RattingScreen()),
+              ),
+              GoRoute(
+                path: 'toast',
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: ToastScreen()),
+              ),
+            ],
+          ),
+        ],
+      ),
+    ],
+  );
+}
