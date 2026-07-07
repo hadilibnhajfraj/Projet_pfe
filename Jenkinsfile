@@ -55,7 +55,13 @@ stage('Flutter Analyze') {
     steps {
         dir('Projet_flutter') {
             sh '''
+                echo "=============================="
+                echo "NOUVEAU JENKINSFILE"
+                echo "=============================="
+
                 flutter analyze || true
+
+                echo "FIN ANALYZE"
             '''
         }
     }
