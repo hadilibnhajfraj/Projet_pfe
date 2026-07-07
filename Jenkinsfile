@@ -5,6 +5,11 @@ pipeline {
         nodejs 'Node22'
     }
 
+    environment {
+        FLUTTER_HOME = "/opt/flutter"
+        PATH = "/opt/flutter/bin:/opt/flutter/bin/cache/dart-sdk/bin:${env.PATH}"
+    }
+
     stages {
 
         stage('Checkout') {
@@ -29,58 +34,47 @@ pipeline {
             }
         }
 
-        stage('Debug Flutter') {
+        stage('Flutter Version') {
             steps {
-                dir('Projet_flutter') {
-                    sh '''
-                        pwd
-                        ls
-                        cat pubspec.yaml
-                    '''
-                }
+                sh '''
+                    flutter --version
+                    flutter doctor -v
+                '''
             }
         }
 
-        stage('Flutter Pub Get') {
-            steps {
-                dir('Projet_flutter') {
-                    sh '''
-                        docker run --rm \
-                          -v $(pwd):/app \
-                          -w /app \
-                          ghcr.io/cirruslabs/flutter:stable \
-                          flutter pub get
-                    '''
-                }
-            }
+      stage('Flutter Pub Get') {
+    steps {
+        dir('Projet_flutter') {
+            sh 'flutter pub get'
+        }
+    }
+}
+
+stage('Flutter Analyze') {
+    steps {
+        dir('Projet_flutter') {
+            sh 'flutter analyze'
+        }
+    }
+}
+
+stage('Flutter Build Web') {
+    steps {
+        dir('Projet_flutter') {
+            sh 'flutter build web'
+        }
+    }
+}
+    }
+
+    post {
+        success {
+            echo 'Pipeline terminée avec succès'
         }
 
-        stage('Flutter Analyze') {
-            steps {
-                dir('Projet_flutter') {
-                    sh '''
-                        docker run --rm \
-                          -v $(pwd):/app \
-                          -w /app \
-                          ghcr.io/cirruslabs/flutter:stable \
-                          flutter analyze
-                    '''
-                }
-            }
-        }
-
-        stage('Flutter Build Web') {
-            steps {
-                dir('Projet_flutter') {
-                    sh '''
-                        docker run --rm \
-                          -v $(pwd):/app \
-                          -w /app \
-                          ghcr.io/cirruslabs/flutter:stable \
-                          flutter build web
-                    '''
-                }
-            }
+        failure {
+            echo 'Pipeline en échec'
         }
     }
 }
