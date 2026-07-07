@@ -12,22 +12,21 @@ pipeline {
                 checkout scm
             }
         }
-
-        stage('Install Backend') {
-            steps {
-                dir('Projet_flutter_backend') {
-                    bat 'npm install'
-                }
-            }
+stage('Install Backend') {
+    steps {
+        dir('Projet_flutter_backend') {
+            sh 'npm install'
         }
+    }
+}
 
-        stage('Check Backend') {
-            steps {
-                dir('Projet_flutter_backend') {
-                    bat 'node --check src/app.js'
-                }
-            }
+stage('Check Backend') {
+    steps {
+        dir('Projet_flutter_backend') {
+            sh 'node --check src/app.js'
         }
+    }
+}
 
     }
 }
