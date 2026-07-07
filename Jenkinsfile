@@ -29,41 +29,58 @@ pipeline {
             }
         }
 
+        stage('Debug Flutter') {
+            steps {
+                dir('Projet_flutter') {
+                    sh '''
+                        pwd
+                        ls
+                        cat pubspec.yaml
+                    '''
+                }
+            }
+        }
+
         stage('Flutter Pub Get') {
             steps {
-                sh '''
-                docker run --rm \
-                -v ${WORKSPACE}/Projet_flutter:/app \
-                -w /app \
-                ghcr.io/cirruslabs/flutter:stable \
-                flutter pub get
-                '''
+                dir('Projet_flutter') {
+                    sh '''
+                        docker run --rm \
+                          -v $(pwd):/app \
+                          -w /app \
+                          ghcr.io/cirruslabs/flutter:stable \
+                          flutter pub get
+                    '''
+                }
             }
         }
 
         stage('Flutter Analyze') {
             steps {
-                sh '''
-                docker run --rm \
-                -v ${WORKSPACE}/Projet_flutter:/app \
-                -w /app \
-                ghcr.io/cirruslabs/flutter:stable \
-                flutter analyze
-                '''
+                dir('Projet_flutter') {
+                    sh '''
+                        docker run --rm \
+                          -v $(pwd):/app \
+                          -w /app \
+                          ghcr.io/cirruslabs/flutter:stable \
+                          flutter analyze
+                    '''
+                }
             }
         }
 
         stage('Flutter Build Web') {
             steps {
-                sh '''
-                docker run --rm \
-                -v ${WORKSPACE}/Projet_flutter:/app \
-                -w /app \
-                ghcr.io/cirruslabs/flutter:stable \
-                flutter build web
-                '''
+                dir('Projet_flutter') {
+                    sh '''
+                        docker run --rm \
+                          -v $(pwd):/app \
+                          -w /app \
+                          ghcr.io/cirruslabs/flutter:stable \
+                          flutter build web
+                    '''
+                }
             }
         }
-
     }
 }
