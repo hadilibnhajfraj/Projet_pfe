@@ -70,7 +70,11 @@ stage('Flutter Analyze') {
 stage('Flutter Build Web') {
     steps {
         dir('Projet_flutter') {
-            sh 'flutter build web'
+            sh '''
+                flutter clean
+                flutter pub get
+                flutter build web --verbose
+            '''
         }
     }
 }
