@@ -1,24 +1,33 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs 'Node18'
+    }
+
     stages {
 
         stage('Checkout') {
             steps {
-                echo 'Récupération du projet depuis GitHub'
+                checkout scm
             }
         }
 
-        stage('Frontend') {
+        stage('Install Backend') {
             steps {
-                echo 'Build Flutter'
+                dir('Projet_flutter_backend') {
+                    bat 'npm install'
+                }
             }
         }
 
-        stage('Backend') {
+        stage('Check Backend') {
             steps {
-                echo 'Build Node.js'
+                dir('Projet_flutter_backend') {
+                    bat 'node --check src/app.js'
+                }
             }
         }
+
     }
 }
