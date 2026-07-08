@@ -3,12 +3,12 @@ pipeline {
 
     tools {
         nodejs 'Node22'
-        sonarQube 'SonarScanner'
     }
 
     environment {
         FLUTTER_HOME = "/opt/flutter"
         PATH = "/opt/flutter/bin:/opt/flutter/bin/cache/dart-sdk/bin:${env.PATH}"
+        SCANNER_HOME = tool 'SonarScanner'
     }
 
     stages {
@@ -44,62 +44,66 @@ pipeline {
             }
         }
 
-      stage('Flutter Pub Get') {
-    steps {
-        dir('Projet_flutter') {
-            sh 'flutter pub get'
-        }
-    }
-}
-
-stage('Flutter Analyze') {
-    steps {
-        dir('Projet_flutter') {
-            sh '''
-                echo "=============================="
-                echo "NOUVEAU JENKINSFILE"
-                echo "=============================="
-
-                flutter analyze || true
-
-                echo "FIN ANALYZE"
-            '''
-        }
-    }
-}
-stage('SonarQube Analysis') {
-    steps {
-        script {
-            def scannerHome = tool 'SonarScanner'
-
-            withSonarQubeEnv('SonarQube') {
-                sh """
-                    ${scannerHome}/bin/sonar-scanner
-                """
+        stage('Flutter Pub Get') {
+            steps {
+                dir('Projet_flutter') {
+                    sh 'flutter pub get'
+                }
             }
         }
-    }
-}
-stage('Flutter Build Web') {
-    steps {
-        dir('Projet_flutter') {
-            sh '''
-                flutter clean
-                flutter pub get
-                flutter build web --verbose
-            '''
+
+        stage('Flutter Analyze') {
+            steps {
+                dir('Projet_flutter') {
+                    sh '''
+                        echo "=============================="
+                        echo "FLUTTER ANALYZE"
+                        echo "=============================="
+
+                        flutter analyze || true
+
+                        echo "Analyse terminée"
+                    '''
+                }
+            }
         }
-    }
-}
+
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh '''
+                        ${SCANNER_HOME}/bin/sonar-scanner
+                    '''
+                }
+            }
+        }
+
+        stage('Flutter Build Web') {
+            steps {
+                dir('Projet_flutter') {
+                    sh '''
+                        flutter clean
+                        flutter pub get
+                        flutter build web --release
+                    '''
+                }
+            }
+        }
+
     }
 
     post {
+
         success {
             echo 'Pipeline terminée avec succès'
         }
 
         failure {
             echo 'Pipeline en échec'
+        }
+
+        always {
+            cleanWs()
         }
     }
 }
