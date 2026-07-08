@@ -66,7 +66,17 @@ stage('Flutter Analyze') {
         }
     }
 }
-
+stage('SonarQube Analysis') {
+    steps {
+        withSonarQubeEnv('SonarQube') {
+            sh '''
+            sonar-scanner \
+              -Dsonar.projectKey=crm-pfe \
+              -Dsonar.sources=Projet_flutter/lib,Projet_flutter_backend/src
+            '''
+        }
+    }
+}
 stage('Flutter Build Web') {
     steps {
         dir('Projet_flutter') {
