@@ -68,12 +68,14 @@ stage('Flutter Analyze') {
 }
 stage('SonarQube Analysis') {
     steps {
-        withSonarQubeEnv('SonarQube') {
-            sh '''
-            sonar-scanner \
-              -Dsonar.projectKey=crm-pfe \
-              -Dsonar.sources=Projet_flutter/lib,Projet_flutter_backend/src
-            '''
+        script {
+            def scannerHome = tool 'SonarScanner'
+
+            withSonarQubeEnv('SonarQube') {
+                sh """
+                    ${scannerHome}/bin/sonar-scanner
+                """
+            }
         }
     }
 }
