@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:dash_master_toolkit/core/config/api_config.dart';
 import 'package:dash_master_toolkit/providers/auth_service.dart';
@@ -22,7 +23,7 @@ class UserApi {
 
     final token = AuthService().accessToken;
 
-    print('TOKEN DASHBOARD = $token');
+    debugPrint('TOKEN DASHBOARD = $token');
 
     final response = await http.get(
 
@@ -37,8 +38,8 @@ class UserApi {
 
     );
 
-    print('STATUS DASHBOARD = ${response.statusCode}');
-    print('BODY DASHBOARD = ${response.body}');
+    debugPrint('STATUS DASHBOARD = ${response.statusCode}');
+    debugPrint('BODY DASHBOARD = ${response.body}');
 
     if (response.statusCode == 200) {
 
@@ -69,7 +70,7 @@ class UserApi {
 
     final token = AuthService().accessToken;
 
-    print('TOKEN USER PROJECTS = $token');
+    debugPrint('TOKEN USER PROJECTS = $token');
 
     final response = await http.get(
 
@@ -84,8 +85,8 @@ class UserApi {
 
     );
 
-    print('STATUS USER PROJECTS = ${response.statusCode}');
-    print('BODY USER PROJECTS = ${response.body}');
+    debugPrint('STATUS USER PROJECTS = ${response.statusCode}');
+    debugPrint('BODY USER PROJECTS = ${response.body}');
 
     if (response.statusCode == 200) {
 

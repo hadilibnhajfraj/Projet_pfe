@@ -84,7 +84,7 @@ BoxDecoration _card({double r = 18}) => BoxDecoration(
   color:        _kCard,
   borderRadius: BorderRadius.circular(r),
   border:       Border.all(color: _kBorder, width: 0.8),
-  boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 20, offset: const Offset(0, 6))],
+  boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 20, offset: const Offset(0, 6))],
 );
 
 Color _statutColor(String s) {
@@ -516,9 +516,9 @@ class _CommercialContactsKpiScreenState
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
-                    color:        _kIndigo.withOpacity(0.10),
+                    color:        _kIndigo.withValues(alpha: 0.10),
                     borderRadius: BorderRadius.circular(20),
-                    border:       Border.all(color: _kIndigo.withOpacity(0.30)),
+                    border:       Border.all(color: _kIndigo.withValues(alpha: 0.30)),
                   ),
                   child: const Row(mainAxisSize: MainAxisSize.min, children: [
                     Icon(Icons.person_rounded, size: 12, color: _kIndigo),
@@ -799,12 +799,12 @@ class _CommercialContactsKpiScreenState
                   DataCell(Text('${u.entreprises}')),
                   DataCell(Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                    decoration: BoxDecoration(color: const Color(0xFF22C55E).withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
+                    decoration: BoxDecoration(color: const Color(0xFF22C55E).withValues(alpha: 0.1), borderRadius: BorderRadius.circular(8)),
                     child: Text('${u.actifs}', style: const TextStyle(fontFamily: 'InterTight', fontSize: 12, fontWeight: FontWeight.w700, color: Color(0xFF22C55E))),
                   )),
                   DataCell(Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                    decoration: BoxDecoration(color: const Color(0xFFEF4444).withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
+                    decoration: BoxDecoration(color: const Color(0xFFEF4444).withValues(alpha: 0.1), borderRadius: BorderRadius.circular(8)),
                     child: Text('${u.nonValides}', style: const TextStyle(fontFamily: 'InterTight', fontSize: 12, fontWeight: FontWeight.w700, color: Color(0xFFEF4444))),
                   )),
                   DataCell(_TauxCell(taux: u.tauxReussite)),
@@ -979,7 +979,7 @@ class _CommercialContactsKpiScreenState
             color: _kIndigo, barWidth: 2.5,
             dotData: FlDotData(show: true, getDotPainter: (_, __, ___, ____) =>
                 FlDotCirclePainter(radius: 4, color: Colors.white, strokeWidth: 2, strokeColor: _kIndigo)),
-            belowBarData: BarAreaData(show: true, color: _kIndigo.withOpacity(0.07)),
+            belowBarData: BarAreaData(show: true, color: _kIndigo.withValues(alpha: 0.07)),
           ),
           LineChartBarData(
             spots: _monthlyData.asMap().entries.map((e) => FlSpot(e.key.toDouble(), e.value.calls.toDouble())).toList(),
@@ -987,7 +987,7 @@ class _CommercialContactsKpiScreenState
             color: const Color(0xFF0EA5E9), barWidth: 2.5,
             dotData: FlDotData(show: true, getDotPainter: (_, __, ___, ____) =>
                 FlDotCirclePainter(radius: 4, color: Colors.white, strokeWidth: 2, strokeColor: const Color(0xFF0EA5E9))),
-            belowBarData: BarAreaData(show: true, color: const Color(0xFF0EA5E9).withOpacity(0.05)),
+            belowBarData: BarAreaData(show: true, color: const Color(0xFF0EA5E9).withValues(alpha: 0.05)),
           ),
         ],
       )),
@@ -1033,7 +1033,7 @@ class _CommercialContactsKpiScreenState
       context: context,
       barrierDismissible: true,
       barrierLabel: 'Close',
-      barrierColor: Colors.black.withOpacity(0.35),
+      barrierColor: Colors.black.withValues(alpha: 0.35),
       transitionDuration: const Duration(milliseconds: 280),
       transitionBuilder: (ctx, anim, _, child) {
         final curve = CurvedAnimation(parent: anim, curve: Curves.easeOutCubic);
@@ -1111,10 +1111,10 @@ class _TopCommercialCardState extends State<_TopCommercialCard> {
           margin: const EdgeInsets.only(bottom: 10),
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
-            color:        _hovered ? _color.withOpacity(0.04) : const Color(0xFFF8FAFC),
+            color:        _hovered ? _color.withValues(alpha: 0.04) : const Color(0xFFF8FAFC),
             borderRadius: BorderRadius.circular(14),
-            border:       Border.all(color: _hovered ? _color.withOpacity(0.35) : const Color(0xFFE2E8F0)),
-            boxShadow:    _hovered ? [BoxShadow(color: _color.withOpacity(0.12), blurRadius: 12, offset: const Offset(0, 4))] : [],
+            border:       Border.all(color: _hovered ? _color.withValues(alpha: 0.35) : const Color(0xFFE2E8F0)),
+            boxShadow:    _hovered ? [BoxShadow(color: _color.withValues(alpha: 0.12), blurRadius: 12, offset: const Offset(0, 4))] : [],
           ),
           child: Row(children: [
             // Badge
@@ -1129,7 +1129,7 @@ class _TopCommercialCardState extends State<_TopCommercialCard> {
             Container(
               width: 38, height: 38,
               decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [_color, _color.withOpacity(0.65)],
+                gradient: LinearGradient(colors: [_color, _color.withValues(alpha: 0.65)],
                     begin: Alignment.topLeft, end: Alignment.bottomRight),
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -1148,7 +1148,7 @@ class _TopCommercialCardState extends State<_TopCommercialCard> {
                 if (widget.rank < 3)
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                    decoration: BoxDecoration(color: _color.withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
+                    decoration: BoxDecoration(color: _color.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(8)),
                     child: Text(_badge, style: TextStyle(fontFamily: 'InterTight', fontSize: 9, fontWeight: FontWeight.w800, color: _color)),
                   ),
               ]),
@@ -1169,9 +1169,9 @@ class _TopCommercialCardState extends State<_TopCommercialCard> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                   decoration: BoxDecoration(
-                    color: _scoreColor(u.score).withOpacity(0.1),
+                    color: _scoreColor(u.score).withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: _scoreColor(u.score).withOpacity(0.25)),
+                    border: Border.all(color: _scoreColor(u.score).withValues(alpha: 0.25)),
                   ),
                   child: Text('${u.score.toStringAsFixed(0)} pts',
                     style: TextStyle(fontFamily: 'InterTight', fontSize: 10, fontWeight: FontWeight.w800, color: _scoreColor(u.score))),
@@ -1184,7 +1184,7 @@ class _TopCommercialCardState extends State<_TopCommercialCard> {
                 child: LinearProgressIndicator(
                   value: frac,
                   minHeight: 5,
-                  backgroundColor: _color.withOpacity(0.1),
+                  backgroundColor: _color.withValues(alpha: 0.1),
                   valueColor: AlwaysStoppedAnimation(_color),
                 ),
               ),
@@ -1227,16 +1227,16 @@ class _CompanyRow extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
       decoration: BoxDecoration(
-        color: rank == 0 ? color.withOpacity(0.04) : const Color(0xFFF8FAFC),
+        color: rank == 0 ? color.withValues(alpha: 0.04) : const Color(0xFFF8FAFC),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: rank == 0 ? color.withOpacity(0.25) : const Color(0xFFE2E8F0)),
+        border: Border.all(color: rank == 0 ? color.withValues(alpha: 0.25) : const Color(0xFFE2E8F0)),
       ),
       child: Row(children: [
         // Rank + company name
         Expanded(flex: 4, child: Row(children: [
           Container(
             width: 28, height: 28,
-            decoration: BoxDecoration(color: color.withOpacity(0.12), borderRadius: BorderRadius.circular(8)),
+            decoration: BoxDecoration(color: color.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(8)),
             alignment: Alignment.center,
             child: Text(stat.name.isNotEmpty ? stat.name[0].toUpperCase() : '?',
               style: TextStyle(fontFamily: 'InterTight', fontSize: 13, fontWeight: FontWeight.w800, color: color)),
@@ -1260,12 +1260,12 @@ class _CompanyRow extends StatelessWidget {
           child: SizedBox(
             height: 20,
             child: Stack(children: [
-              Container(color: color.withOpacity(0.08)),
+              Container(color: color.withValues(alpha: 0.08)),
               FractionallySizedBox(
                 widthFactor: frac.clamp(0.0, 1.0),
                 child: Container(
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [color, color.withOpacity(0.75)]),
+                    gradient: LinearGradient(colors: [color, color.withValues(alpha: 0.75)]),
                   ),
                 ),
               ),
@@ -1335,7 +1335,7 @@ class _UserDetailPanelState extends State<_UserDetailPanel> {
             Container(
               width: 52, height: 52,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(14),
               ),
               alignment: Alignment.center,
@@ -1354,7 +1354,7 @@ class _UserDetailPanelState extends State<_UserDetailPanel> {
               const SizedBox(height: 6),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                decoration: BoxDecoration(color: Colors.white.withOpacity(0.2), borderRadius: BorderRadius.circular(8)),
+                decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(8)),
                 child: Text('Score : ${u.score.toStringAsFixed(0)}/100',
                   style: const TextStyle(fontFamily: 'InterTight', fontSize: 11, fontWeight: FontWeight.w700, color: Colors.white)),
               ),
@@ -1395,7 +1395,7 @@ class _UserDetailPanelState extends State<_UserDetailPanel> {
                 child: LinearProgressIndicator(
                   value: (u.tauxReussite / 100).clamp(0, 1),
                   minHeight: 10,
-                  backgroundColor: _scoreColor(u.tauxReussite).withOpacity(0.1),
+                  backgroundColor: _scoreColor(u.tauxReussite).withValues(alpha: 0.1),
                   valueColor: AlwaysStoppedAnimation(_scoreColor(u.tauxReussite)),
                 ),
               ),
@@ -1468,7 +1468,7 @@ class _UserDetailPanelState extends State<_UserDetailPanel> {
             child: LinearProgressIndicator(
               value: (pct / 100).clamp(0, 1),
               minHeight: 7,
-              backgroundColor: color.withOpacity(0.1),
+              backgroundColor: color.withValues(alpha: 0.1),
               valueColor: AlwaysStoppedAnimation(color),
             ),
           ),
@@ -1497,7 +1497,7 @@ class _RecentContactTile extends StatelessWidget {
       child: Row(children: [
         Container(
           width: 32, height: 32,
-          decoration: BoxDecoration(color: color.withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
+          decoration: BoxDecoration(color: color.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(8)),
           alignment: Alignment.center,
           child: Text(
             contact.fullName.isNotEmpty ? contact.fullName[0].toUpperCase() : '?',
@@ -1512,7 +1512,7 @@ class _RecentContactTile extends StatelessWidget {
           Row(children: [
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
-              decoration: BoxDecoration(color: color.withOpacity(0.1), borderRadius: BorderRadius.circular(6)),
+              decoration: BoxDecoration(color: color.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(6)),
               child: Text(contact.statut, style: TextStyle(fontFamily: 'InterTight', fontSize: 9, fontWeight: FontWeight.w700, color: color)),
             ),
             if (contact.nomSociete?.isNotEmpty == true) ...[
@@ -1544,7 +1544,7 @@ class _SectionHeader extends StatelessWidget {
       const SizedBox(width: 8),
       Container(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-        decoration: BoxDecoration(color: _kIndigo.withOpacity(0.1), borderRadius: BorderRadius.circular(20)),
+        decoration: BoxDecoration(color: _kIndigo.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(20)),
         child: Text(badge!, style: const TextStyle(fontFamily: 'InterTight', fontSize: 11, fontWeight: FontWeight.w800, color: _kIndigo)),
       ),
     ],
@@ -1565,7 +1565,7 @@ class _ActionBtn extends StatelessWidget {
     label: Text(label),
     style: TextButton.styleFrom(
       foregroundColor: color,
-      backgroundColor: color.withOpacity(0.08),
+      backgroundColor: color.withValues(alpha: 0.08),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       textStyle: const TextStyle(fontFamily: 'InterTight', fontSize: 13, fontWeight: FontWeight.w600),
@@ -1595,7 +1595,7 @@ class _MiniChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-    decoration: BoxDecoration(color: color.withOpacity(0.08), borderRadius: BorderRadius.circular(8)),
+    decoration: BoxDecoration(color: color.withValues(alpha: 0.08), borderRadius: BorderRadius.circular(8)),
     child: Row(mainAxisSize: MainAxisSize.min, children: [
       Icon(icon, size: 10, color: color),
       const SizedBox(width: 3),
@@ -1613,7 +1613,7 @@ class _TauxCell extends StatelessWidget {
     final color = _scoreColor(taux);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(color: color.withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
+      decoration: BoxDecoration(color: color.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(8)),
       child: Text('${taux.toStringAsFixed(1)}%',
         style: TextStyle(fontFamily: 'InterTight', fontSize: 12, fontWeight: FontWeight.w700, color: color)),
     );
@@ -1635,7 +1635,7 @@ class _UserAvatar extends StatelessWidget {
     final color = _kColors[name.isEmpty ? 0 : name.codeUnitAt(0) % _kColors.length];
     return Container(
       width: size, height: size,
-      decoration: BoxDecoration(color: color.withOpacity(0.12), borderRadius: BorderRadius.circular(size * 0.28)),
+      decoration: BoxDecoration(color: color.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(size * 0.28)),
       alignment: Alignment.center,
       child: Text(
         name.isNotEmpty ? name[0].toUpperCase() : '?',
@@ -1656,9 +1656,9 @@ class _DrawerKpi extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
     decoration: BoxDecoration(
-      color: color.withOpacity(0.06),
+      color: color.withValues(alpha: 0.06),
       borderRadius: BorderRadius.circular(12),
-      border: Border.all(color: color.withOpacity(0.2)),
+      border: Border.all(color: color.withValues(alpha: 0.2)),
     ),
     child: Row(mainAxisSize: MainAxisSize.min, children: [
       Icon(icon, size: 14, color: color),

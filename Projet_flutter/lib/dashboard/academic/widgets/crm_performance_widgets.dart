@@ -191,14 +191,14 @@ class _MiniCard extends StatelessWidget {
     decoration: BoxDecoration(
       color: _kCard,
       borderRadius: BorderRadius.circular(14),
-      border: Border.all(color: color.withOpacity(0.18)),
-      boxShadow: [BoxShadow(color: color.withOpacity(0.09), blurRadius: 10, offset: const Offset(0, 4))],
+      border: Border.all(color: color.withValues(alpha: 0.18)),
+      boxShadow: [BoxShadow(color: color.withValues(alpha: 0.09), blurRadius: 10, offset: const Offset(0, 4))],
     ),
     child: Row(children: [
       Container(
         width: 38, height: 38,
         decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [color, color.withOpacity(0.65)],
+          gradient: LinearGradient(colors: [color, color.withValues(alpha: 0.65)],
               begin: Alignment.topLeft, end: Alignment.bottomRight),
           borderRadius: BorderRadius.circular(10),
         ),
@@ -408,10 +408,10 @@ class _PerfCardState extends State<_PerfCard> {
           color: _kCard,
           borderRadius: BorderRadius.circular(18),
           border: Border.all(
-            color: _hov ? color.withOpacity(0.5) : _kBorder,
+            color: _hov ? color.withValues(alpha: 0.5) : _kBorder,
             width: _hov ? 1.5 : 1),
           boxShadow: [BoxShadow(
-            color: _hov ? color.withOpacity(0.18) : Colors.black.withOpacity(0.04),
+            color: _hov ? color.withValues(alpha: 0.18) : Colors.black.withValues(alpha: 0.04),
             blurRadius: _hov ? 28 : 8, offset: const Offset(0, 4),
             spreadRadius: _hov ? 2 : 0)],
         ),
@@ -423,7 +423,7 @@ class _PerfCardState extends State<_PerfCard> {
             padding: const EdgeInsets.fromLTRB(12, 9, 12, 9),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [color.withOpacity(0.13), color.withOpacity(0.04)],
+                colors: [color.withValues(alpha: 0.13), color.withValues(alpha: 0.04)],
                 begin: Alignment.topLeft, end: Alignment.bottomRight),
               borderRadius: const BorderRadius.vertical(top: Radius.circular(17)),
             ),
@@ -454,9 +454,9 @@ class _PerfCardState extends State<_PerfCard> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   decoration: BoxDecoration(
-                    color: scColor.withOpacity(0.12),
+                    color: scColor.withValues(alpha: 0.12),
                     borderRadius: BorderRadius.circular(6),
-                    border: Border.all(color: scColor.withOpacity(0.25))),
+                    border: Border.all(color: scColor.withValues(alpha: 0.25))),
                   child: Text(scLabel,
                     style: TextStyle(fontFamily: 'InterTight', fontSize: 8,
                         fontWeight: FontWeight.w800, color: scColor))),
@@ -495,9 +495,9 @@ class _PerfCardState extends State<_PerfCard> {
                 width: double.infinity,  // évite contrainte non bornée
                 padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 6),
                 decoration: BoxDecoration(
-                  color: color.withOpacity(0.05),
+                  color: color.withValues(alpha: 0.05),
                   borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: color.withOpacity(0.12))),
+                  border: Border.all(color: color.withValues(alpha: 0.12))),
                 child: Text(sum,
                   maxLines: 2, overflow: TextOverflow.ellipsis,
                   style: TextStyle(fontFamily: 'InterTight', fontSize: 10,
@@ -543,7 +543,7 @@ class _PerfCardState extends State<_PerfCard> {
                     borderRadius: BorderRadius.circular(4),
                     child: LinearProgressIndicator(
                       value: v, minHeight: 8,
-                      backgroundColor: color.withOpacity(0.1),
+                      backgroundColor: color.withValues(alpha: 0.1),
                       valueColor: AlwaysStoppedAnimation(
                           mProg >= 1.0 ? const Color(0xFF22C55E) : color)),
                   ),
@@ -623,9 +623,9 @@ class _KpiCell extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
     decoration: BoxDecoration(
-      color: item.c.withOpacity(0.06),
+      color: item.c.withValues(alpha: 0.06),
       borderRadius: BorderRadius.circular(8),
-      border: Border.all(color: item.c.withOpacity(0.12))),
+      border: Border.all(color: item.c.withValues(alpha: 0.12))),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -661,9 +661,9 @@ class _EvoChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.10),
+        color: color.withValues(alpha: 0.10),
         borderRadius: BorderRadius.circular(6),
-        border: Border.all(color: color.withOpacity(0.22))),
+        border: Border.all(color: color.withValues(alpha: 0.22))),
       child: Text('${up ? '↑' : '↓'} $lbl',
         style: TextStyle(fontFamily: 'InterTight', fontSize: 9,
             fontWeight: FontWeight.w800, color: color)),
@@ -716,9 +716,9 @@ class _Stage extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
       decoration: BoxDecoration(
-        color: _c.withOpacity(0.08),
+        color: _c.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(7),
-        border: Border.all(color: _c.withOpacity(0.18))),
+        border: Border.all(color: _c.withValues(alpha: 0.18))),
       child: Row(mainAxisSize: MainAxisSize.min, children: [
         Text(lbl, style: TextStyle(fontFamily: 'InterTight', fontSize: 9,
             fontWeight: FontWeight.w600, color: _c)),
@@ -726,7 +726,7 @@ class _Stage extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
           decoration: BoxDecoration(
-            color: _c.withOpacity(0.18), borderRadius: BorderRadius.circular(4)),
+            color: _c.withValues(alpha: 0.18), borderRadius: BorderRadius.circular(4)),
           child: Text('$count', style: TextStyle(fontFamily: 'InterTight',
               fontSize: 9, fontWeight: FontWeight.w900, color: _c))),
       ]),
@@ -743,10 +743,10 @@ class _Avatar extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     width: size, height: size,
     decoration: BoxDecoration(
-      gradient: LinearGradient(colors: [color, color.withOpacity(0.65)],
+      gradient: LinearGradient(colors: [color, color.withValues(alpha: 0.65)],
           begin: Alignment.topLeft, end: Alignment.bottomRight),
       borderRadius: BorderRadius.circular(radius),
-      boxShadow: shadow ? [BoxShadow(color: color.withOpacity(0.4),
+      boxShadow: shadow ? [BoxShadow(color: color.withValues(alpha: 0.4),
           blurRadius: 10, offset: const Offset(0, 3))] : []),
     alignment: Alignment.center,
     child: Text(initial, style: TextStyle(fontFamily: 'InterTight',

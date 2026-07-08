@@ -416,7 +416,7 @@ class _StageColumnState extends State<_StageColumn> {
                 border: Border.all(color: kCrmBorder),
                 boxShadow: [
                   BoxShadow(
-                      color: color.withOpacity(0.08),
+                      color: color.withValues(alpha: 0.08),
                       blurRadius: 10,
                       offset: const Offset(0, 3)),
                 ],
@@ -435,7 +435,7 @@ class _StageColumnState extends State<_StageColumn> {
                 Container(
                   padding: const EdgeInsets.all(7),
                   decoration: BoxDecoration(
-                      color: color.withOpacity(0.12),
+                      color: color.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(8)),
                   child: Icon(widget.stage.icon, color: color, size: 14),
                 ),
@@ -459,7 +459,7 @@ class _StageColumnState extends State<_StageColumn> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
-                      color: color.withOpacity(0.12),
+                      color: color.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(20)),
                   child: Text('$count',
                       style: tInter(
@@ -491,12 +491,12 @@ class _StageColumnState extends State<_StageColumn> {
                   duration: const Duration(milliseconds: 200),
                   decoration: BoxDecoration(
                     color: _dragOver
-                        ? color.withOpacity(0.04)
+                        ? color.withValues(alpha: 0.04)
                         : Colors.transparent,
                     borderRadius: BorderRadius.circular(16),
                     border: _dragOver
                         ? Border.all(
-                            color: color.withOpacity(0.5), width: 2)
+                            color: color.withValues(alpha: 0.5), width: 2)
                         : null,
                   ),
                   child: widget.projects.isEmpty && !_dragOver
@@ -642,7 +642,7 @@ class _StageMenu extends StatelessWidget {
                           boxShadow: picked == c
                               ? [
                                   BoxShadow(
-                                      color: c.withOpacity(0.5),
+                                      color: c.withValues(alpha: 0.5),
                                       blurRadius: 8,
                                       spreadRadius: 1)
                                 ]
@@ -692,15 +692,15 @@ class _AddStageButton extends StatelessWidget {
         width: 180,
         height: 54,
         decoration: BoxDecoration(
-          color: kCrmPrimary.withOpacity(0.06),
+          color: kCrmPrimary.withValues(alpha: 0.06),
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: kCrmPrimary.withOpacity(0.3)),
+          border: Border.all(color: kCrmPrimary.withValues(alpha: 0.3)),
         ),
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Container(
             padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(
-                color: kCrmPrimary.withOpacity(0.12), shape: BoxShape.circle),
+                color: kCrmPrimary.withValues(alpha: 0.12), shape: BoxShape.circle),
             child: const Icon(Icons.add_rounded, color: kCrmPrimary, size: 16),
           ),
           const SizedBox(width: 8),
@@ -728,7 +728,7 @@ class _AddStageButton extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                  color: kCrmPrimary.withOpacity(0.1),
+                  color: kCrmPrimary.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8)),
               child: const Icon(Icons.add_box_rounded,
                   color: kCrmPrimary, size: 18),
@@ -780,7 +780,7 @@ class _AddStageButton extends StatelessWidget {
                               boxShadow: selectedColor == c
                                   ? [
                                       BoxShadow(
-                                          color: c.withOpacity(0.5),
+                                          color: c.withValues(alpha: 0.5),
                                           blurRadius: 8)
                                     ]
                                   : null,
@@ -798,10 +798,10 @@ class _AddStageButton extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(
                     horizontal: 12, vertical: 8),
                 decoration: BoxDecoration(
-                  color: selectedColor.withOpacity(0.1),
+                  color: selectedColor.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
                   border:
-                      Border.all(color: selectedColor.withOpacity(0.4)),
+                      Border.all(color: selectedColor.withValues(alpha: 0.4)),
                 ),
                 child: Row(children: [
                   Container(
@@ -935,11 +935,11 @@ class _ProjectCardState extends State<_ProjectCard> {
         decoration: BoxDecoration(
           color: kCrmBg,
           borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: kCrmDanger.withOpacity(0.3)),
+          border: Border.all(color: kCrmDanger.withValues(alpha: 0.3)),
         ),
         child: Row(children: [
           Icon(Icons.warning_amber_rounded,
-              size: 14, color: kCrmDanger.withOpacity(0.6)),
+              size: 14, color: kCrmDanger.withValues(alpha: 0.6)),
           const SizedBox(width: 8),
           Text('Projet invalide',
               style: tInter(fontSize: 12, color: kCrmDanger)),
@@ -1009,13 +1009,13 @@ class _ProjectCardState extends State<_ProjectCard> {
             color: isArchived ? const Color(0xFFF3F4F6) : kCrmSurface,
             borderRadius: BorderRadius.circular(14),
             border: Border.all(
-              color: _hovered ? accentColor.withOpacity(0.25) : kCrmBorder,
+              color: _hovered ? accentColor.withValues(alpha: 0.25) : kCrmBorder,
             ),
             boxShadow: [
               BoxShadow(
                 color: _hovered
-                    ? accentColor.withOpacity(0.16)
-                    : Colors.black.withOpacity(0.04),
+                    ? accentColor.withValues(alpha: 0.16)
+                    : Colors.black.withValues(alpha: 0.04),
                 blurRadius: _hovered ? 20 : 5,
                 offset: Offset(0, _hovered ? 7 : 2),
               ),
@@ -1050,10 +1050,10 @@ class _ProjectCardState extends State<_ProjectCard> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 7, vertical: 3),
                         decoration: BoxDecoration(
-                          color: color.withOpacity(0.10),
+                          color: color.withValues(alpha: 0.10),
                           borderRadius: BorderRadius.circular(6),
                           border: Border.all(
-                              color: color.withOpacity(0.28)),
+                              color: color.withValues(alpha: 0.28)),
                         ),
                         child: Row(
                             mainAxisSize: MainAxisSize.min,
@@ -1275,7 +1275,7 @@ class _ProjectCardState extends State<_ProjectCard> {
   Widget _counter(IconData icon, String label, Color color) => Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 12, color: color.withOpacity(0.8)),
+          Icon(icon, size: 12, color: color.withValues(alpha: 0.8)),
           const SizedBox(width: 3),
           Text(label,
               style: tInter(
@@ -1493,7 +1493,7 @@ class _ProjectCardState extends State<_ProjectCard> {
                       style: OutlinedButton.styleFrom(
                         foregroundColor: kCrmPrimary,
                         side:
-                            BorderSide(color: kCrmPrimary.withOpacity(0.4)),
+                            BorderSide(color: kCrmPrimary.withValues(alpha: 0.4)),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                         padding: const EdgeInsets.symmetric(vertical: 12),
@@ -1575,9 +1575,9 @@ class _PriorityBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.10),
+        color: color.withValues(alpha: 0.10),
         borderRadius: BorderRadius.circular(6),
-        border: Border.all(color: color.withOpacity(0.35)),
+        border: Border.all(color: color.withValues(alpha: 0.35)),
       ),
       child: Row(mainAxisSize: MainAxisSize.min, children: [
         Icon(_priorityIcon(priority), size: 10, color: color),
@@ -1661,7 +1661,7 @@ class _OwnerRow extends StatelessWidget {
         height: 24,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-              colors: [fallbackColor, fallbackColor.withOpacity(0.6)],
+              colors: [fallbackColor, fallbackColor.withValues(alpha: 0.6)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight),
           shape: BoxShape.circle,
@@ -1712,7 +1712,7 @@ class _LastActionBox extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
-                  color: color.withOpacity(0.12),
+                  color: color.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(5)),
               child: Icon(icon, size: 10, color: color),
             ),
@@ -1765,9 +1765,9 @@ class _RelanceStrip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: color.withOpacity(isOverdue ? 0.08 : 0.06),
+        color: color.withValues(alpha: isOverdue ? 0.08 : 0.06),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: color.withOpacity(0.25)),
+        border: Border.all(color: color.withValues(alpha: 0.25)),
       ),
       child: Row(mainAxisSize: MainAxisSize.min, children: [
         Icon(
@@ -1973,13 +1973,13 @@ class _OdooDetailSheetState extends State<_OdooDetailSheet> {
                 height: 46,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                      colors: [color, color.withOpacity(0.55)],
+                      colors: [color, color.withValues(alpha: 0.55)],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight),
                   borderRadius: BorderRadius.circular(13),
                   boxShadow: [
                     BoxShadow(
-                        color: color.withOpacity(0.3),
+                        color: color.withValues(alpha: 0.3),
                         blurRadius: 10,
                         offset: const Offset(0, 4))
                   ],
@@ -2054,9 +2054,9 @@ class _OdooDetailSheetState extends State<_OdooDetailSheet> {
               padding: const EdgeInsets.symmetric(
                   horizontal: 10, vertical: 5),
               decoration: BoxDecoration(
-                color: color.withOpacity(0.1),
+                color: color.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: color.withOpacity(0.3)),
+                border: Border.all(color: color.withValues(alpha: 0.3)),
               ),
               child: Row(mainAxisSize: MainAxisSize.min, children: [
                 Icon(stageIcon, size: 11, color: color),
@@ -2077,10 +2077,10 @@ class _OdooDetailSheetState extends State<_OdooDetailSheet> {
                 padding: const EdgeInsets.symmetric(
                     horizontal: 10, vertical: 5),
                 decoration: BoxDecoration(
-                  color: kCrmSuccess.withOpacity(0.1),
+                  color: kCrmSuccess.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
-                      color: kCrmSuccess.withOpacity(0.3)),
+                      color: kCrmSuccess.withValues(alpha: 0.3)),
                 ),
                 child: Text('${pct.toStringAsFixed(0)}% succès',
                     style: tInter(
@@ -2094,9 +2094,9 @@ class _OdooDetailSheetState extends State<_OdooDetailSheet> {
                 padding: const EdgeInsets.symmetric(
                     horizontal: 10, vertical: 5),
                 decoration: BoxDecoration(
-                  color: rColor.withOpacity(0.10),
+                  color: rColor.withValues(alpha: 0.10),
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: rColor.withOpacity(0.3)),
+                  border: Border.all(color: rColor.withValues(alpha: 0.3)),
                 ),
                 child: Row(mainAxisSize: MainAxisSize.min, children: [
                   Icon(Icons.notifications_rounded,
@@ -2114,10 +2114,10 @@ class _OdooDetailSheetState extends State<_OdooDetailSheet> {
               padding: const EdgeInsets.symmetric(
                   horizontal: 10, vertical: 5),
               decoration: BoxDecoration(
-                color: kCrmPrimary.withOpacity(0.07),
+                color: kCrmPrimary.withValues(alpha: 0.07),
                 borderRadius: BorderRadius.circular(20),
                 border:
-                    Border.all(color: kCrmPrimary.withOpacity(0.2)),
+                    Border.all(color: kCrmPrimary.withValues(alpha: 0.2)),
               ),
               child: Text(
                   '${_events.length} événements · $notesCount notes',
@@ -2205,10 +2205,10 @@ class _OdooDetailSheetState extends State<_OdooDetailSheet> {
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
                 color:
-                    const Color(0xFF6366F1).withOpacity(0.04),
+                    const Color(0xFF6366F1).withValues(alpha: 0.04),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                    color: const Color(0xFF6366F1).withOpacity(0.25)),
+                    color: const Color(0xFF6366F1).withValues(alpha: 0.25)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -2326,9 +2326,9 @@ class _OdooDetailSheetState extends State<_OdooDetailSheet> {
         padding:
             const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
         decoration: BoxDecoration(
-          color: color.withOpacity(0.08),
+          color: color.withValues(alpha: 0.08),
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: color.withOpacity(0.25)),
+          border: Border.all(color: color.withValues(alpha: 0.25)),
         ),
         child: Row(mainAxisSize: MainAxisSize.min, children: [
           Icon(icon, size: 13, color: color),
@@ -2415,10 +2415,10 @@ class _ChatterEvent extends StatelessWidget {
                 width: 34,
                 height: 34,
                 decoration: BoxDecoration(
-                  color: baseColor.withOpacity(0.10),
+                  color: baseColor.withValues(alpha: 0.10),
                   shape: BoxShape.circle,
                   border: Border.all(
-                      color: accentColor.withOpacity(0.4),
+                      color: accentColor.withValues(alpha: 0.4),
                       width: 1.5),
                 ),
                 child: Icon(icon, size: 15, color: accentColor),
@@ -2441,12 +2441,12 @@ class _ChatterEvent extends StatelessWidget {
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 color: isNew
-                    ? baseColor.withOpacity(0.04)
+                    ? baseColor.withValues(alpha: 0.04)
                     : kCrmBg,
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
                     color: isNew
-                        ? baseColor.withOpacity(0.25)
+                        ? baseColor.withValues(alpha: 0.25)
                         : kCrmBorder),
               ),
               child: Column(
@@ -2458,7 +2458,7 @@ class _ChatterEvent extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 3),
                       decoration: BoxDecoration(
-                        color: baseColor.withOpacity(0.10),
+                        color: baseColor.withValues(alpha: 0.10),
                         borderRadius: BorderRadius.circular(6),
                       ),
                       child: Text(typeLabel,
@@ -2473,7 +2473,7 @@ class _ChatterEvent extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 6, vertical: 2),
                         decoration: BoxDecoration(
-                          color: kCrmSuccess.withOpacity(0.1),
+                          color: kCrmSuccess.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text('Nouveau',
@@ -2505,10 +2505,10 @@ class _ChatterEvent extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 3),
                         decoration: BoxDecoration(
-                          color: rc.withOpacity(0.10),
+                          color: rc.withValues(alpha: 0.10),
                           borderRadius: BorderRadius.circular(6),
                           border: Border.all(
-                              color: rc.withOpacity(0.3)),
+                              color: rc.withValues(alpha: 0.3)),
                         ),
                         child: Text(_relanceLabel(rs, dateStr),
                             style: tInter(
@@ -2589,7 +2589,7 @@ class _OdooAvatar extends StatelessWidget {
         height: size,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-              colors: [color, color.withOpacity(0.6)],
+              colors: [color, color.withValues(alpha: 0.6)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight),
           shape: BoxShape.circle,
@@ -2618,21 +2618,21 @@ class _EmptyColumn extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 44),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.03),
+        color: color.withValues(alpha: 0.03),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: color.withOpacity(0.14)),
+        border: Border.all(color: color.withValues(alpha: 0.14)),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(Icons.inbox_rounded,
-              size: 40, color: color.withOpacity(0.22)),
+              size: 40, color: color.withValues(alpha: 0.22)),
           const SizedBox(height: 10),
           Text('Aucun projet',
               style: tInter(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
-                  color: color.withOpacity(0.45))),
+                  color: color.withValues(alpha: 0.45))),
           const SizedBox(height: 4),
           Text('Glissez une carte ici',
               style: tInter(fontSize: 10, color: kCrmTextSub)),
@@ -2656,7 +2656,7 @@ class _DropIndicator extends StatelessWidget {
       width: double.infinity,
       margin: const EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.07),
+        color: color.withValues(alpha: 0.07),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: color, width: 1.5),
       ),

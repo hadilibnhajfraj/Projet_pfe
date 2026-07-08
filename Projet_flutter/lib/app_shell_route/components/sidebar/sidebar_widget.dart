@@ -224,7 +224,7 @@ class _SidebarHeader extends StatelessWidget {
             border: const Border(bottom: BorderSide(color: _kBorderC)),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.04),
+                color: Colors.black.withValues(alpha: 0.04),
                 blurRadius: 8,
                 offset: const Offset(0, 2),
               ),
@@ -489,7 +489,7 @@ class SidebarMenuItem extends StatelessWidget {
                     Icon(
                       isExpanded ? Icons.keyboard_arrow_down_rounded : Icons.keyboard_arrow_right_rounded,
                       size: 18,
-                      color: isSelected ? Colors.white.withOpacity(0.8) : _kGroupLbl,
+                      color: isSelected ? Colors.white.withValues(alpha: 0.8) : _kGroupLbl,
                     ),
                 ],
               ],
@@ -567,7 +567,7 @@ class _Badge extends StatelessWidget {
     margin: const EdgeInsets.only(right: 4),
     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
     decoration: BoxDecoration(
-      color: selected ? Colors.white.withOpacity(0.25) : const Color(0xFFEEF2FF),
+      color: selected ? Colors.white.withValues(alpha: 0.25) : const Color(0xFFEEF2FF),
       borderRadius: BorderRadius.circular(50),
     ),
     child: Text(

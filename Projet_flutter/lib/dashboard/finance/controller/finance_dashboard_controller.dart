@@ -135,7 +135,7 @@ class FinanceDashboardController extends GetxController {
         ));
       } else {
         // Handle invalid data (fallback values or skip)
-        print(
+        debugPrint(
             "Invalid data detected, skipping candle: open=$open, close=$close, high=$high, low=$low");
       }
     }

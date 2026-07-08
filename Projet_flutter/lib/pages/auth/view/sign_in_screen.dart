@@ -37,7 +37,7 @@ Widget _buildInput({
       hintStyle: const TextStyle(color: Colors.white60),
 
       filled: true,
-      fillColor: Colors.white.withOpacity(0.08),
+      fillColor: Colors.white.withValues(alpha: 0.08),
 
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
@@ -78,9 +78,9 @@ Widget build(BuildContext context) {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Colors.black.withOpacity(0.7),
-                        Colors.black.withOpacity(0.4),
-                        Colors.black.withOpacity(0.2),
+                        Colors.black.withValues(alpha: 0.7),
+                        Colors.black.withValues(alpha: 0.4),
+                        Colors.black.withValues(alpha: 0.2),
                       ],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
@@ -105,15 +105,15 @@ Widget build(BuildContext context) {
                         borderRadius: BorderRadius.circular(20),
 
                         // 🔥 GLASS EFFECT
-                        color: Colors.white.withOpacity(0.10),
+                        color: Colors.white.withValues(alpha: 0.10),
 
                         border: Border.all(
-                          color: Colors.white.withOpacity(0.2),
+                          color: Colors.white.withValues(alpha: 0.2),
                         ),
 
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.3),
+                            color: Colors.black.withValues(alpha: 0.3),
                             blurRadius: 25,
                             offset: const Offset(0, 10),
                           ),
@@ -212,7 +212,7 @@ Widget build(BuildContext context) {
                                       final email =
                                           (authService.userEmail ?? '')
                                               .toLowerCase();
-                                      print('ROLE = ${authService.userRole}');
+                                      debugPrint('ROLE = ${authService.userRole}');
 
                                       // Dialog commercial uniquement pour
                                       // @probardistribution.com, et uniquement

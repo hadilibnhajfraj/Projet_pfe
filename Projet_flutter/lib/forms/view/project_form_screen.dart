@@ -533,12 +533,12 @@ class _WizardHeader extends StatelessWidget {
                               ? kCrmPrimary
                               : done
                                   ? kCrmSuccess
-                                  : kCrmBorder.withOpacity(0.5),
+                                  : kCrmBorder.withValues(alpha: 0.5),
                           shape: BoxShape.circle,
                           boxShadow: (current || done)
                               ? [
                                   BoxShadow(
-                                      color: color.withOpacity(0.3),
+                                      color: color.withValues(alpha: 0.3),
                                       blurRadius: 8)
                                 ]
                               : null,
@@ -626,7 +626,7 @@ class _WizardNavBar extends StatelessWidget {
         border: const Border(top: BorderSide(color: kCrmBorder)),
         boxShadow: [
           BoxShadow(
-              color: Colors.black.withOpacity(0.04),
+              color: Colors.black.withValues(alpha: 0.04),
               blurRadius: 10,
               offset: const Offset(0, -3))
         ],

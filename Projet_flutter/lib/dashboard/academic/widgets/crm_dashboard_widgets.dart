@@ -105,7 +105,7 @@ class _CrmModernKpiCardState extends State<CrmModernKpiCard> {
           boxShadow: [
             BoxShadow(
               color: widget.gradient.first
-                  .withOpacity(_hovered ? 0.50 : 0.28),
+                  .withValues(alpha: _hovered ? 0.50 : 0.28),
               blurRadius: _hovered ? 32 : 16,
               offset: const Offset(0, 8),
               spreadRadius: _hovered ? 2 : 0,
@@ -117,13 +117,13 @@ class _CrmModernKpiCardState extends State<CrmModernKpiCard> {
           Positioned(right: -18, top: -18,
             child: Container(width: 100, height: 100,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.07),
+                color: Colors.white.withValues(alpha: 0.07),
                 shape: BoxShape.circle,
               ))),
           Positioned(right: 18, bottom: -28,
             child: Container(width: 66, height: 66,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.05),
+                color: Colors.white.withValues(alpha: 0.05),
                 shape: BoxShape.circle,
               ))),
           // Contenu
@@ -136,7 +136,7 @@ class _CrmModernKpiCardState extends State<CrmModernKpiCard> {
                   Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.22),
+                      color: Colors.white.withValues(alpha: 0.22),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Icon(widget.icon, size: 22, color: Colors.white),
@@ -149,8 +149,8 @@ class _CrmModernKpiCardState extends State<CrmModernKpiCard> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 9, vertical: 4),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(
-                            _hovered ? 0.32 : 0.22),
+                        color: Colors.white.withValues(
+                            alpha: _hovered ? 0.32 : 0.22),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Row(mainAxisSize: MainAxisSize.min, children: [
@@ -188,7 +188,7 @@ class _CrmModernKpiCardState extends State<CrmModernKpiCard> {
                   Text(widget.subtitle!,
                     style: TextStyle(
                       fontFamily: 'InterTight', fontSize: 11,
-                      color: Colors.white.withOpacity(0.55),
+                      color: Colors.white.withValues(alpha: 0.55),
                     )),
                 ],
               ]),
@@ -302,10 +302,10 @@ class _CrmDonutWithLegendState extends State<CrmDonutWithLegend> {
           padding: EdgeInsets.symmetric(
               horizontal: hit ? 10 : 8, vertical: 7),
           decoration: BoxDecoration(
-            color: hit ? color.withOpacity(0.08) : Colors.transparent,
+            color: hit ? color.withValues(alpha: 0.08) : Colors.transparent,
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
-              color: hit ? color.withOpacity(0.3) : Colors.transparent),
+              color: hit ? color.withValues(alpha: 0.3) : Colors.transparent),
           ),
           child: Row(mainAxisSize: MainAxisSize.min, children: [
             Container(
@@ -314,7 +314,7 @@ class _CrmDonutWithLegendState extends State<CrmDonutWithLegend> {
                 color: color,
                 borderRadius: BorderRadius.circular(3),
                 boxShadow: [BoxShadow(
-                  color: color.withOpacity(0.45), blurRadius: 4)],
+                  color: color.withValues(alpha: 0.45), blurRadius: 4)],
               ),
             ),
             const SizedBox(width: 8),
@@ -440,7 +440,7 @@ class _CrmStatusBarsState extends State<CrmStatusBars>
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
                   decoration: BoxDecoration(
-                    color: color.withOpacity(0.1),
+                    color: color.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text('${pct.toStringAsFixed(0)}%',
@@ -457,14 +457,14 @@ class _CrmStatusBarsState extends State<CrmStatusBars>
                   height: 22,
                   child: Stack(children: [
                     // Fond
-                    Container(color: color.withOpacity(0.08)),
+                    Container(color: color.withValues(alpha: 0.08)),
                     // Remplissage animé avec gradient
                     FractionallySizedBox(
                       widthFactor: (frac * anim).clamp(0.0, 1.0),
                       child: Container(
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [color, color.withOpacity(0.75)],
+                            colors: [color, color.withValues(alpha: 0.75)],
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
                           ),
@@ -486,8 +486,8 @@ class _CrmStatusBarsState extends State<CrmStatusBars>
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     colors: [
-                                      Colors.white.withOpacity(0.0),
-                                      Colors.white.withOpacity(0.35),
+                                      Colors.white.withValues(alpha: 0.0),
+                                      Colors.white.withValues(alpha: 0.35),
                                     ],
                                   ),
                                 ),
@@ -554,11 +554,11 @@ class CrmTopCommerciaux extends StatelessWidget {
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
             color: i == 0
-                ? color.withOpacity(0.05)
+                ? color.withValues(alpha: 0.05)
                 : _kBg,
             borderRadius: BorderRadius.circular(14),
             border: Border.all(
-              color: i == 0 ? color.withOpacity(0.22) : _kBorder,
+              color: i == 0 ? color.withValues(alpha: 0.22) : _kBorder,
               width: i == 0 ? 1.5 : 1,
             ),
           ),
@@ -580,7 +580,7 @@ class CrmTopCommerciaux extends StatelessWidget {
               width: 38, height: 38,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [color, color.withOpacity(0.65)],
+                  colors: [color, color.withValues(alpha: 0.65)],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -615,7 +615,7 @@ class CrmTopCommerciaux extends StatelessWidget {
                           : rate >= 40
                               ? const Color(0xFFF59E0B)
                               : const Color(0xFFEF4444))
-                          .withOpacity(0.1),
+                          .withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text('${rate.toStringAsFixed(0)}%',
@@ -637,7 +637,7 @@ class CrmTopCommerciaux extends StatelessWidget {
                   height: 6,
                   child: LinearProgressIndicator(
                     value: frac,
-                    backgroundColor: color.withOpacity(0.1),
+                    backgroundColor: color.withValues(alpha: 0.1),
                     valueColor: AlwaysStoppedAnimation(color),
                   ),
                 ),
@@ -726,9 +726,9 @@ class CrmPipelineHealth extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               decoration: BoxDecoration(
-                color: _scoreColor.withOpacity(0.1),
+                color: _scoreColor.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: _scoreColor.withOpacity(0.3)),
+                border: Border.all(color: _scoreColor.withValues(alpha: 0.3)),
               ),
               child: Text(_scoreLabel,
                 style: TextStyle(fontFamily: 'InterTight', fontSize: 11,
@@ -741,7 +741,7 @@ class CrmPipelineHealth extends StatelessWidget {
           child: Stack(alignment: Alignment.center, children: [
             CircularProgressIndicator(
               value: _score / 100,
-              backgroundColor: _scoreColor.withOpacity(0.1),
+              backgroundColor: _scoreColor.withValues(alpha: 0.1),
               valueColor: AlwaysStoppedAnimation(_scoreColor),
               strokeWidth: 8,
               strokeCap: StrokeCap.round,
@@ -776,9 +776,9 @@ class CrmPipelineHealth extends StatelessWidget {
           return Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
             decoration: BoxDecoration(
-              color: color.withOpacity(0.08),
+              color: color.withValues(alpha: 0.08),
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: color.withOpacity(0.25)),
+              border: Border.all(color: color.withValues(alpha: 0.25)),
             ),
             child: Row(mainAxisSize: MainAxisSize.min, children: [
               Container(width: 6, height: 6,
@@ -792,7 +792,7 @@ class CrmPipelineHealth extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
                 decoration: BoxDecoration(
-                  color: color.withOpacity(0.18),
+                  color: color.withValues(alpha: 0.18),
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Text('${_n(s['count']).toInt()}',
@@ -832,7 +832,7 @@ class _Metric extends StatelessWidget {
         child: LinearProgressIndicator(
           value: (pct / 100).clamp(0, 1),
           minHeight: 8,
-          backgroundColor: color.withOpacity(0.08),
+          backgroundColor: color.withValues(alpha: 0.08),
           valueColor: AlwaysStoppedAnimation(color),
         ),
       ),

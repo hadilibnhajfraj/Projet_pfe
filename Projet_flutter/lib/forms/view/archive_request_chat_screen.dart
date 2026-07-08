@@ -247,8 +247,7 @@ class _AdminActionsBar extends StatelessWidget {
 
   void _confirmApprove(BuildContext ctx) {
     try {
-      // ignore: avoid_print
-      print('STEP 1 - REQUEST = ${request.toJson()}');
+      debugPrint('STEP 1 - REQUEST = ${request.toJson()}');
 
       final id = request.id.trim();
       if (id.isEmpty) {
@@ -259,18 +258,15 @@ class _AdminActionsBar extends StatelessWidget {
       }
 
       final projectId = request.projectId.trim();
-      // ignore: avoid_print
-      print('STEP 2 - APPROVE → id=$id  projectId=$projectId');
+      debugPrint('STEP 2 - APPROVE → id=$id  projectId=$projectId');
 
-      // ignore: avoid_print
-      print('STEP 3 - Ouverture showDialog');
+      debugPrint('STEP 3 - Ouverture showDialog');
 
       // showDialog utilise le BuildContext Flutter — pas Get.overlayContext!
       showDialog<void>(
         context: ctx,
         builder: (dialogCtx) {
-          // ignore: avoid_print
-          print('STEP 4 - Dialog builder appelé');
+          debugPrint('STEP 4 - Dialog builder appelé');
           return AlertDialog(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16)),
@@ -283,22 +279,18 @@ class _AdminActionsBar extends StatelessWidget {
             actions: [
               TextButton(
                 onPressed: () {
-                  // ignore: avoid_print
-                  print('STEP 5 - Annuler');
+                  debugPrint('STEP 5 - Annuler');
                   Navigator.of(dialogCtx).pop();
                 },
                 child: Text('Annuler', style: tInter(color: kCrmTextSub)),
               ),
               ElevatedButton(
                 onPressed: () {
-                  // ignore: avoid_print
-                  print('STEP 5 - Confirmer Approuver');
+                  debugPrint('STEP 5 - Confirmer Approuver');
                   Navigator.of(dialogCtx).pop();
-                  // ignore: avoid_print
-                  print('STEP 6 - Appel approveRequest($id)');
+                  debugPrint('STEP 6 - Appel approveRequest($id)');
                   provider.approveRequest(id);
-                  // ignore: avoid_print
-                  print('STEP 7 - approveRequest lancé');
+                  debugPrint('STEP 7 - approveRequest lancé');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF16A34A),
@@ -315,22 +307,17 @@ class _AdminActionsBar extends StatelessWidget {
         },
       );
 
-      // ignore: avoid_print
-      print('STEP 3 done - showDialog appelé');
+      debugPrint('STEP 3 done - showDialog appelé');
     } catch (e, stack) {
-      // ignore: avoid_print
-      print('APPROVE ERROR=');
-      // ignore: avoid_print
-      print(e);
-      // ignore: avoid_print
-      print(stack);
+      debugPrint('APPROVE ERROR=');
+      debugPrint('$e');
+      debugPrint('$stack');
     }
   }
 
   void _confirmReject(BuildContext ctx) {
     try {
-      // ignore: avoid_print
-      print('STEP 1 - REQUEST = ${request.toJson()}');
+      debugPrint('STEP 1 - REQUEST = ${request.toJson()}');
 
       final id = request.id.trim();
       if (id.isEmpty) {
@@ -340,17 +327,14 @@ class _AdminActionsBar extends StatelessWidget {
         return;
       }
 
-      // ignore: avoid_print
-      print('STEP 2 - REJECT → id=$id');
+      debugPrint('STEP 2 - REJECT → id=$id');
 
-      // ignore: avoid_print
-      print('STEP 3 - Ouverture showDialog');
+      debugPrint('STEP 3 - Ouverture showDialog');
 
       showDialog<void>(
         context: ctx,
         builder: (dialogCtx) {
-          // ignore: avoid_print
-          print('STEP 4 - Dialog builder appelé');
+          debugPrint('STEP 4 - Dialog builder appelé');
           return AlertDialog(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16)),
@@ -363,22 +347,18 @@ class _AdminActionsBar extends StatelessWidget {
             actions: [
               TextButton(
                 onPressed: () {
-                  // ignore: avoid_print
-                  print('STEP 5 - Annuler');
+                  debugPrint('STEP 5 - Annuler');
                   Navigator.of(dialogCtx).pop();
                 },
                 child: Text('Annuler', style: tInter(color: kCrmTextSub)),
               ),
               ElevatedButton(
                 onPressed: () {
-                  // ignore: avoid_print
-                  print('STEP 5 - Confirmer Refuser');
+                  debugPrint('STEP 5 - Confirmer Refuser');
                   Navigator.of(dialogCtx).pop();
-                  // ignore: avoid_print
-                  print('STEP 6 - Appel rejectRequest($id)');
+                  debugPrint('STEP 6 - Appel rejectRequest($id)');
                   provider.rejectRequest(id);
-                  // ignore: avoid_print
-                  print('STEP 7 - rejectRequest lancé');
+                  debugPrint('STEP 7 - rejectRequest lancé');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFDC2626),
@@ -395,15 +375,11 @@ class _AdminActionsBar extends StatelessWidget {
         },
       );
 
-      // ignore: avoid_print
-      print('STEP 3 done - showDialog appelé');
+      debugPrint('STEP 3 done - showDialog appelé');
     } catch (e, stack) {
-      // ignore: avoid_print
-      print('REJECT ERROR=');
-      // ignore: avoid_print
-      print(e);
-      // ignore: avoid_print
-      print(stack);
+      debugPrint('REJECT ERROR=');
+      debugPrint('$e');
+      debugPrint('$stack');
     }
   }
 }

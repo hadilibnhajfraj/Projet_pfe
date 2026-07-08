@@ -52,7 +52,8 @@ app.use(
     origin: [
       "https://www.crmprobar.com",
       "https://crmprobar.com",
-      "https://api.crmprobar.com"
+      "https://api.crmprobar.com",
+      "http://localhost:4000",
       ,"http://localhost:57745"
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],

@@ -346,7 +346,7 @@ class _ToastScreenState extends State<ToastScreen> {
               buttonLabel: "Undo",
               onPressed: () {
                 if (kDebugMode) {
-                  print("Undo tapped");
+                  debugPrint("Undo tapped");
                 }
               },
             );

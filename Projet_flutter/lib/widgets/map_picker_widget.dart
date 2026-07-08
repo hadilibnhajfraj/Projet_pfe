@@ -655,7 +655,7 @@ class _MapPickerWidgetState extends State<MapPickerWidget> {
             Border.all(color: isDark ? Colors.grey[700]! : Colors.grey[300]!),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.12),
+            color: Colors.black.withValues(alpha: 0.12),
             blurRadius: 6,
             offset: const Offset(0, 3),
           ),
@@ -791,7 +791,7 @@ class _HintBanner extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: Colors.black.withValues(alpha: 0.08),
             blurRadius: 4,
           ),
         ],

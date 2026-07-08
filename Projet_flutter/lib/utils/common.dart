@@ -65,7 +65,7 @@ void toast(
   bool isPrint = false,
 }) {
   if (value.validate().isEmpty || isLinux) {
-    print(value);
+    debugPrint(value);
   } else {
     Fluttertoast.showToast(
       msg: value.validate(),
@@ -74,7 +74,7 @@ void toast(
       backgroundColor: bgColor ?? colorPrimary300,
       textColor: textColor,
     );
-    if (isPrint) print(value);
+    if (isPrint) debugPrint(value);
   }
 }
 
@@ -109,7 +109,7 @@ void toasty(
     gravity: gravity ?? defaultToastGravityGlobal,
     toastDuration: duration,
   );
-  if (isPrint) print(text);
+  if (isPrint) debugPrint(text);
 }
 
 /// Toast for long period of time
@@ -151,7 +151,7 @@ void snackBar(
   double? elevation,
 }) {
   if (title.isEmpty && content == null) {
-    print('SnackBar message is empty');
+    debugPrint('SnackBar message is empty');
   } else {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(

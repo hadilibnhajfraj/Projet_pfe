@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:dash_master_toolkit/application/users/model/client_model.dart';
 import 'package:dash_master_toolkit/core/config/api_config.dart';
@@ -9,14 +10,14 @@ class ClientService {
 
   Future<String?> getRole() async {
     final role = AuthService().userRole;
-    print('ROLE LU DEPUIS AUTHSERVICE = $role');
+    debugPrint('ROLE LU DEPUIS AUTHSERVICE = $role');
     return role;
   }
 
   Future<List<ClientModel>> getAllClients() async {
     final token = AuthService().accessToken;
 
-    print('TOKEN LU DEPUIS AUTHSERVICE = $token');
+    debugPrint('TOKEN LU DEPUIS AUTHSERVICE = $token');
 
     final response = await http.get(
       Uri.parse('$baseUrl/all'),
@@ -27,8 +28,8 @@ class ClientService {
       },
     );
 
-    print('STATUS CLIENTS = ${response.statusCode}');
-    print('BODY CLIENTS = ${response.body}');
+    debugPrint('STATUS CLIENTS = ${response.statusCode}');
+    debugPrint('BODY CLIENTS = ${response.body}');
 
     if (response.statusCode == 200) {
       final decoded = jsonDecode(response.body);

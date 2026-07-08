@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:dash_master_toolkit/application/users/model/user_project_model.dart';
 import 'package:dash_master_toolkit/application/users/model/user_projects_response.dart';
@@ -64,7 +65,7 @@ class UserProjectService {
     final uri = Uri.parse('$baseUrl/projects/my-projects')
         .replace(queryParameters: queryParams);
 
-    print("➡️ REQUEST URL: $uri");
+    debugPrint("➡️ REQUEST URL: $uri");
 
     /// ✅ CALL API
     final response = await http.get(
@@ -75,8 +76,8 @@ class UserProjectService {
       },
     );
 
-    print("⬅️ STATUS: ${response.statusCode}");
-    print("⬅️ BODY: ${response.body}");
+    debugPrint("⬅️ STATUS: ${response.statusCode}");
+    debugPrint("⬅️ BODY: ${response.body}");
 
     if (response.statusCode != 200) {
       throw Exception(

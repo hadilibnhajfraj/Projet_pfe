@@ -91,7 +91,7 @@ BoxDecoration _card({double r = 18}) => BoxDecoration(
   border:       Border.all(color: _kBorder, width: 0.8),
   boxShadow: [
     BoxShadow(
-        color:  Colors.black.withOpacity(0.04),
+        color:  Colors.black.withValues(alpha: 0.04),
         blurRadius: 20,
         offset: const Offset(0, 6))
   ],
@@ -609,9 +609,9 @@ class _CommercialContactsAnalyticsScreenState
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
-                    color:        _kIndigo.withOpacity(0.10),
+                    color:        _kIndigo.withValues(alpha: 0.10),
                     borderRadius: BorderRadius.circular(20),
-                    border:       Border.all(color: _kIndigo.withOpacity(0.30)),
+                    border:       Border.all(color: _kIndigo.withValues(alpha: 0.30)),
                   ),
                   child: const Row(mainAxisSize: MainAxisSize.min, children: [
                     Icon(Icons.person_rounded, size: 12, color: _kIndigo),
@@ -1039,7 +1039,7 @@ class _CommercialContactsAnalyticsScreenState
     isCurved: true, curveSmoothness: 0.35, color: color, barWidth: 2.5,
     dotData: FlDotData(show: true, getDotPainter: (_, __, ___, ____) =>
         FlDotCirclePainter(radius: 4, color: Colors.white, strokeWidth: 2, strokeColor: color)),
-    belowBarData: BarAreaData(show: true, color: color.withOpacity(0.07)),
+    belowBarData: BarAreaData(show: true, color: color.withValues(alpha: 0.07)),
   );
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -1056,7 +1056,7 @@ class _CommercialContactsAnalyticsScreenState
     showGeneralDialog(
       context: ctx,
       barrierDismissible: true, barrierLabel: 'close',
-      barrierColor: Colors.black.withOpacity(0.32),
+      barrierColor: Colors.black.withValues(alpha: 0.32),
       transitionDuration: const Duration(milliseconds: 280),
       transitionBuilder: (_, anim, __, child) {
         final curve = CurvedAnimation(parent: anim, curve: Curves.easeOutCubic);
@@ -1137,8 +1137,8 @@ class _PodiumCardState extends State<_PodiumCard> {
           decoration: BoxDecoration(
             color:        _kCard,
             borderRadius: BorderRadius.circular(20),
-            border:       Border.all(color: _hovered ? grad[0].withOpacity(0.6) : _kBorder, width: _hovered ? 1.5 : 0.8),
-            boxShadow: [BoxShadow(color: (_hovered ? grad[0] : Colors.black).withOpacity(_hovered ? 0.18 : 0.04), blurRadius: _hovered ? 28 : 16, offset: const Offset(0, 6))],
+            border:       Border.all(color: _hovered ? grad[0].withValues(alpha: 0.6) : _kBorder, width: _hovered ? 1.5 : 0.8),
+            boxShadow: [BoxShadow(color: (_hovered ? grad[0] : Colors.black).withValues(alpha: _hovered ? 0.18 : 0.04), blurRadius: _hovered ? 28 : 16, offset: const Offset(0, 6))],
           ),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             // ── Gradient header ─────────────────────────────────────────
@@ -1151,7 +1151,7 @@ class _PodiumCardState extends State<_PodiumCard> {
               child: Row(children: [
                 Container(
                   width: 48, height: 48,
-                  decoration: BoxDecoration(color: Colors.white.withOpacity(0.22), borderRadius: BorderRadius.circular(12)),
+                  decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.22), borderRadius: BorderRadius.circular(12)),
                   alignment: Alignment.center,
                   child: Text(u.name.isNotEmpty ? u.name[0].toUpperCase() : '?',
                     style: const TextStyle(fontFamily: 'InterTight', fontSize: 20, fontWeight: FontWeight.w900, color: Colors.white)),
@@ -1183,7 +1183,7 @@ class _PodiumCardState extends State<_PodiumCard> {
                   borderRadius: BorderRadius.circular(8),
                   child: LinearProgressIndicator(
                     value: (widget.score / 100).clamp(0, 1), minHeight: 8,
-                    backgroundColor: grad[0].withOpacity(0.1),
+                    backgroundColor: grad[0].withValues(alpha: 0.1),
                     valueColor: AlwaysStoppedAnimation(grad[0]),
                   ),
                 ),
@@ -1209,7 +1209,7 @@ class _PodiumCardState extends State<_PodiumCard> {
                 const Spacer(),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                  decoration: BoxDecoration(color: _scoreColor(u.tauxReussite).withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
+                  decoration: BoxDecoration(color: _scoreColor(u.tauxReussite).withValues(alpha: 0.1), borderRadius: BorderRadius.circular(8)),
                   child: Text('${u.tauxReussite.toStringAsFixed(1)}%',
                     style: TextStyle(fontFamily: 'InterTight', fontSize: 11, fontWeight: FontWeight.w800, color: _scoreColor(u.tauxReussite))),
                 ),
@@ -1294,7 +1294,7 @@ class _HorizBarsState extends State<_HorizBars> with SingleTickerProviderStateMi
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(children: [
                 Container(width: 22, height: 22,
-                  decoration: BoxDecoration(color: color.withOpacity(0.12), borderRadius: BorderRadius.circular(6)),
+                  decoration: BoxDecoration(color: color.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(6)),
                   alignment: Alignment.center,
                   child: Text('${i + 1}', style: TextStyle(fontFamily: 'InterTight', fontSize: 9, fontWeight: FontWeight.w800, color: color)),
                 ),
@@ -1304,7 +1304,7 @@ class _HorizBarsState extends State<_HorizBars> with SingleTickerProviderStateMi
                 const SizedBox(width: 5),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                  decoration: BoxDecoration(color: color.withOpacity(0.1), borderRadius: BorderRadius.circular(6)),
+                  decoration: BoxDecoration(color: color.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(6)),
                   child: Text('${(frac * 100).toStringAsFixed(0)}%',
                     style: TextStyle(fontFamily: 'InterTight', fontSize: 9, fontWeight: FontWeight.w700, color: color)),
                 ),
@@ -1313,11 +1313,11 @@ class _HorizBarsState extends State<_HorizBars> with SingleTickerProviderStateMi
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: SizedBox(height: 18, child: Stack(children: [
-                  Container(color: color.withOpacity(0.08)),
+                  Container(color: color.withValues(alpha: 0.08)),
                   FractionallySizedBox(
                     widthFactor: (frac * anim).clamp(0.0, 1.0),
                     child: Container(decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [color, color.withOpacity(0.72)]),
+                      gradient: LinearGradient(colors: [color, color.withValues(alpha: 0.72)]),
                     )),
                   ),
                 ])),
@@ -1377,16 +1377,16 @@ class _CompanyCardState extends State<_CompanyCard> {
         duration: const Duration(milliseconds: 180),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color:        _hovered ? color.withOpacity(0.03) : _kCard,
+          color:        _hovered ? color.withValues(alpha: 0.03) : _kCard,
           borderRadius: BorderRadius.circular(16),
-          border:       Border.all(color: _hovered ? color.withOpacity(0.35) : _kBorder, width: _hovered ? 1.5 : 0.8),
-          boxShadow: [BoxShadow(color: (_hovered ? color : Colors.black).withOpacity(_hovered ? 0.12 : 0.04), blurRadius: _hovered ? 20 : 10, offset: const Offset(0, 4))],
+          border:       Border.all(color: _hovered ? color.withValues(alpha: 0.35) : _kBorder, width: _hovered ? 1.5 : 0.8),
+          boxShadow: [BoxShadow(color: (_hovered ? color : Colors.black).withValues(alpha: _hovered ? 0.12 : 0.04), blurRadius: _hovered ? 20 : 10, offset: const Offset(0, 4))],
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
             Container(
               width: 36, height: 36,
-              decoration: BoxDecoration(color: color.withOpacity(0.12), borderRadius: BorderRadius.circular(10)),
+              decoration: BoxDecoration(color: color.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(10)),
               alignment: Alignment.center,
               child: Text(s.name.isNotEmpty ? s.name[0].toUpperCase() : '?',
                 style: TextStyle(fontFamily: 'InterTight', fontSize: 15, fontWeight: FontWeight.w900, color: color)),
@@ -1398,7 +1398,7 @@ class _CompanyCardState extends State<_CompanyCard> {
             ])),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
-              decoration: BoxDecoration(color: bc.withOpacity(0.1), borderRadius: BorderRadius.circular(8), border: Border.all(color: bc.withOpacity(0.25))),
+              decoration: BoxDecoration(color: bc.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(8), border: Border.all(color: bc.withValues(alpha: 0.25))),
               child: Text(badge, style: TextStyle(fontFamily: 'InterTight', fontSize: 9, fontWeight: FontWeight.w800, color: bc)),
             ),
           ]),
@@ -1413,7 +1413,7 @@ class _CompanyCardState extends State<_CompanyCard> {
             borderRadius: BorderRadius.circular(6),
             child: LinearProgressIndicator(
               value: frac.clamp(0.0, 1.0), minHeight: 6,
-              backgroundColor: color.withOpacity(0.1),
+              backgroundColor: color.withValues(alpha: 0.1),
               valueColor: AlwaysStoppedAnimation(color),
             ),
           ),
@@ -1484,7 +1484,7 @@ class _DetailDrawer extends StatelessWidget {
           child: Row(children: [
             Container(
               width: 52, height: 52,
-              decoration: BoxDecoration(color: Colors.white.withOpacity(0.2), borderRadius: BorderRadius.circular(14)),
+              decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(14)),
               alignment: Alignment.center,
               child: Text(user.name.isNotEmpty ? user.name[0].toUpperCase() : '?',
                 style: const TextStyle(fontFamily: 'InterTight', fontSize: 22, fontWeight: FontWeight.w900, color: Colors.white)),
@@ -1498,13 +1498,13 @@ class _DetailDrawer extends StatelessWidget {
               Row(children: [
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                  decoration: BoxDecoration(color: Colors.white.withOpacity(0.18), borderRadius: BorderRadius.circular(8)),
+                  decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.18), borderRadius: BorderRadius.circular(8)),
                   child: Text(rankLabel, style: const TextStyle(fontFamily: 'InterTight', fontSize: 10, fontWeight: FontWeight.w700, color: Colors.white)),
                 ),
                 const SizedBox(width: 8),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                  decoration: BoxDecoration(color: Colors.white.withOpacity(0.18), borderRadius: BorderRadius.circular(8)),
+                  decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.18), borderRadius: BorderRadius.circular(8)),
                   child: Text('Score: ${score.toStringAsFixed(0)}/100', style: const TextStyle(fontFamily: 'InterTight', fontSize: 10, fontWeight: FontWeight.w700, color: Colors.white)),
                 ),
               ]),
@@ -1537,7 +1537,7 @@ class _DetailDrawer extends StatelessWidget {
             const SizedBox(height: 8),
             ClipRRect(borderRadius: BorderRadius.circular(8), child: LinearProgressIndicator(
               value: (user.tauxReussite / 100).clamp(0, 1), minHeight: 10,
-              backgroundColor: _scoreColor(user.tauxReussite).withOpacity(0.1),
+              backgroundColor: _scoreColor(user.tauxReussite).withValues(alpha: 0.1),
               valueColor: AlwaysStoppedAnimation(_scoreColor(user.tauxReussite)),
             )),
 
@@ -1582,7 +1582,7 @@ class _DetailDrawer extends StatelessWidget {
                   const SizedBox(height: 4),
                   ClipRRect(borderRadius: BorderRadius.circular(6), child: LinearProgressIndicator(
                     value: (pct / 100).clamp(0, 1), minHeight: 7,
-                    backgroundColor: color.withOpacity(0.1),
+                    backgroundColor: color.withValues(alpha: 0.1),
                     valueColor: AlwaysStoppedAnimation(color),
                   )),
                 ]),
@@ -1631,7 +1631,7 @@ class _RecentTile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(color: const Color(0xFFF8FAFC), borderRadius: BorderRadius.circular(10), border: Border.all(color: _kBorder)),
       child: Row(children: [
-        Container(width: 32, height: 32, decoration: BoxDecoration(color: color.withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
+        Container(width: 32, height: 32, decoration: BoxDecoration(color: color.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(8)),
           alignment: Alignment.center,
           child: Text(c.fullName.isNotEmpty ? c.fullName[0].toUpperCase() : '?',
             style: TextStyle(fontFamily: 'InterTight', fontSize: 13, fontWeight: FontWeight.w800, color: color))),
@@ -1640,7 +1640,7 @@ class _RecentTile extends StatelessWidget {
           Text(c.fullName.isEmpty ? '—' : c.fullName,
             style: const TextStyle(fontFamily: 'InterTight', fontSize: 12, fontWeight: FontWeight.w600, color: _kText), maxLines: 1, overflow: TextOverflow.ellipsis),
           Row(children: [
-            Container(padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1), decoration: BoxDecoration(color: color.withOpacity(0.1), borderRadius: BorderRadius.circular(5)),
+            Container(padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1), decoration: BoxDecoration(color: color.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(5)),
               child: Text(c.statut, style: TextStyle(fontFamily: 'InterTight', fontSize: 9, fontWeight: FontWeight.w700, color: color))),
             if (c.nomSociete?.isNotEmpty == true) ...[
               const SizedBox(width: 5),
@@ -1670,7 +1670,7 @@ class _SH extends StatelessWidget {
     if (badge != null) ...[
       const SizedBox(width: 8),
       Container(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-        decoration: BoxDecoration(color: _kIndigo.withOpacity(0.1), borderRadius: BorderRadius.circular(20)),
+        decoration: BoxDecoration(color: _kIndigo.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(20)),
         child: Text(badge!, style: const TextStyle(fontFamily: 'InterTight', fontSize: 11, fontWeight: FontWeight.w800, color: _kIndigo))),
     ],
   ]);
@@ -1690,7 +1690,7 @@ class _Btn extends StatelessWidget {
     label: Text(label),
     style: TextButton.styleFrom(
       foregroundColor: color,
-      backgroundColor: color.withOpacity(0.08),
+      backgroundColor: color.withValues(alpha: 0.08),
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       textStyle: const TextStyle(fontFamily: 'InterTight', fontSize: 12, fontWeight: FontWeight.w600),
@@ -1721,7 +1721,7 @@ class _MetTile extends StatelessWidget {
   Widget build(BuildContext context) => Expanded(
     child: Container(
       padding: const EdgeInsets.symmetric(vertical: 8),
-      decoration: BoxDecoration(color: color.withOpacity(0.06), borderRadius: BorderRadius.circular(10)),
+      decoration: BoxDecoration(color: color.withValues(alpha: 0.06), borderRadius: BorderRadius.circular(10)),
       alignment: Alignment.center,
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         Text(value, style: TextStyle(fontFamily: 'InterTight', fontSize: 16, fontWeight: FontWeight.w900, color: color, letterSpacing: -0.5)),
@@ -1741,7 +1741,7 @@ class _SmallKpi extends StatelessWidget {
   Widget build(BuildContext context) => Expanded(
     child: Container(
       padding: const EdgeInsets.symmetric(vertical: 6),
-      decoration: BoxDecoration(color: color.withOpacity(0.07), borderRadius: BorderRadius.circular(8)),
+      decoration: BoxDecoration(color: color.withValues(alpha: 0.07), borderRadius: BorderRadius.circular(8)),
       alignment: Alignment.center,
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         Text(value, style: TextStyle(fontFamily: 'InterTight', fontSize: 15, fontWeight: FontWeight.w900, color: color)),
@@ -1761,7 +1761,7 @@ class _Avatar extends StatelessWidget {
     final color = _kUserPalette[name.isEmpty ? 0 : name.codeUnitAt(0) % _kUserPalette.length];
     return Container(
       width: size, height: size,
-      decoration: BoxDecoration(color: color.withOpacity(0.12), borderRadius: BorderRadius.circular(size * 0.28)),
+      decoration: BoxDecoration(color: color.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(size * 0.28)),
       alignment: Alignment.center,
       child: Text(name.isNotEmpty ? name[0].toUpperCase() : '?',
         style: TextStyle(fontFamily: 'InterTight', fontSize: size * 0.4, fontWeight: FontWeight.w800, color: color)),
@@ -1781,7 +1781,7 @@ class _RankBadge extends StatelessWidget {
     final c = colors[rank - 1];
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-      decoration: BoxDecoration(color: c.withOpacity(0.15), borderRadius: BorderRadius.circular(6)),
+      decoration: BoxDecoration(color: c.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(6)),
       child: Text(labels[rank - 1], style: TextStyle(fontFamily: 'InterTight', fontSize: 9, fontWeight: FontWeight.w800, color: c)),
     );
   }
@@ -1795,7 +1795,7 @@ class _ColorBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-    decoration: BoxDecoration(color: color.withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
+    decoration: BoxDecoration(color: color.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(8)),
     child: Text(value, style: TextStyle(fontFamily: 'InterTight', fontSize: 12, fontWeight: FontWeight.w700, color: color)),
   );
 }
@@ -1809,7 +1809,7 @@ class _TauxBadge extends StatelessWidget {
     final c = _scoreColor(taux);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-      decoration: BoxDecoration(color: c.withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
+      decoration: BoxDecoration(color: c.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(8)),
       child: Text('${taux.toStringAsFixed(1)}%', style: TextStyle(fontFamily: 'InterTight', fontSize: 12, fontWeight: FontWeight.w700, color: c)),
     );
   }
@@ -1828,7 +1828,7 @@ class _ScoreBar extends StatelessWidget {
       const SizedBox(height: 3),
       ClipRRect(borderRadius: BorderRadius.circular(4), child: LinearProgressIndicator(
         value: (score / 100).clamp(0, 1), minHeight: 5,
-        backgroundColor: _scoreColor(score).withOpacity(0.1),
+        backgroundColor: _scoreColor(score).withValues(alpha: 0.1),
         valueColor: AlwaysStoppedAnimation(_scoreColor(score)),
       )),
     ]),
@@ -1845,7 +1845,7 @@ class _DKpi extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-    decoration: BoxDecoration(color: color.withOpacity(0.06), borderRadius: BorderRadius.circular(12), border: Border.all(color: color.withOpacity(0.18))),
+    decoration: BoxDecoration(color: color.withValues(alpha: 0.06), borderRadius: BorderRadius.circular(12), border: Border.all(color: color.withValues(alpha: 0.18))),
     child: Row(mainAxisSize: MainAxisSize.min, children: [
       Icon(icon, size: 14, color: color),
       const SizedBox(width: 6),

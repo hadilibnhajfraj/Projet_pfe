@@ -19,7 +19,7 @@ import 'package:responsive_grid/responsive_grid.dart';
 import 'package:responsive_framework/responsive_framework.dart' as rf;
 import 'package:dash_master_toolkit/providers/api_client.dart';
 import 'package:dash_master_toolkit/application/users/model/user_projects_response.dart';
-import 'dart:html' as html;
+import 'package:dash_master_toolkit/utils/browser_download.dart';
 import 'package:excel/excel.dart' as excel;
 class UserGridScreen extends StatefulWidget {
   const UserGridScreen({super.key});
@@ -50,7 +50,7 @@ Future<void> loadUsers() async {
     });
 
   } catch (e) {
-    print("❌ LOAD USERS ERROR: $e");
+    debugPrint("❌ LOAD USERS ERROR: $e");
   }
 }
 String safe(dynamic v) {
@@ -211,18 +211,12 @@ void _exportExcelFull() {
   final bytes = excelFile.encode();
   if (bytes == null) return;
 
-  final blob = html.Blob(
-    [bytes],
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  downloadBytes(
+    bytes,
+    'projects_grouped_advanced.xlsx',
+    mimeType:
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
   );
-
-  final url = html.Url.createObjectUrlFromBlob(blob);
-
-  html.AnchorElement(href: url)
-    ..setAttribute('download', 'projects_grouped_advanced.xlsx')
-    ..click();
-
-  html.Url.revokeObjectUrl(url);
 }
 String _getModelColorHex(String? model) {
   switch (model) {
@@ -417,7 +411,7 @@ Color getStatusColor(String status) {
                   color: _kCard,
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
-                    BoxShadow(color: Colors.black.withOpacity(0.05),
+                    BoxShadow(color: Colors.black.withValues(alpha: 0.05),
                         blurRadius: 24, offset: const Offset(0, 8)),
                   ],
                 ),
@@ -521,7 +515,7 @@ Color getStatusColor(String status) {
     required void Function(T?) onChanged,
   }) =>
       DropdownButtonFormField<T>(
-        value: value,
+        initialValue: value,
         isExpanded: true,
         style: const TextStyle(fontSize: 13, color: Color(0xFF0F172A)),
         decoration: InputDecoration(
@@ -663,9 +657,9 @@ Color getStatusColor(String status) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.08),
+        color: color.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(30),
-        border: Border.all(color: color.withOpacity(0.22), width: 1),
+        border: Border.all(color: color.withValues(alpha: 0.22), width: 1),
       ),
       child: Text(label,
           style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: color,
@@ -830,9 +824,9 @@ Color getStatusColor(String status) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.08),
+        color: color.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(30),
-        border: Border.all(color: color.withOpacity(0.22), width: 1),
+        border: Border.all(color: color.withValues(alpha: 0.22), width: 1),
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
@@ -840,7 +834,7 @@ Color getStatusColor(String status) {
           isExpanded: true,
           isDense: true,
           style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: color),
-          iconEnabledColor: color.withOpacity(0.7),
+          iconEnabledColor: color.withValues(alpha: 0.7),
           iconSize: 16,
           dropdownColor: Colors.white,
           borderRadius: BorderRadius.circular(16),
@@ -930,7 +924,7 @@ Color getStatusColor(String status) {
             end: Alignment.bottomRight),
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
-          BoxShadow(color: c2.withOpacity(0.35),
+          BoxShadow(color: c2.withValues(alpha: 0.35),
               blurRadius: 8, offset: const Offset(0, 3)),
         ],
       ),
@@ -946,9 +940,9 @@ Color getStatusColor(String status) {
   Widget _activityBadge(String emoji, int count, Color color) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
     decoration: BoxDecoration(
-      color: color.withOpacity(0.07),
+      color: color.withValues(alpha: 0.07),
       borderRadius: BorderRadius.circular(20),
-      border: Border.all(color: color.withOpacity(0.18)),
+      border: Border.all(color: color.withValues(alpha: 0.18)),
     ),
     child: Row(mainAxisSize: MainAxisSize.min, children: [
       Text(emoji, style: const TextStyle(fontSize: 10)),
@@ -1143,7 +1137,7 @@ class _CircleActionButtonState extends State<_CircleActionButton> {
           height: 30,
           decoration: BoxDecoration(
             color: _hovered
-                ? widget.color.withOpacity(0.12)
+                ? widget.color.withValues(alpha: 0.12)
                 : const Color(0xFFF1F5F9),
             borderRadius: BorderRadius.circular(8),
           ),

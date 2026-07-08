@@ -49,7 +49,7 @@ Future<void> showUserNameDialog(BuildContext context) async {
                       // =============================
                       DropdownButtonFormField<String>(
                         dropdownColor: Colors.black,
-                        value: selectedUser,
+                        initialValue: selectedUser,
                         hint: const Text(
                           "Sélectionner utilisateur",
                           style: TextStyle(color: Colors.white60),

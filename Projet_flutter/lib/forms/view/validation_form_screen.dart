@@ -285,7 +285,7 @@ class _ValidationFormScreenState extends State<ValidationFormScreen> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16, top: 5),
       child: Obx(() => DropdownButtonFormField<String>(
-            value: controller.selectedCountry.value.isEmpty
+            initialValue: controller.selectedCountry.value.isEmpty
                 ? null
                 : controller.selectedCountry.value,
             autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -333,7 +333,7 @@ class _ValidationFormScreenState extends State<ValidationFormScreen> {
                 [];
 
         return DropdownButtonFormField<String>(
-          value: controller.selectedState.value.isEmpty
+          initialValue: controller.selectedState.value.isEmpty
               ? null
               : controller.selectedState.value,
           decoration: inputDecoration(
@@ -379,7 +379,7 @@ class _ValidationFormScreenState extends State<ValidationFormScreen> {
             [];
 
         return DropdownButtonFormField<String>(
-          value: controller.selectedCity.value.isEmpty
+          initialValue: controller.selectedCity.value.isEmpty
               ? null
               : controller.selectedCity.value,
           decoration: inputDecoration(

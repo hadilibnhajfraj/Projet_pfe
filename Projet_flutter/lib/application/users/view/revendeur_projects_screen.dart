@@ -4,7 +4,7 @@ import 'package:dash_master_toolkit/providers/auth_service.dart';
 import 'package:dio/dio.dart';
 import 'package:go_router/go_router.dart';
 import 'package:dash_master_toolkit/route/my_route.dart';
-import 'dart:html' as html;
+import 'package:dash_master_toolkit/utils/browser_download.dart';
 import 'package:excel/excel.dart' as excel;
 class RevendeurProjectsScreen extends StatefulWidget {
   const RevendeurProjectsScreen({super.key});
@@ -114,18 +114,12 @@ void _exportExcelFull() {
   final bytes = excelFile.encode();
   if (bytes == null) return;
 
-  final blob = html.Blob(
-    [bytes],
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  downloadBytes(
+    bytes,
+    'revendeur_projects.xlsx',
+    mimeType:
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
   );
-
-  final url = html.Url.createObjectUrlFromBlob(blob);
-
-  html.AnchorElement(href: url)
-    ..setAttribute('download', 'revendeur_projects.xlsx')
-    ..click();
-
-  html.Url.revokeObjectUrl(url);
 }
   @override
   void initState() {
@@ -336,7 +330,7 @@ void _exportExcelFull() {
               margin: const EdgeInsets.only(top: 4),
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
               decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(.3),
+                color: Colors.grey.withValues(alpha: .3),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: const Text(
@@ -362,7 +356,7 @@ void _exportExcelFull() {
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 10, vertical: 5),
                                         decoration: BoxDecoration(
-                                          color: Colors.blue.withOpacity(.1),
+                                          color: Colors.blue.withValues(alpha: .1),
                                           borderRadius: BorderRadius.circular(20),
                                         ),
                                         child: Text(

@@ -62,7 +62,7 @@ BoxDecoration _cardDeco([double r = 20]) => BoxDecoration(
   color: _kCard,
   borderRadius: BorderRadius.circular(r),
   border: Border.all(color: _kBorder, width: 0.8),
-  boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 20, offset: const Offset(0, 8))],
+  boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 20, offset: const Offset(0, 8))],
 );
 
 Color _statutColor(String? s) {
@@ -126,61 +126,61 @@ class _DashboardScreenState extends State<DashboardScreen> {
     List<dynamic> rawFollowups = [];
 
     // ── DIAGNOSTIC LOGS ──────────────────────────────────────────────────────
-    print("=== [DASHBOARD DIAG] ========================================");
-    print("USER_ID       : '$_currentUserId'");
-    print("IS_ADMIN      : $_isAdmin");
-    print("WIDGET_TOKEN  : '${widget.token.isEmpty ? 'VIDE !!!' : widget.token.substring(0, widget.token.length.clamp(0, 30))}...'");
-    print("GETSTORE_TOKEN: '${ApiClient.instance.getAccessToken()?.substring(0, (ApiClient.instance.getAccessToken()?.length ?? 0).clamp(0, 30)) ?? 'NULL !!!'}...'");
-    print("=============================================================");
+    debugPrint("=== [DASHBOARD DIAG] ========================================");
+    debugPrint("USER_ID       : '$_currentUserId'");
+    debugPrint("IS_ADMIN      : $_isAdmin");
+    debugPrint("WIDGET_TOKEN  : '${widget.token.isEmpty ? 'VIDE !!!' : widget.token.substring(0, widget.token.length.clamp(0, 30))}...'");
+    debugPrint("GETSTORE_TOKEN: '${ApiClient.instance.getAccessToken()?.substring(0, (ApiClient.instance.getAccessToken()?.length ?? 0).clamp(0, 30)) ?? 'NULL !!!'}...'");
+    debugPrint("=============================================================");
 
     try {
       // ── 1. KPI summary ──────────────────────────────────────────────────
       final kpiUri = Uri.parse('${ApiConfig.baseUrl}/projects/dashboard/kpi').replace(
         queryParameters: (!_isAdmin && _currentUserId.isNotEmpty) ? {'userId': _currentUserId} : null,
       );
-      print("REQUEST_URL   KPI : $kpiUri");
+      debugPrint("REQUEST_URL   KPI : $kpiUri");
 
       final kpiRes = await http.get(kpiUri,
           headers: {'Authorization': 'Bearer ${widget.token}', 'Content-Type': 'application/json'});
 
-      print("RESPONSE      KPI status=${kpiRes.statusCode}");
-      print("RESPONSE      KPI body=${kpiRes.body}");
+      debugPrint("RESPONSE      KPI status=${kpiRes.statusCode}");
+      debugPrint("RESPONSE      KPI body=${kpiRes.body}");
 
       if (kpiRes.statusCode == 200) {
         _kpiRaw = Map<String, dynamic>.from(jsonDecode(kpiRes.body));
-        print("PARSED_DATA   KPI keys=${_kpiRaw.keys.toList()}");
-        print("PARSED_DATA   KPI userStats=${_kpiRaw['userStats']}");
-        print("PARSED_DATA   KPI statutStats=${_kpiRaw['statutStats']}");
-        print("PARSED_DATA   KPI totalProjects=${_kpiRaw['totalProjects']}");
+        debugPrint("PARSED_DATA   KPI keys=${_kpiRaw.keys.toList()}");
+        debugPrint("PARSED_DATA   KPI userStats=${_kpiRaw['userStats']}");
+        debugPrint("PARSED_DATA   KPI statutStats=${_kpiRaw['statutStats']}");
+        debugPrint("PARSED_DATA   KPI totalProjects=${_kpiRaw['totalProjects']}");
       } else {
-        print("ERREUR        KPI HTTP ${kpiRes.statusCode} → _kpiRaw reste vide");
+        debugPrint("ERREUR        KPI HTTP ${kpiRes.statusCode} → _kpiRaw reste vide");
       }
 
       // ── 2. Projects list ────────────────────────────────────────────────
       final endpoint = _isAdmin ? '/projects' : '/projects/my-projects';
-      print("REQUEST_URL   PROJECTS : ${ApiConfig.baseUrl}$endpoint?page=1&limit=1000");
+      debugPrint("REQUEST_URL   PROJECTS : ${ApiConfig.baseUrl}$endpoint?page=1&limit=1000");
 
       final projRes  = await ApiClient.instance.dio.get(endpoint, queryParameters: {'page': 1, 'limit': 1000});
       final projData = projRes.data;
 
-      print("RESPONSE      PROJECTS type=${projData.runtimeType}");
+      debugPrint("RESPONSE      PROJECTS type=${projData.runtimeType}");
       if (projData is Map) {
-        print("RESPONSE      PROJECTS keys=${projData.keys.toList()}");
+        debugPrint("RESPONSE      PROJECTS keys=${projData.keys.toList()}");
         final items   = projData['items'];
         final data    = projData['data'];
         final results = projData['results'];
-        print("PARSED_DATA   PROJECTS['items']=${items?.runtimeType} len=${items is List ? items.length : 'N/A'}");
-        print("PARSED_DATA   PROJECTS['data']=${data?.runtimeType} len=${data is List ? data.length : 'N/A'}");
-        print("PARSED_DATA   PROJECTS['results']=${results?.runtimeType} len=${results is List ? results.length : 'N/A'}");
+        debugPrint("PARSED_DATA   PROJECTS['items']=${items?.runtimeType} len=${items is List ? items.length : 'N/A'}");
+        debugPrint("PARSED_DATA   PROJECTS['data']=${data?.runtimeType} len=${data is List ? data.length : 'N/A'}");
+        debugPrint("PARSED_DATA   PROJECTS['results']=${results?.runtimeType} len=${results is List ? results.length : 'N/A'}");
         // Sécurisé : jamais de cast aveugle
         final candidate = items ?? data ?? results;
         rawProjects = _safeList(candidate);
       } else if (projData is List) {
         rawProjects = projData;
       }
-      print("PARSED_DATA   PROJECTS count=${rawProjects.length}");
+      debugPrint("PARSED_DATA   PROJECTS count=${rawProjects.length}");
       if (rawProjects.isNotEmpty) {
-        print("PARSED_DATA   PROJECTS[0] keys=${rawProjects[0] is Map ? (rawProjects[0] as Map).keys.toList() : 'non-map'}");
+        debugPrint("PARSED_DATA   PROJECTS[0] keys=${rawProjects[0] is Map ? (rawProjects[0] as Map).keys.toList() : 'non-map'}");
       }
 
       // ── 3. CRM upcoming followups ────────────────────────────────────────
@@ -190,7 +190,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       try {
         final followParams = <String, dynamic>{'limit': 200};
         if (!_isAdmin && _currentUserId.isNotEmpty) followParams['userId'] = _currentUserId;
-        print("REQUEST_URL   FOLLOWUPS : ${ApiConfig.baseUrl}/crm/upcoming-followups params=$followParams");
+        debugPrint("REQUEST_URL   FOLLOWUPS : ${ApiConfig.baseUrl}/crm/upcoming-followups params=$followParams");
 
         final followRes = await ApiClient.instance.dio.get(
           '/crm/upcoming-followups',
@@ -198,17 +198,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
         );
 
         // ── Logs demandés ──────────────────────────────────────────────────
-        print("FOLLOWUPS RESPONSE");
-        print(followRes.data);
+        debugPrint("FOLLOWUPS RESPONSE");
+        debugPrint(followRes.data);
 
         final fData = followRes.data;
 
         if (fData is Map) {
-          print("COUNT    = ${fData['count']}");
-          print("TODAY    = ${_safeList(fData['today']).length}");
-          print("UPCOMING = ${_safeList(fData['upcoming']).length}");
-          print("OVERDUE  = ${_safeList(fData['overdue']).length}");
-          print("RESPONSE FOLLOWUPS keys=${fData.keys.toList()}");
+          debugPrint("COUNT    = ${fData['count']}");
+          debugPrint("TODAY    = ${_safeList(fData['today']).length}");
+          debugPrint("UPCOMING = ${_safeList(fData['upcoming']).length}");
+          debugPrint("OVERDUE  = ${_safeList(fData['overdue']).length}");
+          debugPrint("RESPONSE FOLLOWUPS keys=${fData.keys.toList()}");
 
           // Parsing sécurisé — _safeList évite les crashes
           // JAMAIS : (fData['overdue'] as List?) — crash si valeur non-List
@@ -221,36 +221,36 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ];
         } else if (fData is List) {
           rawFollowups = fData;
-          print("COUNT    = ${rawFollowups.length} (liste directe)");
+          debugPrint("COUNT    = ${rawFollowups.length} (liste directe)");
         } else {
-          print("FOLLOWUPS format inattendu : ${fData?.runtimeType}");
+          debugPrint("FOLLOWUPS format inattendu : ${fData?.runtimeType}");
         }
 
-        print("PARSED_DATA   FOLLOWUPS total agrégé=${rawFollowups.length}");
+        debugPrint("PARSED_DATA   FOLLOWUPS total agrégé=${rawFollowups.length}");
       } catch (e, stack) {
         // ── Diagnostic erreur ──────────────────────────────────────────────
         final isDioError = e is DioException;
         final httpStatus = isDioError ? (e.response?.statusCode ?? 0) : 0;
 
-        print("ERREUR FOLLOWUPS [$httpStatus] : $e");
+        debugPrint("ERREUR FOLLOWUPS [$httpStatus] : $e");
         if (isDioError && e.response != null) {
-          print("FOLLOWUPS RESPONSE BODY : ${e.response!.data}");
+          debugPrint("FOLLOWUPS RESPONSE BODY : ${e.response!.data}");
         }
-        print("STACK FOLLOWUPS : $stack");
+        debugPrint("STACK FOLLOWUPS : $stack");
 
         if (httpStatus == 500) {
           // Erreur serveur explicite (ex: admin sans accès) —
           // NE PAS afficher un fallback trompeur
           _errFollowups    = true;
           _errFollowupsMsg = 'Erreur serveur (500) — Impossible de charger les relances.';
-          print("HTTP 500 → affichage message erreur, pas de fallback");
+          debugPrint("HTTP 500 → affichage message erreur, pas de fallback");
 
         } else {
           // Réseau / endpoint absent → fallback prochaineRelance des projets
           rawFollowups = rawProjects
               .where((p) => _sf(p['prochaineRelance'] ?? p['nextRelanceAt']).isNotEmpty)
               .toList();
-          print("PARSED_DATA   FOLLOWUPS fallback projets count=${rawFollowups.length}");
+          debugPrint("PARSED_DATA   FOLLOWUPS fallback projets count=${rawFollowups.length}");
 
           if (rawFollowups.isEmpty) {
             _errFollowups    = true;
@@ -259,7 +259,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         }
       }
 
-      print("=== [DASHBOARD DIAG END] projects=${rawProjects.length} followups=${rawFollowups.length} followupsError=$_errFollowups ===");
+      debugPrint("=== [DASHBOARD DIAG END] projects=${rawProjects.length} followups=${rawFollowups.length} followupsError=$_errFollowups ===");
 
       setState(() {
         _projects         = rawProjects;
@@ -269,8 +269,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
         _lastUpdate       = DateTime.now();
       });
     } catch (e, stack) {
-      print("ERREUR GLOBALE [Dashboard] $e");
-      print("STACK: $stack");
+      debugPrint("ERREUR GLOBALE [Dashboard] $e");
+      debugPrint("STACK: $stack");
       debugPrint('[Dashboard] $e');
     } finally {
       setState(() => _loading = false);
@@ -963,7 +963,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       barWidth: 2.5,
                       dotData: FlDotData(show: true, getDotPainter: (_, __, ___, ____) =>
                           FlDotCirclePainter(radius: 4, color: Colors.white, strokeWidth: 2, strokeColor: const Color(0xFF4F46E5))),
-                      belowBarData: BarAreaData(show: true, color: const Color(0xFF4F46E5).withOpacity(0.08)),
+                      belowBarData: BarAreaData(show: true, color: const Color(0xFF4F46E5).withValues(alpha: 0.08)),
                     ),
                     LineChartBarData(
                       spots: data.asMap().entries.map((e) => FlSpot(e.key.toDouble(), e.value.$3.toDouble())).toList(),
@@ -972,7 +972,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       barWidth: 2.5,
                       dotData: FlDotData(show: true, getDotPainter: (_, __, ___, ____) =>
                           FlDotCirclePainter(radius: 4, color: Colors.white, strokeWidth: 2, strokeColor: const Color(0xFF22C55E))),
-                      belowBarData: BarAreaData(show: true, color: const Color(0xFF22C55E).withOpacity(0.06)),
+                      belowBarData: BarAreaData(show: true, color: const Color(0xFF22C55E).withValues(alpha: 0.06)),
                     ),
                   ],
                 )),
@@ -1112,7 +1112,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                     decoration: BoxDecoration(
-                      color: _timingColor(timing).withOpacity(0.12),
+                      color: _timingColor(timing).withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
@@ -1148,7 +1148,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget _timingLegendChip(int timing) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
     decoration: BoxDecoration(
-      color: _timingColor(timing).withOpacity(0.1),
+      color: _timingColor(timing).withValues(alpha: 0.1),
       borderRadius: BorderRadius.circular(20),
     ),
     child: Row(mainAxisSize: MainAxisSize.min, children: [
@@ -1192,7 +1192,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget _followupChip(String label, Color color) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
     decoration: BoxDecoration(
-      color: color.withOpacity(0.1),
+      color: color.withValues(alpha: 0.1),
       borderRadius: BorderRadius.circular(12),
     ),
     child: Text(label,
@@ -1216,7 +1216,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1), borderRadius: BorderRadius.circular(12),
+        color: color.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(12),
       ),
       child: Row(mainAxisSize: MainAxisSize.min, children: [
         Icon(icon, size: 10, color: color), const SizedBox(width: 3),
@@ -1240,7 +1240,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       child: Container(
         padding: const EdgeInsets.all(7),
         decoration: BoxDecoration(
-          color: color.withOpacity(0.1),
+          color: color.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Icon(icon, size: 16, color: color),
@@ -1279,7 +1279,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         Container(
           width: 38, height: 38,
           decoration: BoxDecoration(
-            color: stageClr.withOpacity(0.12),
+            color: stageClr.withValues(alpha: 0.12),
             borderRadius: BorderRadius.circular(10),
           ),
           alignment: Alignment.center,
@@ -1443,13 +1443,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
       decoration: BoxDecoration(
         color: const Color(0xFFFEF2F2),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFFEF4444).withOpacity(0.35)),
+        border: Border.all(color: const Color(0xFFEF4444).withValues(alpha: 0.35)),
       ),
       child: Row(children: [
         Container(
           padding: const EdgeInsets.all(7),
           decoration: BoxDecoration(
-            color: const Color(0xFFEF4444).withOpacity(0.1),
+            color: const Color(0xFFEF4444).withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(8),
           ),
           child: const Icon(Icons.error_outline_rounded,
@@ -1489,7 +1489,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           label: const Text('Réessayer'),
           style: TextButton.styleFrom(
             foregroundColor: const Color(0xFFDC2626),
-            backgroundColor: const Color(0xFFEF4444).withOpacity(0.08),
+            backgroundColor: const Color(0xFFEF4444).withValues(alpha: 0.08),
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
             textStyle: const TextStyle(
@@ -1535,7 +1535,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final init   = name.isNotEmpty ? name.trim()[0].toUpperCase() : '?';
     return Container(
       width: 32, height: 32,
-      decoration: BoxDecoration(color: color.withOpacity(0.15), borderRadius: BorderRadius.circular(8)),
+      decoration: BoxDecoration(color: color.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(8)),
       alignment: Alignment.center,
       child: Text(init, style: TextStyle(fontFamily: 'InterTight', fontSize: 12, fontWeight: FontWeight.w800, color: color)),
     );
@@ -1543,7 +1543,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Widget _statBadge(String v, Color color) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-    decoration: BoxDecoration(color: color.withOpacity(0.1), borderRadius: BorderRadius.circular(20)),
+    decoration: BoxDecoration(color: color.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(20)),
     child: Text(v, style: TextStyle(fontFamily: 'InterTight', fontSize: 12, fontWeight: FontWeight.w700, color: color)),
   );
 
@@ -1595,20 +1595,20 @@ class _KpiCard extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: [cfg.g1, cfg.g2], begin: Alignment.topLeft, end: Alignment.bottomRight),
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [BoxShadow(color: cfg.g1.withOpacity(0.3), blurRadius: 20, offset: const Offset(0, 8))],
+        boxShadow: [BoxShadow(color: cfg.g1.withValues(alpha: 0.3), blurRadius: 20, offset: const Offset(0, 8))],
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
           Container(
             padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(color: Colors.white.withOpacity(0.2), borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(10)),
             child: Icon(cfg.icon, size: 20, color: Colors.white),
           ),
           const Spacer(),
           if (variation != '—')
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-              decoration: BoxDecoration(color: Colors.white.withOpacity(0.2), borderRadius: BorderRadius.circular(20)),
+              decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(20)),
               child: Row(mainAxisSize: MainAxisSize.min, children: [
                 Icon(isUp ? Icons.trending_up_rounded : Icons.trending_down_rounded, size: 12, color: Colors.white),
                 const SizedBox(width: 3),
@@ -1688,15 +1688,15 @@ class _AlertCardState extends State<_AlertCard> {
               borderRadius: BorderRadius.circular(16),
               border: Border.all(
                 color: widget.count > 0
-                    ? widget.color.withOpacity(_hovered ? 0.65 : 0.3)
+                    ? widget.color.withValues(alpha: _hovered ? 0.65 : 0.3)
                     : const Color(0xFFE2E8F0),
                 width: _hovered ? 1.4 : 1.0,
               ),
               boxShadow: [
                 BoxShadow(
                   color: _hovered && _clickable
-                      ? widget.color.withOpacity(0.22)
-                      : Colors.black.withOpacity(0.04),
+                      ? widget.color.withValues(alpha: 0.22)
+                      : Colors.black.withValues(alpha: 0.04),
                   blurRadius: _hovered ? 28 : 12,
                   spreadRadius: _hovered ? 1 : 0,
                   offset: const Offset(0, 6),
@@ -1709,7 +1709,7 @@ class _AlertCardState extends State<_AlertCard> {
                   duration: const Duration(milliseconds: 190),
                   padding: const EdgeInsets.all(7),
                   decoration: BoxDecoration(
-                    color: widget.color.withOpacity(_hovered ? 0.18 : 0.1),
+                    color: widget.color.withValues(alpha: _hovered ? 0.18 : 0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(widget.icon, size: 16, color: widget.color),
@@ -1721,7 +1721,7 @@ class _AlertCardState extends State<_AlertCard> {
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
                     color: widget.count > 0
-                        ? widget.color.withOpacity(_hovered ? 0.18 : 0.1)
+                        ? widget.color.withValues(alpha: _hovered ? 0.18 : 0.1)
                         : const Color(0xFFF1F5F9),
                     borderRadius: BorderRadius.circular(20),
                   ),

@@ -79,7 +79,7 @@ class CommercialProfileController extends GetxController {
     // Compat. user_nom pour les requêtes API existantes
     AuthService().setUserName(name.toLowerCase());
 
-    print('COMMERCIAL CHOISI = $name');
+    debugPrint('COMMERCIAL CHOISI = $name');
     return name;
   }
 }

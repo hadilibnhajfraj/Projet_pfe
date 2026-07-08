@@ -1,5 +1,6 @@
 // lib/models/archive_request_model.dart
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 
 class ArchiveRequestMessage {
   final String id;
@@ -83,8 +84,7 @@ class ArchiveRequest {
             ? Map<String, dynamic>.from(j['user'] as Map)
             : <String, dynamic>{};
 
-    // ignore: avoid_print
-    print('REQUESTER=${jsonEncode(j['requester'])}');
+    debugPrint('REQUESTER=${jsonEncode(j['requester'])}');
 
     final rawMsgs = j['messages'] is List ? j['messages'] as List : [];
 
@@ -98,8 +98,7 @@ class ArchiveRequest {
       fallback: 'Utilisateur',
     );
 
-    // ignore: avoid_print
-    print('USER NAME=$userName');
+    debugPrint('USER NAME=$userName');
 
     final userEmail = _str(
       requester['email'] ??

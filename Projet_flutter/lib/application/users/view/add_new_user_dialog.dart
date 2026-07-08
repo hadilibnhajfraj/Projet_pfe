@@ -205,7 +205,7 @@ class _AddNewUserDialogState extends State<AddNewUserDialog> {
                                 Get.isDarkMode ? Colors.white : colorGrey900,
                                 BlendMode.srcIn),
                           ),
-                          value: selectedDesignation.value.isEmpty
+                          initialValue: selectedDesignation.value.isEmpty
                               ? null
                               : selectedDesignation.value,
                           onChanged: (newValue) {
@@ -263,7 +263,7 @@ class _AddNewUserDialogState extends State<AddNewUserDialog> {
                                 Get.isDarkMode ? Colors.white : colorGrey900,
                                 BlendMode.srcIn),
                           ),
-                          value: selectedDepartment.value.isEmpty
+                          initialValue: selectedDepartment.value.isEmpty
                               ? null
                               : selectedDepartment.value,
                           onChanged: (newValue) {
@@ -402,7 +402,7 @@ class _AddNewUserDialogState extends State<AddNewUserDialog> {
                                 Get.isDarkMode ? Colors.white : colorGrey900,
                                 BlendMode.srcIn),
                           ),
-                          value: selectedStatus.value.isEmpty
+                          initialValue: selectedStatus.value.isEmpty
                               ? null
                               : selectedStatus.value,
                           onChanged: (newValue) {
@@ -473,6 +473,7 @@ class _AddNewUserDialogState extends State<AddNewUserDialog> {
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
                             final result = UserModel(
+                                id: "",
                                 name: userNameController.text,
                                 designation: selectedDesignation.value,
                                 department: selectedDepartment.value,

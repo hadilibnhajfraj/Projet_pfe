@@ -27,7 +27,7 @@ Widget _kpiBox(String title, int value, Color color) {
   return Container(
     padding: const EdgeInsets.all(12),
     decoration: BoxDecoration(
-      color: color.withOpacity(0.1),
+      color: color.withValues(alpha: 0.1),
       borderRadius: BorderRadius.circular(12),
     ),
     child: Column(
@@ -117,7 +117,7 @@ Widget _buildTodaySaleWidget(ThemeData theme) {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               decoration: BoxDecoration(
-                color: Colors.blue.withOpacity(0.1),
+                color: Colors.blue.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: const Text(
@@ -187,7 +187,7 @@ ResponsiveGridCol _modernCard({
         borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: gradient.first.withOpacity(0.3),
+            color: gradient.first.withValues(alpha: 0.3),
             blurRadius: 12,
             offset: const Offset(0, 6),
           ),
@@ -199,7 +199,7 @@ ResponsiveGridCol _modernCard({
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
+              color: Colors.white.withValues(alpha: 0.2),
               shape: BoxShape.circle,
             ),
             child: Icon(icon, color: Colors.white, size: 22),
@@ -713,7 +713,7 @@ Widget _buildTopProductsWidget(ThemeData theme) {
                             CircleAvatar(
                               radius: 14,
                               backgroundColor:
-                                  Colors.blue.withOpacity(0.1),
+                                  Colors.blue.withValues(alpha: 0.1),
                               child: Text(
                                 projectName.isNotEmpty
                                     ? projectName[0].toUpperCase()
@@ -748,7 +748,7 @@ Widget _buildTopProductsWidget(ThemeData theme) {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 5),
                           decoration: BoxDecoration(
-                            color: statusColor.withOpacity(0.1),
+                            color: statusColor.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Text(

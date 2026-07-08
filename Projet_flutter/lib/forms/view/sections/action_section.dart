@@ -88,7 +88,7 @@ class ActionSection extends StatelessWidget {
             title: 'Next Action', icon: Icons.send_rounded),
         const SizedBox(height: 12),
         Obx(() => DropdownButtonFormField<String>(
-              value: _validAction(),
+              initialValue: _validAction(),
               validator: (v) =>
                   (v == null || v.isEmpty) ? 'Next Action is required' : null,
               decoration: const InputDecoration(
@@ -220,14 +220,14 @@ class _SummaryCard extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            kCrmPrimary.withOpacity(0.06),
-            kCrmSecondary.withOpacity(0.04),
+            kCrmPrimary.withValues(alpha: 0.06),
+            kCrmSecondary.withValues(alpha: 0.04),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: kCrmPrimary.withOpacity(0.2)),
+        border: Border.all(color: kCrmPrimary.withValues(alpha: 0.2)),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [

@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:html' as html;
+import 'package:dash_master_toolkit/utils/browser_download.dart';
 import 'package:flutter/material.dart';
 import 'package:dash_master_toolkit/core/config/api_config.dart';
 import 'package:dash_master_toolkit/application/users/model/project_stats_model.dart';
@@ -385,7 +385,7 @@ class _KpiCard extends StatelessWidget {
             width: 54,
             height: 54,
             decoration: BoxDecoration(
-              color: color.withOpacity(.12),
+              color: color.withValues(alpha: .12),
               borderRadius: BorderRadius.circular(16),
             ),
             child: Icon(icon, color: color, size: 28),
@@ -564,15 +564,11 @@ class _StatsDataListViewState extends State<StatsDataListView> {
     }
 
     final bytes = utf8.encode(buffer.toString());
-    final blob = html.Blob([bytes], 'text/csv;charset=utf-8;');
-    final url = html.Url.createObjectUrlFromBlob(blob);
-
-    final anchor = html.AnchorElement(href: url)
-      ..setAttribute('download', '${widget.csvFileName}.csv')
-      ..click();
-
-    html.Url.revokeObjectUrl(url);
-    anchor.remove();
+    downloadBytes(
+      bytes,
+      '${widget.csvFileName}.csv',
+      mimeType: 'text/csv;charset=utf-8;',
+    );
   }
 
   String _escapeCsv(String value) {
@@ -706,7 +702,7 @@ class _StatsDataListViewState extends State<StatsDataListView> {
                 SizedBox(
                   width: 260,
                   child: DropdownButtonFormField<String>(
-                    value: _selectedUser,
+                    initialValue: _selectedUser,
                     items: _userOptions
                         .map(
                           (user) => DropdownMenuItem<String>(

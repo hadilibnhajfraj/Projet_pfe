@@ -7,7 +7,7 @@ import 'package:dash_master_toolkit/services/user_project_service.dart';
 import 'package:dash_master_toolkit/application/users/model/user_project_model.dart';
 import 'package:dash_master_toolkit/route/my_route.dart';
 import 'package:dash_master_toolkit/providers/auth_service.dart';
-import 'dart:html' as html;
+import 'package:dash_master_toolkit/utils/browser_download.dart';
 import 'package:excel/excel.dart' as excel;
 class ApplicateurProjectsScreen extends StatefulWidget {
  const ApplicateurProjectsScreen({super.key});
@@ -112,18 +112,12 @@ void _exportExcelFull() {
   final bytes = excelFile.encode();
   if (bytes == null) return;
 
-  final blob = html.Blob(
-    [bytes],
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  downloadBytes(
+    bytes,
+    'applicateur_projects.xlsx',
+    mimeType:
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
   );
-
-  final url = html.Url.createObjectUrlFromBlob(blob);
-
-  html.AnchorElement(href: url)
-    ..setAttribute('download', 'applicateur_projects.xlsx')
-    ..click();
-
-  html.Url.revokeObjectUrl(url);
 }
 
  @override
@@ -133,9 +127,9 @@ void _exportExcelFull() {
     token = AuthService().accessToken ?? "";
 
     if (token.isEmpty) {
-      print("❌ TOKEN MANQUANT");
+      debugPrint("❌ TOKEN MANQUANT");
     } else {
-      print("✅ TOKEN OK");
+      debugPrint("✅ TOKEN OK");
     }
 
      loadProjects();
@@ -159,7 +153,7 @@ void _exportExcelFull() {
       });
 
     } catch (e) {
-      print("ERROR: $e");
+      debugPrint("ERROR: $e");
     }
 
     setState(() => loading = false);
@@ -331,7 +325,7 @@ void _exportExcelFull() {
               margin: const EdgeInsets.only(top: 4),
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
               decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(.3),
+                color: Colors.grey.withValues(alpha: .3),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: const Text(

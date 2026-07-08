@@ -115,7 +115,7 @@ class CalendarViewScreen extends StatelessWidget {
           padding: pad,
           decoration: BoxDecoration(
             color: a.color,
-            border: Border.all(color: Colors.black.withOpacity(.08)),
+            border: Border.all(color: Colors.black.withValues(alpha: .08)),
           ),
           child: Align(
             alignment: Alignment.centerLeft,

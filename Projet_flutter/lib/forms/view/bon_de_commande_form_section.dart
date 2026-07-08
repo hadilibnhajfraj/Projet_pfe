@@ -291,7 +291,7 @@ widget.onUploaded?.call();
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.grey.withOpacity(0.35)),
+                    border: Border.all(color: Colors.grey.withValues(alpha: 0.35)),
                   ),
                   child: Row(
                     children: [
@@ -397,7 +397,7 @@ widget.onUploaded?.call();
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(14),
-                        border: Border.all(color: Colors.deepPurple.withOpacity(0.35), width: 2),
+                        border: Border.all(color: Colors.deepPurple.withValues(alpha: 0.35), width: 2),
                       ),
                       child: Column(
                         children: [

@@ -110,7 +110,7 @@ class NotificationIconButton extends StatelessWidget {
       context: ctx,
       barrierDismissible: true,
       barrierLabel: 'notif-center',
-      barrierColor: Colors.black.withOpacity(0.12),
+      barrierColor: Colors.black.withValues(alpha: 0.12),
       transitionDuration: const Duration(milliseconds: 260),
       pageBuilder: (dialogCtx, _, __) {
         final w = MediaQuery.of(dialogCtx).size.width;
@@ -217,8 +217,8 @@ class _NotificationPanelState extends State<_NotificationPanel> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.14), blurRadius: 40, offset: const Offset(0, 12)),
-          BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 8,  offset: const Offset(0, 2)),
+          BoxShadow(color: Colors.black.withValues(alpha: 0.14), blurRadius: 40, offset: const Offset(0, 12)),
+          BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 8,  offset: const Offset(0, 2)),
         ],
       ),
       child: ClipRRect(
@@ -362,14 +362,14 @@ class _NotificationPanelState extends State<_NotificationPanel> {
     final loading = widget.ctrl.isLoading.value;
     final list    = _applyFilter(List<NotificationData>.from(rawList));
 
-    print("BUILD NOTIFICATIONS = ${rawList.length}");
-    print("API COUNT = ${rawList.length}");
-    print("STATE COUNT = ${list.length}");
-    print("IS LOADING = $loading");
+    debugPrint("BUILD NOTIFICATIONS = ${rawList.length}");
+    debugPrint("API COUNT = ${rawList.length}");
+    debugPrint("STATE COUNT = ${list.length}");
+    debugPrint("IS LOADING = $loading");
 
     // ── Priorité 1 : items disponibles → ListView ────────────────────────────
     if (list.isNotEmpty) {
-      print("RENDER COUNT = ${list.length}");
+      debugPrint("RENDER COUNT = ${list.length}");
       return ListView.separated(
         controller: _scrollCtrl,
         shrinkWrap: true,
@@ -384,14 +384,14 @@ class _NotificationPanelState extends State<_NotificationPanel> {
             );
           }
           final n = list[i];
-          print("RENDER ITEM = ${n.id}  title=${n.title}");
+          debugPrint("RENDER ITEM = ${n.id}  title=${n.title}");
           return _NotifCard(
             notification: n,
             onMarkRead:   () => widget.ctrl.markOneRead(n.id),
             onDismiss:    () => widget.ctrl.deleteNotification(n.id),
             onViewProject: n.projectId.isNotEmpty
                 ? () {
-                    print("OPEN PROJECT = ${n.projectId}");
+                    debugPrint("OPEN PROJECT = ${n.projectId}");
                     Navigator.of(context).pop();
                     // Route enregistrée : /forms/project?id=...  (MyRoute.projectFormScreen)
                     widget.parentCtx.go('/forms/project?id=${n.projectId}');
@@ -411,7 +411,7 @@ class _NotificationPanelState extends State<_NotificationPanel> {
     }
 
     // ── Priorité 3 : vide + terminé → empty state ────────────────────────────
-    print("RENDER COUNT = 0  → empty state");
+    debugPrint("RENDER COUNT = 0  → empty state");
     return _buildEmpty();
   });
 
@@ -512,11 +512,11 @@ class _NotifCardState extends State<_NotifCard> {
           borderRadius: BorderRadius.circular(14),
           color: _hovered
               ? (isUnread ? style.bg : const Color(0xFFF8FAFC))
-              : (isUnread ? style.bg.withOpacity(0.55) : Colors.white),
+              : (isUnread ? style.bg.withValues(alpha: 0.55) : Colors.white),
           // Bordure uniforme → compatible Flutter Web
           border: Border.all(color: const Color(0xFFEEF2F7), width: 0.8),
           boxShadow: _hovered
-              ? [BoxShadow(color: Colors.black.withOpacity(0.06), blurRadius: 14, offset: const Offset(0, 4))]
+              ? [BoxShadow(color: Colors.black.withValues(alpha: 0.06), blurRadius: 14, offset: const Offset(0, 4))]
               : null,
         ),
         child: ClipRRect(
@@ -546,7 +546,7 @@ class _NotifCardState extends State<_NotifCard> {
                             decoration: BoxDecoration(
                               color: style.bg,
                               borderRadius: BorderRadius.circular(12),
-                              border: Border.all(color: style.fg.withOpacity(0.18)),
+                              border: Border.all(color: style.fg.withValues(alpha: 0.18)),
                             ),
                             child: Icon(style.icon, size: 20, color: style.fg),
                           ),
@@ -659,10 +659,10 @@ class _ActionChipState extends State<_ActionChip> {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
         decoration: BoxDecoration(
           color: widget.outlined
-              ? (_h ? widget.color.withOpacity(0.06) : Colors.transparent)
-              : (_h ? widget.color.withOpacity(0.2) : widget.color.withOpacity(0.1)),
+              ? (_h ? widget.color.withValues(alpha: 0.06) : Colors.transparent)
+              : (_h ? widget.color.withValues(alpha: 0.2) : widget.color.withValues(alpha: 0.1)),
           borderRadius: BorderRadius.circular(7),
-          border: widget.outlined ? Border.all(color: widget.color.withOpacity(0.3)) : null,
+          border: widget.outlined ? Border.all(color: widget.color.withValues(alpha: 0.3)) : null,
         ),
         child: Text(
           widget.label,

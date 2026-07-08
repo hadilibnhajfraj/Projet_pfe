@@ -64,7 +64,7 @@ Future<void> pickImage() async {
 
     } catch (e) {
       Get.snackbar("Error", "Failed to load profile");
-      print("❌ LOAD PROFILE ERROR: $e");
+      debugPrint("❌ LOAD PROFILE ERROR: $e");
     }
   }
 
@@ -125,7 +125,7 @@ Future<void> pickImage() async {
 
     } catch (e) {
       Get.snackbar("Error", "Erreur lors de la mise à jour");
-      print("❌ SAVE PROFILE ERROR: $e");
+      debugPrint("❌ SAVE PROFILE ERROR: $e");
     }
   }
 

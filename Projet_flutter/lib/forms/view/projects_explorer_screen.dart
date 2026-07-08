@@ -1,5 +1,5 @@
 // lib/forms/view/projects_explorer_screen.dart
-import 'dart:html' as html;
+import 'package:dash_master_toolkit/utils/browser_download.dart';
 
 import 'package:excel/excel.dart' as xl;
 import 'package:flutter/material.dart';
@@ -561,8 +561,7 @@ class _State extends State<ProjectsExplorerScreen>
     // ── Empêcher les clics simultanés ─────────────────────────────────────────
     if (_exporting) return;
 
-    // ignore: avoid_print
-    print('[EXPORT START]');
+    debugPrint('[EXPORT START]');
 
     final now    = DateTime.now();
     final date   = DateFormat('yyyy_MM_dd').format(now);
@@ -615,8 +614,7 @@ class _State extends State<ProjectsExplorerScreen>
         _downloadBytes(bytes, '$fileName.xlsx');
         backendOk = true;
       } catch (e) {
-        // ignore: avoid_print
-        print('[EXPORT] Backend indisponible: $e — génération côté client');
+        debugPrint('[EXPORT] Backend indisponible: $e — génération côté client');
       }
 
       // ── 2. Fallback : génération côté client ──────────────────────────────
@@ -687,15 +685,12 @@ class _State extends State<ProjectsExplorerScreen>
         _downloadBytes(bytes, '$fileName.xlsx');
       }
 
-      // ignore: avoid_print
-      print('[EXPORT SUCCESS]');
+      debugPrint('[EXPORT SUCCESS]');
       if (mounted) _showToast(success: true, message: 'Export terminé · $fileName.xlsx');
 
     } catch (e, stack) {
-      // ignore: avoid_print
-      print('[EXPORT ERROR] $e');
-      // ignore: avoid_print
-      print(stack);
+      debugPrint('[EXPORT ERROR] $e');
+      debugPrint('$stack');
       if (mounted) {
         _showToast(
           success: false,
@@ -703,23 +698,19 @@ class _State extends State<ProjectsExplorerScreen>
         );
       }
     } finally {
-      // ignore: avoid_print
-      print('[EXPORT END]');
+      debugPrint('[EXPORT END]');
       if (mounted) setState(() => _exporting = false);
     }
   }
 
   // ── Download bytes via dart:html ───────────────────────────────────────────
   void _downloadBytes(List<int> bytes, String name) {
-    final blob = html.Blob(
-      [bytes],
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    downloadBytes(
+      bytes,
+      name,
+      mimeType:
+          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
     );
-    final url = html.Url.createObjectUrlFromBlob(blob);
-    html.AnchorElement(href: url)
-      ..setAttribute('download', name)
-      ..click();
-    html.Url.revokeObjectUrl(url);
   }
 
   // ── Toast ──────────────────────────────────────────────────────────────────
@@ -1530,7 +1521,7 @@ class _UserDropdown extends StatelessWidget {
     ];
 
     return DropdownButtonFormField<String?>(
-      value: value,
+      initialValue: value,
       isExpanded: true,
       itemHeight: null,
       decoration: InputDecoration(
@@ -1651,7 +1642,7 @@ class _Drop<T> extends StatelessWidget {
   const _Drop({required this.label, required this.none, required this.value, required this.items, required this.onChanged});
   @override
   Widget build(BuildContext context) => DropdownButtonFormField<T>(
-    value: value,
+    initialValue: value,
     decoration: InputDecoration(
       labelText: label,
       labelStyle: tInter(fontSize: 11, color: kCrmTextSub),

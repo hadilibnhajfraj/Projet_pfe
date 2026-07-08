@@ -29,7 +29,7 @@ class CommercialContactCreateScreen extends StatelessWidget {
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
-        borderSide: BorderSide(color: kPrimary.withOpacity(.18)),
+        borderSide: BorderSide(color: kPrimary.withValues(alpha: .18)),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
@@ -45,7 +45,7 @@ class CommercialContactCreateScreen extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: kPrimary.withOpacity(.10),
+            color: kPrimary.withValues(alpha: .10),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Icon(icon, size: 18, color: kPrimary),
@@ -93,7 +93,7 @@ Widget _buildProjectRow(BuildContext context, int index) {
     decoration: BoxDecoration(
       color: const Color(0xFFF8FAFC),
       borderRadius: BorderRadius.circular(14),
-      border: Border.all(color: kPrimary.withOpacity(.10)),
+      border: Border.all(color: kPrimary.withValues(alpha: .10)),
     ),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -166,7 +166,7 @@ Widget _buildProjectRow(BuildContext context, int index) {
       decoration: BoxDecoration(
         color: const Color(0xFFF8FAFC),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: kPrimary.withOpacity(.10)),
+        border: Border.all(color: kPrimary.withValues(alpha: .10)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -262,7 +262,7 @@ Widget _buildProjectRow(BuildContext context, int index) {
         borderRadius: BorderRadius.circular(22),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.05),
+            color: Colors.black.withValues(alpha: .05),
             blurRadius: 18,
             offset: const Offset(0, 6),
           ),
@@ -283,7 +283,7 @@ Row(
         decoration: BoxDecoration(
           color: kFieldBg,
           borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: kPrimary.withOpacity(.18)),
+          border: Border.all(color: kPrimary.withValues(alpha: .18)),
         ),
         child: Row(
           children: [
@@ -323,7 +323,7 @@ Row(
 
     Expanded(
        child: Obx(() => DropdownButtonFormField<String>(
-        value: c.typeClient.value,
+        initialValue: c.typeClient.value,
         items: const [
           DropdownMenuItem(value: "Tuteur", child: Text("Supervisor")),
           DropdownMenuItem(value: "Cloture", child: Text("Closure")),
@@ -344,7 +344,7 @@ Row(
 
     Expanded(
       child: Obx(() => DropdownButtonFormField<String>(
-        value: c.statut.value,
+        initialValue: c.statut.value,
         items: const [
           DropdownMenuItem(value: "ok", child: Text("OK")),
           DropdownMenuItem(
@@ -403,7 +403,7 @@ Row(
 
     Expanded(
       child: Obx(() => DropdownButtonFormField<String>(
-        value: c.pipelineStage.value,
+        initialValue: c.pipelineStage.value,
         items: const [
           DropdownMenuItem(value: "Prospect", child: Text("Prospect")),
           DropdownMenuItem(value: "Plan technique", child: Text("Plan technique")),

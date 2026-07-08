@@ -156,7 +156,7 @@ class _MissingFieldsProjectsScreenState
         Container(
           padding: const EdgeInsets.all(9),
           decoration: BoxDecoration(
-            color: _color.withOpacity(0.1),
+            color: _color.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Icon(_icon, size: 20, color: _color),
@@ -184,7 +184,7 @@ class _MissingFieldsProjectsScreenState
             margin: const EdgeInsets.only(right: 12),
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
             decoration: BoxDecoration(
-              color: _color.withOpacity(0.1),
+              color: _color.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Text(
@@ -247,7 +247,7 @@ class _MissingFieldsProjectsScreenState
         Icon(
           Icons.check_circle_outline_rounded,
           size: 56,
-          color: const Color(0xFF22C55E).withOpacity(0.5),
+          color: const Color(0xFF22C55E).withValues(alpha: 0.5),
         ),
         const SizedBox(height: 14),
         Text('Aucun projet concerné', style: AppTextStyles.cardTitle),
@@ -275,9 +275,9 @@ class _MissingFieldsProjectsScreenState
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
-                color: _color.withOpacity(0.08),
+                color: _color.withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: _color.withOpacity(0.3)),
+                border: Border.all(color: _color.withValues(alpha: 0.3)),
               ),
               child: Row(mainAxisSize: MainAxisSize.min, children: [
                 Icon(Icons.filter_alt_rounded, size: 14, color: _color),
@@ -303,7 +303,7 @@ class _MissingFieldsProjectsScreenState
               border: Border.all(color: _kBorder, width: 0.8),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
+                  color: Colors.black.withValues(alpha: 0.05),
                   blurRadius: 20,
                   offset: const Offset(0, 6),
                 ),
@@ -352,7 +352,7 @@ class _MissingFieldsProjectsScreenState
         Container(
           width: 32, height: 32,
           decoration: BoxDecoration(
-            color: _color.withOpacity(0.12),
+            color: _color.withValues(alpha: 0.12),
             borderRadius: BorderRadius.circular(8),
           ),
           alignment: Alignment.center,
@@ -399,7 +399,7 @@ class _MissingFieldsProjectsScreenState
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
-                  color: _statutColor(statut).withOpacity(0.1),
+                  color: _statutColor(statut).withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
@@ -427,9 +427,9 @@ class _MissingFieldsProjectsScreenState
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           decoration: BoxDecoration(
-            color: _color.withOpacity(0.08),
+            color: _color.withValues(alpha: 0.08),
             borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: _color.withOpacity(0.3)),
+            border: Border.all(color: _color.withValues(alpha: 0.3)),
           ),
           child: Row(mainAxisSize: MainAxisSize.min, children: [
             Icon(Icons.warning_amber_rounded, size: 12, color: _color),

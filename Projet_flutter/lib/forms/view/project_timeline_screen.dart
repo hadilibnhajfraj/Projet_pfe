@@ -992,7 +992,7 @@ class _EditActionDialogState extends State<_EditActionDialog> {
                     _FieldLabel('Action Type', required: true),
                     const SizedBox(height: 6),
                     DropdownButtonFormField<String>(
-                      value: _type,
+                      initialValue: _type,
                       decoration: _dec('Select action type'),
                       style: tInter(fontSize: 13, color: kCrmText),
                       items: _actionTypes
@@ -1018,7 +1018,7 @@ class _EditActionDialogState extends State<_EditActionDialog> {
                     _FieldLabel('Status'),
                     const SizedBox(height: 6),
                     DropdownButtonFormField<String>(
-                      value: _statut,
+                      initialValue: _statut,
                       decoration: _dec('Select status'),
                       style: tInter(fontSize: 13, color: kCrmText),
                       items: _statuts

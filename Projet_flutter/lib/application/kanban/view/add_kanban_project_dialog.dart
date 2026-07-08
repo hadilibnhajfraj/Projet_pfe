@@ -307,7 +307,7 @@ class _AddKanbanProjectDialogState extends State<AddKanbanProjectDialog> {
                                   Get.isDarkMode ? Colors.white : colorGrey900,
                                   BlendMode.srcIn),
                             ),
-                            value: controller.selectedPriority.value.isEmpty
+                            initialValue: controller.selectedPriority.value.isEmpty
                                 ? null
                                 : controller.selectedPriority.value,
                             onChanged: (newValue) {

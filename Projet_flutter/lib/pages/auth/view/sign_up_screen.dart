@@ -33,7 +33,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         hintStyle: const TextStyle(color: Colors.white54),
 
         filled: true,
-        fillColor: Colors.white.withOpacity(0.05),
+        fillColor: Colors.white.withValues(alpha: 0.05),
 
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
@@ -43,21 +43,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(
-            color: Colors.white.withOpacity(0.1),
+            color: Colors.white.withValues(alpha: 0.1),
           ),
         ),
 
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(
-            color: Colors.white.withOpacity(0.1),
+            color: Colors.white.withValues(alpha: 0.1),
           ),
         ),
 
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(
-            color: Colors.white.withOpacity(0.4),
+            color: Colors.white.withValues(alpha: 0.4),
           ),
         ),
       ),
@@ -92,9 +92,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          Colors.black.withOpacity(0.75),
-                          Colors.black.withOpacity(0.5),
-                          Colors.black.withOpacity(0.3),
+                          Colors.black.withValues(alpha: 0.75),
+                          Colors.black.withValues(alpha: 0.5),
+                          Colors.black.withValues(alpha: 0.3),
                         ],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
@@ -116,10 +116,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           maxWidth: desktopView ? 420 : double.infinity,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.35),
+                          color: Colors.black.withValues(alpha: 0.35),
                           borderRadius: BorderRadius.circular(18),
                           border: Border.all(
-                            color: Colors.white.withOpacity(0.08),
+                            color: Colors.white.withValues(alpha: 0.08),
                           ),
                         ),
 

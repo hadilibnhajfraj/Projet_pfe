@@ -163,7 +163,7 @@ static const clientsProfileScreen = '/users/client';
       // Le router NE redirige JAMAIS vers select-commercial automatiquement.
       if (loggedIn && (loc == initialPath || isAuthRoute)) {
         final role = (AuthService().userRole ?? '').toLowerCase().trim();
-        print('ROLE = $role');
+        debugPrint('ROLE = $role');
         if (role == 'commercial') {
           debugPrint('REDIRECTION → $commercialContactsKpiUsers');
           return commercialContactsKpiUsers;
@@ -457,10 +457,10 @@ GoRoute(
     final userId = (box.read('userId') ?? '').toString();
     final userEmail = (box.read('userEmail') ?? '').toString();
 
-    print('DEBUG route token = $token');
-    print('DEBUG route role = $role');
-    print('DEBUG route userId = $userId');
-    print('DEBUG route userEmail = $userEmail');
+    debugPrint('DEBUG route token = $token');
+    debugPrint('DEBUG route role = $role');
+    debugPrint('DEBUG route userId = $userId');
+    debugPrint('DEBUG route userEmail = $userEmail');
 
     return NoTransitionPage(
       child: AccueilProjectStatsTableScreen(

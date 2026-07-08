@@ -62,7 +62,7 @@ Color getFactureColor(String? date) {
       errorMessage.value = '';
 
       final role = await _service.getRole();
-      print('ROLE DANS CONTROLLER = $role');
+      debugPrint('ROLE DANS CONTROLLER = $role');
 
       if (role != 'admin' && role != 'superadmin' && role != 'commercial') {
         isAdmin.value = false;
@@ -78,7 +78,7 @@ Color getFactureColor(String? date) {
       filteredClients.assignAll(data);
     } catch (e) {
       errorMessage.value = e.toString();
-      print('ERREUR LOAD CLIENTS = $e');
+      debugPrint('ERREUR LOAD CLIENTS = $e');
     } finally {
       isLoading.value = false;
     }

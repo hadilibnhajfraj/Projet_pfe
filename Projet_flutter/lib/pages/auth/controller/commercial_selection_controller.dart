@@ -107,7 +107,7 @@ class CommercialSelectionController extends GetxController {
     // Compat. avec le système existant (user_nom pour les requêtes API)
     AuthService().setUserName(name.toLowerCase());
 
-    print('COMMERCIAL CHOISI = $name');
+    debugPrint('COMMERCIAL CHOISI = $name');
     return true;
   }
 }

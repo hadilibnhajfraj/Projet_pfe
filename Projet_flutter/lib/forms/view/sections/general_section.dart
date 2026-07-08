@@ -124,7 +124,7 @@ class _TypeChip extends StatelessWidget {
           duration: const Duration(milliseconds: 200),
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
           decoration: BoxDecoration(
-            color: selected ? color.withOpacity(0.1) : kCrmSurface,
+            color: selected ? color.withValues(alpha: 0.1) : kCrmSurface,
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
                 color: selected ? color : kCrmBorder,
@@ -132,7 +132,7 @@ class _TypeChip extends StatelessWidget {
             boxShadow: selected
                 ? [
                     BoxShadow(
-                        color: color.withOpacity(0.15),
+                        color: color.withValues(alpha: 0.15),
                         blurRadius: 8,
                         offset: const Offset(0, 3))
                   ]

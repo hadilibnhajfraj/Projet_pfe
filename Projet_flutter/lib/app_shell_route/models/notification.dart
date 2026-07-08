@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 class NotificationData {
   final String id;
   final String title;
@@ -20,7 +22,7 @@ class NotificationData {
   });
 
   factory NotificationData.fromJson(Map<String, dynamic> json) {
-    print("JSON ITEM = $json");
+    debugPrint("JSON ITEM = $json");
     return NotificationData(
       id:          (json['id']  ?? json['_id'] ?? '').toString(),
       title:       (json['title']   ?? '').toString(),
@@ -41,7 +43,7 @@ class NotificationResponse {
   NotificationResponse({required this.unreadCount, required this.items});
 
   factory NotificationResponse.fromJson(Map<String, dynamic> json) {
-    print("NOTIF JSON KEYS = ${json.keys.toList()}");
+    debugPrint("NOTIF JSON KEYS = ${json.keys.toList()}");
 
     // Couvre toutes les clés possibles retournées par le backend
     final raw = (json['items']         as List?) ??
@@ -51,7 +53,7 @@ class NotificationResponse {
                 (json['docs']          as List?) ??
                 [];
 
-    print("NOTIFICATION COUNT API (fromJson) = ${raw.length}");
+    debugPrint("NOTIFICATION COUNT API (fromJson) = ${raw.length}");
 
     final items = raw
         .whereType<Map>()

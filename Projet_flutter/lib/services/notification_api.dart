@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:dio/dio.dart';
 import 'package:dash_master_toolkit/app_shell_route/models/notification.dart';
 import 'package:dash_master_toolkit/core/config/api_config.dart';
@@ -25,8 +26,8 @@ Future<NotificationResponse> getMyNotifications(
     options: Options(headers: {"Authorization": "Bearer $token"}),
   );
 
-  print("NOTIFICATION STATUS = ${res.statusCode}");
-  print("NOTIFICATION BODY = ${res.data}");
+  debugPrint("NOTIFICATION STATUS = ${res.statusCode}");
+  debugPrint("NOTIFICATION BODY = ${res.data}");
 
   final response = NotificationResponse.fromJson(
     res.data is Map<String, dynamic>
@@ -34,7 +35,7 @@ Future<NotificationResponse> getMyNotifications(
         : <String, dynamic>{},
   );
 
-  print("NOTIFICATION COUNT API = ${response.items.length}");
+  debugPrint("NOTIFICATION COUNT API = ${response.items.length}");
 
   return response;
 }

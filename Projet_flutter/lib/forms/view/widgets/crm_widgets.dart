@@ -151,7 +151,7 @@ class CrmSectionTitle extends StatelessWidget {
       Container(
         padding: const EdgeInsets.all(7),
         decoration: BoxDecoration(
-          color: kCrmPrimary.withOpacity(0.1),
+          color: kCrmPrimary.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Icon(icon, size: 14, color: kCrmPrimary),
@@ -185,9 +185,9 @@ class CrmStatusBanner extends StatelessWidget {
       margin: const EdgeInsets.only(top: 8),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.08),
+        color: color.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: color.withOpacity(0.3)),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
@@ -230,8 +230,8 @@ class GradientButton extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: secondary
               ? LinearGradient(colors: [
-                  kCrmTextSub.withOpacity(0.15),
-                  kCrmTextSub.withOpacity(0.08),
+                  kCrmTextSub.withValues(alpha: 0.15),
+                  kCrmTextSub.withValues(alpha: 0.08),
                 ])
               : const LinearGradient(
                   colors: [kCrmPrimary, kCrmSecondary],
@@ -243,7 +243,7 @@ class GradientButton extends StatelessWidget {
               ? null
               : [
                   BoxShadow(
-                      color: kCrmPrimary.withOpacity(0.3),
+                      color: kCrmPrimary.withValues(alpha: 0.3),
                       blurRadius: 8,
                       offset: const Offset(0, 3))
                 ],
@@ -324,7 +324,7 @@ class CrmDropdown<T> extends StatelessWidget {
         const SizedBox(height: 6),
         // Obx reads rxValue.value AND any RxList captured by buildItems → valid.
         Obx(() => DropdownButtonFormField<T?>(
-              value: rxValue.value,
+              initialValue: rxValue.value,
               validator: validator,
               decoration: inputDecoration(context, hintText: hint),
               hint: Text(hint,
@@ -375,7 +375,7 @@ class CrmStringDropdown extends StatelessWidget {
             final valid = options.any((o) => o['value'] == txt);
             final current = valid ? txt : (options.isNotEmpty ? options.first['value']! : '');
             return DropdownButtonFormField<String>(
-              value: current.isEmpty ? null : current,
+              initialValue: current.isEmpty ? null : current,
               validator: validator,
               decoration: inputDecoration(context, hintText: hint),
               items: options

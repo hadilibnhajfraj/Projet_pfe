@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:html' as html;
+import 'package:dash_master_toolkit/utils/browser_download.dart';
 import 'package:flutter/material.dart';
 import 'package:dash_master_toolkit/core/config/api_config.dart';
 import 'package:dash_master_toolkit/application/users/model/user_project_model.dart';
@@ -94,7 +94,7 @@ void initState() {
 
   userRole = decoded["role"];
 
-  print("ROLE CONNECTED: $userRole"); // 🔥 DEBUG
+  debugPrint("ROLE CONNECTED: $userRole"); // 🔥 DEBUG
 
   _loadUsers();
   _loadProjects();
@@ -127,7 +127,7 @@ users = allUsers.where((u) {
       });
     }
   } catch (e) {
-    print("Error loading users: $e");
+    debugPrint("Error loading users: $e");
   }
 }
   Future<void> _loadProjects() async {
@@ -260,22 +260,16 @@ void _exportCsv() {
   final bytes = excelFile.encode();
 
   if (bytes == null) {
-    print("❌ Excel generation failed");
+    debugPrint("❌ Excel generation failed");
     return;
   }
 
-  final blob = html.Blob(
-    [bytes],
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  downloadBytes(
+    bytes,
+    'projects.xlsx',
+    mimeType:
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
   );
-
-  final url = html.Url.createObjectUrlFromBlob(blob);
-
-  html.AnchorElement(href: url)
-    ..setAttribute('download', 'projects.xlsx')
-    ..click();
-
-  html.Url.revokeObjectUrl(url);
 }
 void _exportExcel() {
   final items = _response?.items ?? [];
@@ -372,18 +366,12 @@ void _exportExcel() {
   final bytes = excelFile.encode();
   if (bytes == null) return;
 
-  final blob = html.Blob(
-    [bytes],
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  downloadBytes(
+    bytes,
+    'projects_pro.xlsx',
+    mimeType:
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
   );
-
-  final url = html.Url.createObjectUrlFromBlob(blob);
-
-  html.AnchorElement(href: url)
-    ..setAttribute('download', 'projects_pro.xlsx')
-    ..click();
-
-  html.Url.revokeObjectUrl(url);
 }
 void _exportExcelFull() {
   final items = _response?.items ?? [];
@@ -617,18 +605,12 @@ final headers = [
   final bytes = excelFile.encode();
   if (bytes == null) return;
 
-  final blob = html.Blob(
-    [bytes],
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  downloadBytes(
+    bytes,
+    'projects_grouped_FULL.xlsx',
+    mimeType:
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
   );
-
-  final url = html.Url.createObjectUrlFromBlob(blob);
-
-  html.AnchorElement(href: url)
-    ..setAttribute('download', 'projects_grouped_FULL.xlsx')
-    ..click();
-
-  html.Url.revokeObjectUrl(url);
 }
 String _getModelColorHex(String? model) {
   switch (model) {
@@ -852,7 +834,7 @@ items = items.where((p) => p.projectModele == "project").toList();
                       ),
 
 DropdownButtonFormField<String>(
-  value: selectedStatusFilter ?? "ALL", // ✅ IMPORTANT
+  initialValue: selectedStatusFilter ?? "ALL", // ✅ IMPORTANT
   hint: const Text("Status"),
   items: [
     const DropdownMenuItem(
@@ -875,7 +857,7 @@ DropdownButtonFormField<String>(
   SizedBox(
     width: 300,
     child: DropdownButtonFormField<String>(
-      value: selectedUser,
+      initialValue: selectedUser,
       isExpanded: true,
       itemHeight: null,
       hint: const Text("Created By"),
@@ -1314,7 +1296,7 @@ DropdownButtonFormField<String>(
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
           decoration: BoxDecoration(
-            color: Colors.grey.withOpacity(0.3),
+            color: Colors.grey.withValues(alpha: 0.3),
             borderRadius: BorderRadius.circular(12),
           ),
           child: const Text(
@@ -1384,7 +1366,7 @@ DropdownButtonFormField<String>(
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
         decoration: BoxDecoration(
-          color: getStatusColor(safeValue!).withOpacity(.15),
+          color: getStatusColor(safeValue!).withValues(alpha: .15),
           borderRadius: BorderRadius.circular(20),
         ),
         child: DropdownButton<String>(
@@ -1424,7 +1406,7 @@ DropdownButtonFormField<String>(
               _loadProjects();
 
             } catch (e) {
-              print("❌ STATUS UPDATE ERROR: $e");
+              debugPrint("❌ STATUS UPDATE ERROR: $e");
             }
           },
         ),
@@ -1567,7 +1549,7 @@ class _SummaryCard extends StatelessWidget {
             width: 52,
             height: 52,
             decoration: BoxDecoration(
-              color: color.withOpacity(.12),
+              color: color.withValues(alpha: .12),
               borderRadius: BorderRadius.circular(14),
             ),
             child: Icon(icon, color: color, size: 26),

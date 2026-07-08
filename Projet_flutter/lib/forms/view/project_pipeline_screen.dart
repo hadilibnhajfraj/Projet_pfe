@@ -88,7 +88,7 @@ class _ProjectPipelineScreenState extends State<ProjectPipelineScreen>
           Obx(() => _provider.refreshing.value
               ? LinearProgressIndicator(
                   color: kCrmPrimary,
-                  backgroundColor: kCrmPrimary.withOpacity(0.12),
+                  backgroundColor: kCrmPrimary.withValues(alpha: 0.12),
                   minHeight: 2,
                 )
               : const SizedBox.shrink()),
@@ -162,7 +162,7 @@ class _PipelineHeader extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
-                          color: kCrmPrimary.withOpacity(0.3),
+                          color: kCrmPrimary.withValues(alpha: 0.3),
                           blurRadius: 10,
                           offset: const Offset(0, 4)),
                     ],
@@ -323,10 +323,10 @@ class _PipelineHeader extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 7),
                       decoration: BoxDecoration(
-                        color: kCrmDanger.withOpacity(0.06),
+                        color: kCrmDanger.withValues(alpha: 0.06),
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(
-                            color: kCrmDanger.withOpacity(0.4)),
+                            color: kCrmDanger.withValues(alpha: 0.4)),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
@@ -359,15 +359,15 @@ class _PipelineHeader extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [color.withOpacity(0.1), color.withOpacity(0.04)],
+          colors: [color.withValues(alpha: 0.1), color.withValues(alpha: 0.04)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: color.withOpacity(0.22)),
+        border: Border.all(color: color.withValues(alpha: 0.22)),
         boxShadow: [
           BoxShadow(
-              color: color.withOpacity(0.06),
+              color: color.withValues(alpha: 0.06),
               blurRadius: 8,
               offset: const Offset(0, 2))
         ],
@@ -377,7 +377,7 @@ class _PipelineHeader extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(7),
             decoration: BoxDecoration(
-                color: color.withOpacity(0.15),
+                color: color.withValues(alpha: 0.15),
                 borderRadius: BorderRadius.circular(9)),
             child: Icon(icon, color: color, size: 14),
           ),
@@ -410,7 +410,7 @@ class _PipelineHeader extends StatelessWidget {
         duration: const Duration(milliseconds: 180),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
         decoration: BoxDecoration(
-          color: selected ? kCrmPrimary.withOpacity(0.1) : kCrmBg,
+          color: selected ? kCrmPrimary.withValues(alpha: 0.1) : kCrmBg,
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
               color: selected ? kCrmPrimary : kCrmBorder,
@@ -441,7 +441,7 @@ class _PipelineHeader extends StatelessWidget {
       height: 36,
       padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
-        color: sel != null ? kCrmPrimary.withOpacity(0.08) : kCrmBg,
+        color: sel != null ? kCrmPrimary.withValues(alpha: 0.08) : kCrmBg,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
             color: sel != null ? kCrmPrimary : kCrmBorder,
@@ -521,7 +521,7 @@ class _PipelineHeader extends StatelessWidget {
               width: selected ? 1.5 : 1),
           boxShadow: selected
               ? [BoxShadow(
-                  color: activeColor.withOpacity(0.25),
+                  color: activeColor.withValues(alpha: 0.25),
                   blurRadius: 6,
                   offset: const Offset(0, 2))]
               : null,
@@ -572,7 +572,7 @@ class _PipelineHeader extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-                color: kCrmPrimary.withOpacity(0.35),
+                color: kCrmPrimary.withValues(alpha: 0.35),
                 blurRadius: 10,
                 offset: const Offset(0, 4))
           ],
@@ -683,7 +683,7 @@ class _PipelineShimmerState extends State<_PipelineShimmer>
           gradient: LinearGradient(
             colors: [
               kCrmBorder,
-              kCrmBorder.withOpacity(0.5),
+              kCrmBorder.withValues(alpha: 0.5),
               kCrmBorder
             ],
             stops: const [0.0, 0.5, 1.0],
@@ -713,7 +713,7 @@ class _PipelineErrorState extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: kCrmDanger.withOpacity(0.07),
+                color: kCrmDanger.withValues(alpha: 0.07),
                 shape: BoxShape.circle,
               ),
               child: const Icon(Icons.cloud_off_rounded,

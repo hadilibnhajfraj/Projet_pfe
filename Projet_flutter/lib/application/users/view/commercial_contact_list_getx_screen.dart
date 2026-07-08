@@ -3,7 +3,7 @@ import '../model/commercial_contact_model.dart';
 import 'package:dash_master_toolkit/services/commercial_contact_service.dart';
 import 'package:dash_master_toolkit/application/users/view/commercial_timeline_screen.dart';
 import 'package:excel/excel.dart' as excel;
-import 'dart:html' as html;
+import 'package:dash_master_toolkit/utils/browser_download.dart';
 class CommercialContactListGetxScreen extends StatefulWidget {
   final String token;
   
@@ -320,18 +320,12 @@ void _exportContactsExcel() {
   final bytes = excelFile.encode();
   if (bytes == null) return;
 
-  final blob = html.Blob(
-    [bytes],
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  downloadBytes(
+    bytes,
+    'contacts_full_grouped.xlsx',
+    mimeType:
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
   );
-
-  final url = html.Url.createObjectUrlFromBlob(blob);
-
-  html.AnchorElement(href: url)
-    ..setAttribute('download', 'contacts_full_grouped.xlsx')
-    ..click();
-
-  html.Url.revokeObjectUrl(url);
 }
 Future<void> _loadContacts({
   String? query,
@@ -1004,7 +998,7 @@ SizedBox(
                         children: [
                           Expanded(
                             child: DropdownButtonFormField<String>(
-                              value: selectedType,
+                              initialValue: selectedType,
                               items: const [
                                 DropdownMenuItem(
                                     value: "Tuteur", child: Text("Tuteur")),
@@ -1026,7 +1020,7 @@ SizedBox(
                           const SizedBox(width: 12),
                           Expanded(
                             child: DropdownButtonFormField<String>(
-                              value: selectedStatut,
+                              initialValue: selectedStatut,
                               items: const [
                                 DropdownMenuItem(value: "ok", child: Text("OK")),
                                 DropdownMenuItem(
@@ -1089,7 +1083,7 @@ Row(
     /// ✅ PIPELINE
     Expanded(
       child: DropdownButtonFormField<String>(
-        value: selectedPipeline,
+        initialValue: selectedPipeline,
         items: const [
           DropdownMenuItem(value: "Prospect", child: Text("Prospect")),
           DropdownMenuItem(value: "Plan technique", child: Text("Plan technique")),
@@ -1301,7 +1295,7 @@ OutlinedButton.icon(
                             color: const Color(0xFFF8FAFC),
                             borderRadius: BorderRadius.circular(16),
                             border: Border.all(
-                              color: kPrimary.withOpacity(.15),
+                              color: kPrimary.withValues(alpha: .15),
                             ),
                           ),
                           child: Column(
@@ -1846,7 +1840,7 @@ Widget _buildSearchBar() {
             /// 👤 USER FILTER
             Expanded(
               child: DropdownButtonFormField<String>(
-                value: selectedUser,
+                initialValue: selectedUser,
                 hint: const Text("Filter by User"),
              items: users.map((u) {
   return DropdownMenuItem(
@@ -1880,7 +1874,7 @@ Widget _buildSearchBar() {
             /// 🏢 TYPE FILTER
             Expanded(
               child: DropdownButtonFormField<String>(
-                value: selectedType,
+                initialValue: selectedType,
                 hint: const Text("Filter by Type"),
                 items: const [
                   DropdownMenuItem(value: "Tuteur", child: Text("Tuteur")),

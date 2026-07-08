@@ -329,8 +329,7 @@ class _RequestCard extends StatelessWidget {
   // ── Confirm dialogs ────────────────────────────────────────────────────────
   void _confirmApprove(BuildContext ctx, ArchiveRequest req,
       ArchiveRequestProvider provider) {
-    // ignore: avoid_print
-    print('REQUEST = ${req.toJson()}');
+    debugPrint('REQUEST = ${req.toJson()}');
 
     final id = req.id.trim();
     if (id.isEmpty) {
@@ -343,8 +342,7 @@ class _RequestCard extends StatelessWidget {
       return;
     }
 
-    // ignore: avoid_print
-    print('APPROVE → id=$id  projectId=${req.projectId}');
+    debugPrint('APPROVE → id=$id  projectId=${req.projectId}');
 
     Get.dialog(AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -378,8 +376,7 @@ class _RequestCard extends StatelessWidget {
 
   void _confirmReject(BuildContext ctx, ArchiveRequest req,
       ArchiveRequestProvider provider) {
-    // ignore: avoid_print
-    print('REQUEST = ${req.toJson()}');
+    debugPrint('REQUEST = ${req.toJson()}');
 
     final id = req.id.trim();
     if (id.isEmpty) {
@@ -392,8 +389,7 @@ class _RequestCard extends StatelessWidget {
       return;
     }
 
-    // ignore: avoid_print
-    print('REJECT → id=$id');
+    debugPrint('REJECT → id=$id');
 
     Get.dialog(AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),

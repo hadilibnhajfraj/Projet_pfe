@@ -231,7 +231,7 @@ class _RelancesFollowupSectionState extends State<RelancesFollowupSection> {
       Container(
         width: 36, height: 36,
         decoration: BoxDecoration(
-          color: color.withOpacity(0.12),
+          color: color.withValues(alpha: 0.12),
           borderRadius: BorderRadius.circular(9),
         ),
         alignment: Alignment.center,
@@ -316,11 +316,11 @@ class _RelancesFollowupSectionState extends State<RelancesFollowupSection> {
 
     Color cardBg, cardBorder;
     if (late) {
-      cardBg = const Color(0xFFFEF2F2); cardBorder = _cLate.withOpacity(0.28);
+      cardBg = const Color(0xFFFEF2F2); cardBorder = _cLate.withValues(alpha: 0.28);
     } else if (_isToday(p)) {
-      cardBg = const Color(0xFFFFF7ED); cardBorder = _cToday.withOpacity(0.28);
+      cardBg = const Color(0xFFFFF7ED); cardBorder = _cToday.withValues(alpha: 0.28);
     } else if (_isWeek(p)) {
-      cardBg = const Color(0xFFEFF6FF); cardBorder = _cSoon.withOpacity(0.28);
+      cardBg = const Color(0xFFEFF6FF); cardBorder = _cSoon.withValues(alpha: 0.28);
     } else {
       cardBg = _kBg; cardBorder = _kBorder;
     }
@@ -331,7 +331,7 @@ class _RelancesFollowupSectionState extends State<RelancesFollowupSection> {
         color: cardBg,
         borderRadius: BorderRadius.circular(13),
         border: Border.all(color: cardBorder, width: 1.2),
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.03),
+        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.03),
             blurRadius: 7, offset: const Offset(0, 3))],
       ),
       child: ClipRRect(
@@ -344,7 +344,7 @@ class _RelancesFollowupSectionState extends State<RelancesFollowupSection> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter, end: Alignment.bottomCenter,
-                  colors: [tc, tc.withOpacity(0.35)]),
+                  colors: [tc, tc.withValues(alpha: 0.35)]),
               ),
             ),
             Expanded(
@@ -485,7 +485,7 @@ class _RelancesFollowupSectionState extends State<RelancesFollowupSection> {
           decoration: BoxDecoration(
             color:  filled ? color : Colors.transparent,
             borderRadius: BorderRadius.circular(8),
-            border: filled ? null : Border.all(color: color.withOpacity(0.38)),
+            border: filled ? null : Border.all(color: color.withValues(alpha: 0.38)),
           ),
           child: Row(mainAxisSize: MainAxisSize.min, children: [
             Icon(icon, size: 13, color: filled ? Colors.white : color),
@@ -527,7 +527,7 @@ class _RelancesFollowupSectionState extends State<RelancesFollowupSection> {
 
   Widget _pageBtn(String label, IconData icon, bool on,
       VoidCallback cb, {bool right = false}) {
-    final c = on ? _cAccent : _kMuted.withOpacity(0.35);
+    final c = on ? _cAccent : _kMuted.withValues(alpha: 0.35);
     final child = right
         ? Row(mainAxisSize: MainAxisSize.min, children: [
             Text(label, style: TextStyle(fontFamily: 'InterTight',
@@ -554,9 +554,9 @@ class _RelancesFollowupSectionState extends State<RelancesFollowupSection> {
   Widget _timingBadge(String label, Color color, bool late) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
     decoration: BoxDecoration(
-      color: color.withOpacity(0.12),
+      color: color.withValues(alpha: 0.12),
       borderRadius: BorderRadius.circular(20),
-      border: Border.all(color: color.withOpacity(0.38)),
+      border: Border.all(color: color.withValues(alpha: 0.38)),
     ),
     child: Row(mainAxisSize: MainAxisSize.min, children: [
       Icon(late ? Icons.warning_amber_rounded : Icons.schedule_rounded,
@@ -570,9 +570,9 @@ class _RelancesFollowupSectionState extends State<RelancesFollowupSection> {
   Widget _stageBadge(String name, Color color) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
     decoration: BoxDecoration(
-      color: color.withOpacity(0.1),
+      color: color.withValues(alpha: 0.1),
       borderRadius: BorderRadius.circular(20),
-      border: Border.all(color: color.withOpacity(0.25)),
+      border: Border.all(color: color.withValues(alpha: 0.25)),
     ),
     child: Row(mainAxisSize: MainAxisSize.min, children: [
       Container(width: 5, height: 5,
@@ -595,9 +595,9 @@ class _RelancesFollowupSectionState extends State<RelancesFollowupSection> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
       decoration: BoxDecoration(
-        color: c.withOpacity(0.08),
+        color: c.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(11),
-        border: Border.all(color: c.withOpacity(0.20)),
+        border: Border.all(color: c.withValues(alpha: 0.20)),
       ),
       child: Row(mainAxisSize: MainAxisSize.min, children: [
         Icon(icon, size: 10, color: c),
@@ -613,7 +613,7 @@ class _RelancesFollowupSectionState extends State<RelancesFollowupSection> {
       Container(
         padding: const EdgeInsets.all(3),
         decoration: BoxDecoration(
-            color: color.withOpacity(0.1), borderRadius: BorderRadius.circular(4)),
+            color: color.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(4)),
         child: Icon(icon, size: 10, color: color),
       ),
       const SizedBox(width: 4),
@@ -634,7 +634,7 @@ class _RelancesFollowupSectionState extends State<RelancesFollowupSection> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
       decoration: BoxDecoration(
-          color: c.withOpacity(0.1), borderRadius: BorderRadius.circular(11)),
+          color: c.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(11)),
       child: Row(mainAxisSize: MainAxisSize.min, children: [
         Icon(icon, size: 10, color: c), const SizedBox(width: 3),
         Text(p, style: TextStyle(fontFamily: 'InterTight', fontSize: 10,

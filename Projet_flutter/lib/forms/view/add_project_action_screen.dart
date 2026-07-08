@@ -199,7 +199,7 @@ class _AddProjectActionScreenState extends State<AddProjectActionScreen> {
           _Label('Action Type', required: true),
           const SizedBox(height: 6),
           DropdownButtonFormField<String>(
-            value: _type,
+            initialValue: _type,
             decoration: _inputDec('Select action type'),
             items: _actionTypes
                 .map((v) => DropdownMenuItem(

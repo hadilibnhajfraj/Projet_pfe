@@ -38,7 +38,7 @@ class AdminClientsScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(18),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
+                    color: Colors.black.withValues(alpha: 0.05),
                     blurRadius: 18,
                     offset: const Offset(0, 4),
                   ),
@@ -200,7 +200,7 @@ Widget _buildClientsTable(BuildContext context) {
           borderRadius: BorderRadius.circular(18),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: Colors.black.withValues(alpha: 0.05),
               blurRadius: 18,
               offset: const Offset(0, 4),
             ),
@@ -224,7 +224,7 @@ Widget _buildClientsTable(BuildContext context) {
             borderRadius: BorderRadius.circular(18),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.05),
+                color: Colors.black.withValues(alpha: 0.05),
                 blurRadius: 18,
                 offset: const Offset(0, 4),
               ),
@@ -345,7 +345,7 @@ DataCell(
         decoration: BoxDecoration(
           color: controller
               .getFactureColor(client.derniereFacturation)
-              .withOpacity(0.15),
+              .withValues(alpha: 0.15),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Text(
@@ -363,7 +363,7 @@ DataCell(
           margin: const EdgeInsets.only(left: 8),
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           decoration: BoxDecoration(
-            color: Colors.red.withOpacity(0.1),
+            color: Colors.red.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(12),
           ),
           child: const Text(

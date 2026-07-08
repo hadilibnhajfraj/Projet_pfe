@@ -130,7 +130,7 @@ await ApiClient.instance.dio.post(
               /// TYPE ACTION
               DropdownButtonFormField(
 
-                value: type,
+                initialValue: type,
 
                 items: const [
                   DropdownMenuItem(value: "Visite", child: Text("Visite")),

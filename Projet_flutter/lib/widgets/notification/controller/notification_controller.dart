@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -21,7 +22,7 @@ class NotificationController extends GetxController {
 @override
 void onInit() {
   super.onInit();
-  print("🔥 NotificationController INIT");
+  debugPrint("🔥 NotificationController INIT");
   fetchNotifications();
 }
   // =========================
@@ -46,7 +47,7 @@ Future<void> fetchNotifications({bool silent = false}) async {
     hasMore.value = res.items.length >= 10;
 
   } catch (e) {
-    print("❌ ERROR: $e");
+    debugPrint("❌ ERROR: $e");
   } finally {
     isLoading.value = false;
   }
@@ -71,7 +72,7 @@ Future<void> fetchNotifications({bool silent = false}) async {
       listOfNotification.refresh();
 
     } catch (e) {
-      print("❌ MARK ALL ERROR: $e");
+      debugPrint("❌ MARK ALL ERROR: $e");
     }
   }
 
@@ -98,7 +99,7 @@ Future<void> fetchNotifications({bool silent = false}) async {
       }
 
     } catch (e) {
-      print("❌ MARK ONE ERROR: $e");
+      debugPrint("❌ MARK ONE ERROR: $e");
     }
   }
 
@@ -118,7 +119,7 @@ Future<void> fetchNotifications({bool silent = false}) async {
           listOfNotification.where((n) => !n.isRead).length;
 
     } catch (e) {
-      print("❌ DELETE ERROR: $e");
+      debugPrint("❌ DELETE ERROR: $e");
     }
   }
   Future<void> loadMore() async {
@@ -140,7 +141,7 @@ Future<void> fetchNotifications({bool silent = false}) async {
     }
 
   } catch (e) {
-    print("❌ LOAD MORE ERROR: $e");
+    debugPrint("❌ LOAD MORE ERROR: $e");
   } finally {
     isLoading.value = false;
   }

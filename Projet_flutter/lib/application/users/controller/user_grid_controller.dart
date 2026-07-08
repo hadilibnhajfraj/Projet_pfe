@@ -36,7 +36,7 @@ class UserGridController extends GetxController {
 
       final list = await ProjectApi.instance.getProjects(userId: userId);
 
-      print('TABLE COUNT = ${list.length}');
+      debugPrint('TABLE COUNT = ${list.length}');
 
       projects.assignAll(list);
       filtered.assignAll(list);

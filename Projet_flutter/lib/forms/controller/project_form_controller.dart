@@ -125,7 +125,7 @@ final montantMarche = TextEditingController();
     // 🔥 AUTO LOAD USER
   final savedUser = box.read("user_name");
   if (savedUser != null) {
-    print("👤 Current user: $savedUser");
+    debugPrint("👤 Current user: $savedUser");
   }
   }
 
@@ -229,7 +229,7 @@ void resetForm() {
 
       syncReferenceSelections();
     } catch (e) {
-      print('Reference data load failed: $e');
+      debugPrint('Reference data load failed: $e');
     }
   }
 
@@ -419,7 +419,7 @@ revendeurPrenom.text = (j['revendeurPrenom'] ?? '').toString();
 revendeurEmail.text = (j['revendeurEmail'] ?? '').toString();
 revendeurStatut.text = (j['revendeurStatut'] ?? 'prospect').toString();
 // ── START DATE ── resolve from any API field name, display as yyyy-MM-dd ──────
-print('PROJECT DATA = $j');
+debugPrint('PROJECT DATA = $j');
 debugPrint('START DATE raw → startDate:${j['startDate']} | dateDemarrage:${j['dateDemarrage']} | start_date:${j['start_date']}');
 {
   final rawStart = (

@@ -459,7 +459,7 @@ class _DialogsScreenState extends State<DialogsScreen> {
                 formKey.currentState!.save();
                 Navigator.pop(ctx);
                 if (kDebugMode) {
-                  print("Name: $name");
+                  debugPrint("Name: $name");
                 }
               }
             },

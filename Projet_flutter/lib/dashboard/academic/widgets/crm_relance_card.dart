@@ -269,14 +269,14 @@ class _CrmRelanceCardState extends State<CrmRelanceCard> {
           color: _kCard,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: _hovered ? _timingColor.withOpacity(0.45) : _kBorder,
+            color: _hovered ? _timingColor.withValues(alpha: 0.45) : _kBorder,
             width: _hovered ? 1.5 : 1,
           ),
           boxShadow: [
             BoxShadow(
               color: _hovered
-                  ? _timingColor.withOpacity(0.14)
-                  : Colors.black.withOpacity(0.04),
+                  ? _timingColor.withValues(alpha: 0.14)
+                  : Colors.black.withValues(alpha: 0.04),
               blurRadius: _hovered ? 24 : 8,
               spreadRadius: _hovered ? 1 : 0,
               offset: const Offset(0, 4),
@@ -416,7 +416,7 @@ class _ColoredBar extends StatelessWidget {
       gradient: LinearGradient(
         begin: Alignment.topCenter,
         end:   Alignment.bottomCenter,
-        colors: [color, color.withOpacity(0.4)],
+        colors: [color, color.withValues(alpha: 0.4)],
       ),
     ),
   );
@@ -518,9 +518,9 @@ class _TimingBadgeState extends State<_TimingBadge>
     final badge = Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-        color:  widget.color.withOpacity(0.12),
+        color:  widget.color.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: widget.color.withOpacity(0.38), width: 1),
+        border: Border.all(color: widget.color.withValues(alpha: 0.38), width: 1),
       ),
       child: Row(mainAxisSize: MainAxisSize.min, children: [
         Icon(widget.icon, size: 13, color: widget.color),
@@ -565,7 +565,7 @@ class _PriorityBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.08),
+        color: color.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(mainAxisSize: MainAxisSize.min, children: [
@@ -598,9 +598,9 @@ class _StageBadge extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
     decoration: BoxDecoration(
-      color:  color.withOpacity(0.1),
+      color:  color.withValues(alpha: 0.1),
       borderRadius: BorderRadius.circular(20),
-      border: Border.all(color: color.withOpacity(0.3)),
+      border: Border.all(color: color.withValues(alpha: 0.3)),
     ),
     child: Row(mainAxisSize: MainAxisSize.min, children: [
       Container(
@@ -686,9 +686,9 @@ class _ValidationBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-        color:  color.withOpacity(0.08),
+        color:  color.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: color.withOpacity(0.25)),
+        border: Border.all(color: color.withValues(alpha: 0.25)),
       ),
       child: Row(mainAxisSize: MainAxisSize.min, children: [
         Icon(icon, size: 13, color: color),
@@ -730,7 +730,7 @@ class _InfoPill extends StatelessWidget {
     Container(
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(6),
       ),
       child: Icon(icon, size: 12, color: color),
@@ -822,7 +822,7 @@ class _Btn extends StatelessWidget {
     final disabled = onTap == null;
     final fg = filled
         ? Colors.white
-        : (disabled ? color.withOpacity(0.38) : color);
+        : (disabled ? color.withValues(alpha: 0.38) : color);
 
     return Material(
       color: Colors.transparent,
@@ -834,12 +834,12 @@ class _Btn extends StatelessWidget {
           duration: const Duration(milliseconds: 140),
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
           decoration: BoxDecoration(
-            color:  filled ? (disabled ? color.withOpacity(0.38) : color) : Colors.transparent,
+            color:  filled ? (disabled ? color.withValues(alpha: 0.38) : color) : Colors.transparent,
             borderRadius: BorderRadius.circular(8),
             border: filled
                 ? null
                 : Border.all(
-                    color: disabled ? color.withOpacity(0.2) : color.withOpacity(0.4),
+                    color: disabled ? color.withValues(alpha: 0.2) : color.withValues(alpha: 0.4),
                   ),
           ),
           child: Row(mainAxisSize: MainAxisSize.min, children: [

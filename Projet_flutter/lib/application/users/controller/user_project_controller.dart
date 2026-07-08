@@ -37,7 +37,7 @@ class UserProjectController extends GetxController {
 
     } catch(e) {
 
-      print("Dashboard error: $e");
+      debugPrint("Dashboard error: $e");
 
     } finally {
 

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart'; // 🔥 IMPORTANT
 import 'package:dash_master_toolkit/application/users/model/commercial_contact_models.dart';
@@ -38,7 +39,7 @@ class CommercialContactApi {
     data["user_nom"] = userNom;
 
     // 🔥 DEBUG (optionnel)
-    print("📤 SEND CONTACT DATA: $data");
+    debugPrint("📤 SEND CONTACT DATA: $data");
 
     final res = await _dio.post(
       "/commercial-contacts",

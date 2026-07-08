@@ -28,7 +28,7 @@ class ThemeController extends GetxController {
     box.write('isDarkMode', _isDarkMode.value);
     updateSystemUiOverlayStyle();
     Get.forceAppUpdate();
-    // print("AAAAAAAAAA ${box.read('isDarkMode')}");
+    // debugPrint("AAAAAAAAAA ${box.read('isDarkMode')}");
     // update();
   }
 

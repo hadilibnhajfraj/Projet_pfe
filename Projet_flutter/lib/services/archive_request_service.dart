@@ -1,4 +1,5 @@
 // lib/services/archive_request_service.dart
+import 'package:flutter/foundation.dart';
 import 'package:dash_master_toolkit/providers/api_client.dart';
 import 'package:dash_master_toolkit/models/archive_request_model.dart';
 
@@ -31,35 +32,29 @@ class ArchiveRequestService {
       'subject':   subject,
       'message':   message,
     };
-    // ignore: avoid_print
-    print('ARCHIVE REQUEST BODY = $body');
+    debugPrint('ARCHIVE REQUEST BODY = $body');
     try {
       final res = await ApiClient.instance.dio
           .post('/archive-requests', data: body);
       return ArchiveRequest.fromJson(_unwrap(res.data));
     } catch (e) {
-      // ignore: avoid_print
-      print('ARCHIVE REQUEST ERROR = $e');
+      debugPrint('ARCHIVE REQUEST ERROR = $e');
       rethrow;
     }
   }
 
   // ── Fetch for admin — tries endpoints until one returns a non-empty list ───
   Future<List<ArchiveRequest>> fetchAdmin() async {
-    // ignore: avoid_print
-    print('LOAD ARCHIVE REQUESTS [admin]');
+    debugPrint('LOAD ARCHIVE REQUESTS [admin]');
 
     for (final path in _adminEndpoints) {
       try {
-        // ignore: avoid_print
-        print('  → trying $path');
+        debugPrint('  → trying $path');
         final res = await ApiClient.instance.dio.get(path);
-        // ignore: avoid_print
-        print(res.data);
+        debugPrint(res.data);
 
         final list = _unwrapList(res.data);
-        // ignore: avoid_print
-        print('ADMIN REQUESTS COUNT = ${list.length}  (from $path)');
+        debugPrint('ADMIN REQUESTS COUNT = ${list.length}  (from $path)');
 
         if (list.isNotEmpty) {
           return list.map((j) => ArchiveRequest.fromJson(j)).toList();
@@ -67,38 +62,31 @@ class ArchiveRequestService {
         // Empty list is a valid response — return it from the first 2xx
         return [];
       } catch (e) {
-        // ignore: avoid_print
-        print('  ✗ $path failed: $e');
+        debugPrint('  ✗ $path failed: $e');
         // continue to next candidate
       }
     }
 
-    // ignore: avoid_print
-    print('LOAD ARCHIVE REQUESTS — all endpoints failed, returning []');
+    debugPrint('LOAD ARCHIVE REQUESTS — all endpoints failed, returning []');
     return [];
   }
 
   // ── Fetch for regular user ─────────────────────────────────────────────────
   Future<List<ArchiveRequest>> fetchAll() async {
-    // ignore: avoid_print
-    print('LOAD ARCHIVE REQUESTS [user]');
+    debugPrint('LOAD ARCHIVE REQUESTS [user]');
 
     for (final path in _userEndpoints) {
       try {
-        // ignore: avoid_print
-        print('  → trying $path');
+        debugPrint('  → trying $path');
         final res = await ApiClient.instance.dio.get(path);
-        // ignore: avoid_print
-        print(res.data);
+        debugPrint(res.data);
 
         final list = _unwrapList(res.data);
-        // ignore: avoid_print
-        print('USER REQUESTS COUNT = ${list.length}  (from $path)');
+        debugPrint('USER REQUESTS COUNT = ${list.length}  (from $path)');
 
         return list.map((j) => ArchiveRequest.fromJson(j)).toList();
       } catch (e) {
-        // ignore: avoid_print
-        print('  ✗ $path failed: $e');
+        debugPrint('  ✗ $path failed: $e');
       }
     }
 
@@ -116,8 +104,7 @@ class ArchiveRequestService {
   Future<ArchiveRequestMessage> addMessage(
       String requestId, String content) async {
     final body = {'message': content.trim()};
-    // ignore: avoid_print
-    print('MESSAGE SENT = $body');
+    debugPrint('MESSAGE SENT = $body');
     final res = await ApiClient.instance.dio.post(
       '/archive-requests/$requestId/messages',
       data: body,

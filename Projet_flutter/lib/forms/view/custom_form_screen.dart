@@ -33,7 +33,7 @@ class _CustomFormScreenState extends State<CustomFormScreen> {
       });
     }
   } catch (e) {
-    print("Geo error: $e");
+    debugPrint("Geo error: $e");
   }
 }
   @override
@@ -343,7 +343,7 @@ class _CustomFormScreenState extends State<CustomFormScreen> {
     _addressController.text = option["displayName"];
 
     // 👉 ici tu peux stocker lat/lng si besoin
-    print("LAT: $lat, LNG: $lng");
+    debugPrint("LAT: $lat, LNG: $lng");
   },
 
   fieldViewBuilder: (context, textController, focusNode, onFieldSubmitted) {
@@ -453,7 +453,7 @@ class _CustomFormScreenState extends State<CustomFormScreen> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16,top: 5),
       child: Obx(() => DropdownButtonFormField<String>(
-            value: controller.selectedCountry.value.isEmpty
+            initialValue: controller.selectedCountry.value.isEmpty
                 ? null
                 : controller.selectedCountry.value,
             decoration: inputDecoration(
@@ -490,7 +490,7 @@ class _CustomFormScreenState extends State<CustomFormScreen> {
         final states = controller.countryStateCityMap[selectedCountry]?.keys.toList() ?? [];
 
         return  DropdownButtonFormField<String>(
-          value: controller.selectedState.value.isEmpty ? null : controller
+          initialValue: controller.selectedState.value.isEmpty ? null : controller
               .selectedState.value,
           decoration: inputDecoration(
             context,
@@ -529,7 +529,7 @@ class _CustomFormScreenState extends State<CustomFormScreen> {
         final cities = controller.countryStateCityMap[selectedCountry]?[selectedState] ?? [];
 
         return  DropdownButtonFormField<String>(
-          value: controller.selectedCity.value.isEmpty ? null : controller
+          initialValue: controller.selectedCity.value.isEmpty ? null : controller
               .selectedCity.value,
           decoration: inputDecoration(
             context,

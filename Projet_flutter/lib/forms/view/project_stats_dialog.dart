@@ -58,7 +58,7 @@ class _ProjectStatsDialogState extends State<ProjectStatsDialog> {
       });
 
     } catch (e) {
-      print("❌ LOAD ACTIONS ERROR: $e");
+      debugPrint("❌ LOAD ACTIONS ERROR: $e");
     }
   }
 

@@ -319,15 +319,13 @@ class ArchiveRequestProvider extends GetxController {
     String msg = fallback;
 
     if (e is DioException) {
-      // ignore: avoid_print
-      print('ERROR RESPONSE = ${e.response?.data}');
+      debugPrint('ERROR RESPONSE = ${e.response?.data}');
 
       msg = e.response?.data?['message']?.toString() ??
             e.response?.data?['error']?.toString() ??
             fallback;
 
-      // ignore: avoid_print
-      print('ERROR MESSAGE = $msg');
+      debugPrint('ERROR MESSAGE = $msg');
 
       if ((e.response?.statusCode ?? 0) == 409) {
         msg = 'Une demande en attente existe déjà pour ce projet';

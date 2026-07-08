@@ -53,7 +53,7 @@ void initState() {
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: kPrimary.withOpacity(.25)),
+        borderSide: BorderSide(color: kPrimary.withValues(alpha: .25)),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
@@ -251,7 +251,7 @@ void initState() {
               const SizedBox(height: 12),
 
 DropdownButtonFormField<ProjectItem>(
-  value: _selectedProject,
+  initialValue: _selectedProject,
   items: widget.projects.map<DropdownMenuItem<ProjectItem>>((ProjectItem p) {
     return DropdownMenuItem<ProjectItem>(
       value: p,
@@ -403,7 +403,7 @@ class _CustomDatePickerDialogState extends State<_CustomDatePickerDialog> {
                       decoration: BoxDecoration(
                         color: isSelected ? widget.primary : Colors.transparent,
                         borderRadius: BorderRadius.circular(999),
-                        border: isSelected ? null : Border.all(color: widget.primary.withOpacity(.15)),
+                        border: isSelected ? null : Border.all(color: widget.primary.withValues(alpha: .15)),
                       ),
                       child: Text(
                         "$dayNum",
@@ -524,7 +524,7 @@ class _CustomTimePickerDialogState extends State<_CustomTimePickerDialog> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: widget.primary.withOpacity(.25)),
+                  border: Border.all(color: widget.primary.withValues(alpha: .25)),
                 ),
                 child: Row(
                   children: [
@@ -638,7 +638,7 @@ class _CustomTimePickerDialogState extends State<_CustomTimePickerDialog> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: widget.primary.withOpacity(.25)),
+        border: Border.all(color: widget.primary.withValues(alpha: .25)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

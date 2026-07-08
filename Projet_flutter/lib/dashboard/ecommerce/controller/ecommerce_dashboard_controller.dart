@@ -216,11 +216,11 @@ class EcommerceDashboardController extends GetxController {
     }
 
     // Optionnel: log debug
-    // print("Delete failed: ${res.statusCode} ${res.body}");
+    // debugPrint("Delete failed: ${res.statusCode} ${res.body}");
 
     return false;
   } catch (e) {
-    // print("Delete exception: $e");
+    // debugPrint("Delete exception: $e");
     return false;
   }
 }
