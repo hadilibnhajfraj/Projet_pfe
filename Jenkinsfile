@@ -8,7 +8,7 @@ pipeline {
     environment {
         FLUTTER_HOME = "/opt/flutter"
         PATH = "/opt/flutter/bin:/opt/flutter/bin/cache/dart-sdk/bin:${env.PATH}"
-        SCANNER_HOME = tool 'SonarScanner'
+       // SCANNER_HOME = tool 'SonarScanner'
     }
 
     stages {
@@ -19,13 +19,19 @@ pipeline {
             }
         }
 
-        stage('Install Backend') {
-            steps {
-                dir('Projet_flutter_backend') {
-                    sh 'npm install'
-                }
-            }
+       stage('Install Backend') {
+    steps {
+        dir('Projet_flutter_backend') {
+            sh '''
+                rm -rf node_modules package-lock.json
+
+                npm install
+
+                chmod -R +x node_modules/.bin
+            '''
         }
+    }
+}
 
         stage('Check Backend') {
             steps {
@@ -36,10 +42,12 @@ pipeline {
             }
         }
 
-        stage('Backend Tests') {
+stage('Backend Tests') {
     steps {
         dir('Projet_flutter_backend') {
-            sh 'npm test -- --coverage'
+            sh '''
+                npx jest --coverage
+            '''
         }
     }
 }
@@ -97,17 +105,21 @@ stage('Flutter Test') {
             }
         }
 
-        stage('SonarQube Analysis') {
-            steps {
-                dir('Projet_flutter_backend') {
-                    withSonarQubeEnv('SonarQube') {
-                        sh '''
-                            ${SCANNER_HOME}/bin/sonar-scanner
-                        '''
-                    }
+       stage('SonarQube Analysis') {
+    steps {
+        script {
+            def scannerHome = tool 'SonarScanner'
+
+            withSonarQubeEnv('SonarQube') {
+                dir("${WORKSPACE}") {
+                    sh """
+                        ${scannerHome}/bin/sonar-scanner
+                    """
                 }
             }
         }
+    }
+}
 
         stage('Flutter Build Web') {
             steps {
@@ -133,8 +145,8 @@ stage('Flutter Test') {
             echo 'Pipeline en échec'
         }
 
-        always {
-            cleanWs()
-        }
+      //  always {
+        //    cleanWs()
+        //}
     }
 }
