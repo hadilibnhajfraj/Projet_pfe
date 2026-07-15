@@ -2,18 +2,30 @@
 
 const { Server } = require("socket.io");
 
+const SOCKET_CORS_ORIGINS = [
+  "https://www.crmprobar.com",
+  "https://crmprobar.com",
+  "https://api.crmprobar.com",
+  "http://localhost:4000",
+  "http://localhost:57745",
+];
+
 let _io = null;
 
-function init(httpServer) {
+/**
+ * Creates the single Socket.IO instance for the process and attaches it to
+ * the given HTTP server. Safe to call more than once — later calls just
+ * return the existing instance instead of creating a second one.
+ */
+function initSocket(httpServer) {
+  if (_io) {
+    console.warn("⚠️ Socket.IO already initialized — reusing existing instance");
+    return _io;
+  }
+
   _io = new Server(httpServer, {
     cors: {
-      origin: [
-        "https://www.crmprobar.com",
-        "https://crmprobar.com",
-        "https://api.crmprobar.com",
-        "http://localhost:4000",
-        "http://localhost:57745",
-      ],
+      origin: SOCKET_CORS_ORIGINS,
       methods: ["GET", "POST"],
       credentials: true,
     },
@@ -32,8 +44,9 @@ function init(httpServer) {
   return _io;
 }
 
-function getIo() {
-  if (!_io) throw new Error("Socket.IO not initialized — call init() first");
+/** Returns the singleton Socket.IO instance. Throws if initSocket() hasn't run yet. */
+function getIO() {
+  if (!_io) throw new Error("Socket.IO not initialized — call initSocket() first");
   return _io;
 }
 
@@ -49,4 +62,12 @@ function emitToRoom(room, event, data) {
   _io.to(room).emit(event, data);
 }
 
-module.exports = { init, getIo, emitToUser, emitToRoom };
+module.exports = {
+  initSocket,
+  getIO,
+  emitToUser,
+  emitToRoom,
+  // Backward-compatible aliases (previous API names)
+  init: initSocket,
+  getIo: getIO,
+};

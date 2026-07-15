@@ -31,6 +31,35 @@ pipeline {
             steps {
                 dir('Projet_flutter_backend') {
                     sh 'node --check src/app.js'
+                    sh 'node --check src/server.js'
+                }
+            }
+        }
+
+        stage('Backend Tests') {
+    steps {
+        dir('Projet_flutter_backend') {
+            sh 'npm test -- --coverage'
+        }
+    }
+}
+stage('Flutter Test') {
+    steps {
+        dir('Projet_flutter') {
+            sh 'flutter test --coverage'
+        }
+    }
+}
+
+        stage('Backend Lint') {
+            steps {
+                dir('Projet_flutter_backend') {
+                    // Non-blocking for now: the ESLint/SonarJS ruleset was
+                    // just introduced and surfaced pre-existing issues across
+                    // the codebase that are being fixed incrementally — see
+                    // `npm run lint` output. Flip to a hard failure once that
+                    // backlog is cleared.
+                    sh 'npm run lint || true'
                 }
             }
         }
@@ -70,10 +99,12 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh '''
-                        ${SCANNER_HOME}/bin/sonar-scanner
-                    '''
+                dir('Projet_flutter_backend') {
+                    withSonarQubeEnv('SonarQube') {
+                        sh '''
+                            ${SCANNER_HOME}/bin/sonar-scanner
+                        '''
+                    }
                 }
             }
         }

@@ -1678,7 +1678,11 @@ router.post("/", authRequired, async (req, res) => {
       comptoir: isRevendeur ? clean(body.comptoir) : null,
       telephoneComptoir: isRevendeur ? clean(body.telephoneComptoir) : null,
       telephoneComptoir2: isRevendeur ? clean(body.telephoneComptoir2) : null,
-      registreCommerce: isRevendeur ? clean(body.registreCommerce) : null,
+      // Shared between REVENDEUR and APPLICATEUR — previously duplicated as
+      // two separate object keys (one per branch), which meant the second
+      // (APPLICATEUR) key silently won and revendeur projects always got
+      // registreCommerce: null regardless of what was submitted.
+      registreCommerce: (isRevendeur || isApplicateur) ? clean(body.registreCommerce) : null,
       fonction: isRevendeur ? clean(body.fonction) : null,
 
       revendeurNom: isRevendeur ? clean(body.revendeurNom) : null,
@@ -1704,10 +1708,6 @@ router.post("/", authRequired, async (req, res) => {
 
       matriculeFiscale: isApplicateur
         ? clean(body.matriculeFiscale)
-        : null,
-
-      registreCommerce: isApplicateur
-        ? clean(body.registreCommerce)
         : null,
 
       adresse: isApplicateur ? clean(body.adresse) : null,
@@ -2911,10 +2911,9 @@ const dateRelance =
       startDate: json.dateDemarrage ?? lastAction?.dateAction ?? null,
       localisationCommentaire: json.localisationCommentaire ?? null,
       dateVisite: lastAction?.dateAction ?? null,
-      nextAction: lastAction?.typeAction ?? null,
       commentaireAction: lastAction?.commentaire ?? null,
-        nextAction,
-  dateRelance,
+      nextAction,
+      dateRelance,
       color: getProjectColor(json.pipelineStage),
     });
 
